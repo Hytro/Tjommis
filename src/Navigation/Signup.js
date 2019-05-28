@@ -40,20 +40,27 @@ class Signup extends React.Component{
 
       var url = 'http://tjommis.eu-central-1.elasticbeanstalk.com/api/auth/register/';
       
-      access(url, {
+      fetch(url, {
         method: 'POST', // or 'PUT'
         body: JSON.stringify(collection), // data can be `string` or {object}!
         headers:{
           'Content-Type': 'application/json'
         },  
-      }).then(res => res.json())
-      //.then(response => console.log('Success:', JSON.stringify(response)))
-      .then(response => {
-        response.status
-        response.statusText
-        response.headers
-        response.url
+      }).then((res) =>{res.json()
+        if(res.status === 200){
+          this.props.navigation.navigate('Dashboard')
+        }
+
+        console.warn(res.status)
       })
+
+      //.then(response => console.log('Success:', JSON.stringify(response)))
+     // .then(response => {
+     //   response.status
+     //   response.statusText
+      //  response.headers
+       // response.url
+      //})
 
       .catch(error => console.error('Error:', error));
   }
@@ -80,7 +87,7 @@ class Signup extends React.Component{
 
             <TouchableOpacity
               style={styles.btn}
-              onPress={() => this.props.navigation.navigate('Dashboard')}>
+              onPress={() => this.submit()} >
               <Text style={styles.btnText}>Signup</Text>
             </TouchableOpacity>
           </View>
