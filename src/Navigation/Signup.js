@@ -1,5 +1,5 @@
 import React from 'react';
-import {View, Button, Text, StyleSheet, TextInput} from 'react-native';
+import {View, Text, StyleSheet, TextInput, TouchableOpacity} from 'react-native';
 
 
 class Signup extends React.Component{
@@ -37,19 +37,24 @@ class Signup extends React.Component{
 //      collection.name=this.state.name
       collection.email=this.state.email
       collection.password=this.state.password
-      console.warn(collection);
-
 
       var url = 'http://tjommis.eu-central-1.elasticbeanstalk.com/api/auth/register/';
       
-      fetch(url, {
+      access(url, {
         method: 'POST', // or 'PUT'
         body: JSON.stringify(collection), // data can be `string` or {object}!
         headers:{
           'Content-Type': 'application/json'
-        }
+        },  
       }).then(res => res.json())
-      .then(response => console.log('Success:', JSON.stringify(response)))
+      //.then(response => console.log('Success:', JSON.stringify(response)))
+      .then(response => {
+        response.status
+        response.statusText
+        response.headers
+        response.url
+      })
+
       .catch(error => console.error('Error:', error));
   }
 
@@ -72,10 +77,12 @@ class Signup extends React.Component{
               underlineColorAndroid={'transparent'}
               onChangeText={(text)=>this.updateValue(text, 'password')}
             />
-            <Button 
-              title='Signup' 
-              onPress={() => this.submit()} 
-            />
+
+            <TouchableOpacity
+              style={styles.btn}
+              onPress={() => this.props.navigation.navigate('Dashboard')}>
+              <Text style={styles.btnText}>Signup</Text>
+            </TouchableOpacity>
           </View>
         </View>
       );
@@ -89,7 +96,7 @@ class Signup extends React.Component{
       flex: 1,
       justifyContent: 'center',
       alignItems: 'center',
-      backgroundColor: '#34485f',
+      backgroundColor: '#4ABDAC',
       paddingLeft: 60,
       paddingRight: 60
     },
@@ -111,6 +118,17 @@ class Signup extends React.Component{
       color: '#fff',
       borderBottomColor: '#f8f8f8',
       borderBottomWidth: 1
+    },
+    btn:{
+      alignSelf: 'stretch',
+      alignItems: 'center',
+      padding: 20,
+      backgroundColor: '#42A99A',
+      marginTop: 30
+    },
+    btnText:{
+      color: '#ECF0F1',
+      fontWeight: 'bold'
     },
 
   });
