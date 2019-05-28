@@ -1,10 +1,10 @@
 {
     "logs": [
         {
-            "outputFile": "/Users/zachosekken/Desktop/Tjommis2/android/app/build/intermediates/incremental/mergeDebugResources/merged.dir/values-v23/values-v23.xml",
+            "outputFile": "/Users/gullik/Documents/GitHub/Tjommis/android/app/build/intermediates/incremental/mergeDebugResources/merged.dir/values-v23/values-v23.xml",
             "map": [
                 {
-                    "source": "/Users/zachosekken/.gradle/caches/transforms-1/files-1.1/appcompat-v7-28.0.0.aar/3da76ba2d688d455792bd9e05347ba6c/res/values-v23/values-v23.xml",
+                    "source": "/Users/gullik/.gradle/caches/transforms-1/files-1.1/appcompat-v7-28.0.0.aar/0ec987263d41c3a7fe605f94c40bf202/res/values-v23/values-v23.xml",
                     "from": {
                         "startLines": "2,3,4,5,6,19,32,33,34,35,36",
                         "startColumns": "4,4,4,4,4,4,4,4,4,4,4",

@@ -5,6 +5,39 @@
 	<key>logFormatVersion</key>
 	<integer>10</integer>
 	<key>logs</key>
-	<dict/>
+	<dict>
+		<key>38D1D84A-DE98-48A4-A2F3-769C964699B6</key>
+		<dict>
+			<key>className</key>
+			<string>IDECommandLineBuildLog</string>
+			<key>documentTypeString</key>
+			<string>&lt;nil&gt;</string>
+			<key>domainType</key>
+			<string>Xcode.IDEActivityLogDomainType.BuildLog</string>
+			<key>fileName</key>
+			<string>38D1D84A-DE98-48A4-A2F3-769C964699B6.xcactivitylog</string>
+			<key>primaryObservable</key>
+			<dict>
+				<key>highLevelStatus</key>
+				<string>W</string>
+			</dict>
+			<key>schemeIdentifier-containerName</key>
+			<string>Tjommis project</string>
+			<key>schemeIdentifier-schemeName</key>
+			<string>Tjommis</string>
+			<key>schemeIdentifier-sharedScheme</key>
+			<integer>1</integer>
+			<key>signature</key>
+			<string>Building project Tjommis with scheme Tjommis and configuration Debug</string>
+			<key>timeStartedRecording</key>
+			<real>580735833.17260897</real>
+			<key>timeStoppedRecording</key>
+			<real>580735845.53693795</real>
+			<key>title</key>
+			<string>Building project Tjommis with scheme Tjommis and configuration Debug</string>
+			<key>uniqueIdentifier</key>
+			<string>38D1D84A-DE98-48A4-A2F3-769C964699B6</string>
+		</dict>
+	</dict>
 </dict>
 </plist>
