@@ -31,6 +31,32 @@ class Login extends React.Component{
     }
   }
 
+  submit(){
+    let collection={}
+//      collection.name=this.state.name
+      collection.email=this.state.email
+      collection.password=this.state.password
+
+      var url = 'http://tjommis.eu-central-1.elasticbeanstalk.com/api/auth/register/';
+      
+      access(url, {
+        method: 'POST', // or 'PUT'
+        body: JSON.stringify(collection), // data can be `string` or {object}!
+        headers:{
+          'Content-Type': 'application/json'
+        },  
+      }).then(res => res.json())
+      //.then(response => console.log('Success:', JSON.stringify(response)))
+      .then(response => {
+        response.status
+        response.statusText
+        response.headers
+        response.url
+      })
+
+      .catch(error => console.error('Error:', error));
+  }
+
     render() {
       return(
         <View style={styles.container}>
