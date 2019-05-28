@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { StyleSheet, Text, View, Button } from 'react-native';
+import { StyleSheet, Text, View } from 'react-native';
 import Icon from 'react-native-vector-icons/Ionicons';
 import IconAD from 'react-native-vector-icons/AntDesign';
 
@@ -127,12 +127,12 @@ const DashboardTabNavigator = createBottomTabNavigator({
     screen: EventStack,
     navigationOptions:{
       tabBarLabel:"Event",
-      tabBarIcon: () => (
+      tabBarIcon: ({ tintColor }) => (
         <IconAD
           style={{ paddingTop: 4 }}
           name="home" 
           size={30}
-          color="#4ABDAC"
+          color={ tintColor }
         />
       )
     }
@@ -141,12 +141,12 @@ const DashboardTabNavigator = createBottomTabNavigator({
     screen: MessageStack,
     navigationOptions:{
       tabBarLabel:"Messages",
-      tabBarIcon: () => (
+      tabBarIcon: ({ tintColor }) => (
         <IconAD
           style={{ paddingTop: 4 }}
           name="wechat" 
           size={30}
-          color="#4ABDAC"
+          color={ tintColor }
         />
       )
     }
@@ -155,12 +155,12 @@ const DashboardTabNavigator = createBottomTabNavigator({
     screen: MyEventStack,
     navigationOptions:{
       tabBarLabel:"My Events",
-      tabBarIcon: () => (
+      tabBarIcon: ({ tintColor }) => (
         <IconAD
           style={{ paddingTop: 4 }}
           name="calendar" 
           size={30}
-          color="#4ABDAC"
+          color={ tintColor }
         />
       )
     }
@@ -169,12 +169,12 @@ const DashboardTabNavigator = createBottomTabNavigator({
     screen: ProfileStack,
     navigationOptions:{
       tabBarLabel:"Profile",
-      tabBarIcon: () => (
+      tabBarIcon: ({ tintColor }) => (
         <IconAD
           style={{ paddingTop: 4 }}
           name="user" 
           size={30}
-          color="#4ABDAC"
+          color={ tintColor }
         />
       )
     }
@@ -185,6 +185,10 @@ const DashboardTabNavigator = createBottomTabNavigator({
       return {
         headerTitle: routeName
       }
+    },
+    tabBarOptions: {
+      activeTintColor:"#4ABDAC",
+      inactiveTintColor:"gray"
     }
   });
 
