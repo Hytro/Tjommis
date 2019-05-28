@@ -1,5 +1,5 @@
-import React, {Component} from 'react';
-import { StyleSheet, Text, View, Button} from 'react-native';
+import React, { Component } from 'react';
+import { StyleSheet, Text, View, Button } from 'react-native';
 import Icon from 'react-native-vector-icons/Ionicons';
 
 import Welcome from './WelcomeScreen';
@@ -10,8 +10,8 @@ import MyEvents from './MyEvents';
 import Signup from './Signup';
 
 import {
-  createSwitchNavigator, 
-  createAppContainer, 
+  createSwitchNavigator,
+  createAppContainer,
   createDrawerNavigator,
   createBottomTabNavigator,
   createStackNavigator
@@ -24,12 +24,12 @@ class Navigation extends Component {
   }
 }
 
-export default Navigation; 
+export default Navigation;
 
 
-class EventDetail extends Component{
+class EventDetail extends Component {
   render() {
-    return(
+    return (
       <View style={styles.container}>
         <Text style={styles.welcome}>Event Details</Text>
       </View>
@@ -38,12 +38,12 @@ class EventDetail extends Component{
 }
 
 const EventStack = createStackNavigator({
-  Events:{
+  Events: {
     screen: Events,
-    navigationOptions:({navigation})=>{
-      return{
-        headerTitle:'Events',
-        headerLeft:(
+    navigationOptions: ({ navigation }) => {
+      return {
+        headerTitle: 'Events',
+        headerLeft: (
           <Icon
             style={{ paddingLeft: 10 }}
             onPress={() => navigation.openDrawer()}
@@ -54,22 +54,22 @@ const EventStack = createStackNavigator({
       };
     }
   },
-  EventDetail:{
+  EventDetail: {
     screen: EventDetail
   }
-},{
-  defaultNavigationOptions:{
-    gesturesEnabled: false
-  }
-});
+}, {
+    defaultNavigationOptions: {
+      gesturesEnabled: false
+    }
+  });
 
 const MessageStack = createStackNavigator({
-  Messages:{
+  Messages: {
     screen: Messages,
-    navigationOptions:({navigation})=>{
-      return{
-        headerTitle:'Messages',
-        headerLeft:(
+    navigationOptions: ({ navigation }) => {
+      return {
+        headerTitle: 'Messages',
+        headerLeft: (
           <Icon
             style={{ paddingLeft: 10 }}
             onPress={() => navigation.openDrawer()}
@@ -83,12 +83,12 @@ const MessageStack = createStackNavigator({
 });
 
 const MyEventStack = createStackNavigator({
-  MyEvents:{
+  MyEvents: {
     screen: MyEvents,
-    navigationOptions:({navigation})=>{
-      return{
-        headerTitle:'MyEvents',
-        headerLeft:(
+    navigationOptions: ({ navigation }) => {
+      return {
+        headerTitle: 'MyEvents',
+        headerLeft: (
           <Icon
             style={{ paddingLeft: 10 }}
             onPress={() => navigation.openDrawer()}
@@ -102,12 +102,12 @@ const MyEventStack = createStackNavigator({
 });
 
 const ProfileStack = createStackNavigator({
-  Profile:{
+  Profile: {
     screen: Profile,
-    navigationOptions:({navigation})=>{
-      return{
-        headerTitle:'Profile',
-        headerLeft:(
+    navigationOptions: ({ navigation }) => {
+      return {
+        headerTitle: 'Profile',
+        headerLeft: (
           <Icon
             style={{ paddingLeft: 10 }}
             onPress={() => navigation.openDrawer()}
@@ -126,14 +126,14 @@ const DashboardTabNavigator = createBottomTabNavigator({
   MessageStack,
   MyEventStack,
   ProfileStack
-},{
-  navigationOptions:({navigation})=>{
-    const {routeName} = navigation.state.routes[navigation.state.index]
-    return{
-      headerTitle:routeName
+}, {
+    navigationOptions: ({ navigation }) => {
+      const { routeName } = navigation.state.routes[navigation.state.index]
+      return {
+        headerTitle: routeName
+      }
     }
-  }
-});
+  });
 
 const DashboardStackNavigator = createStackNavigator(
   {
@@ -157,15 +157,15 @@ const DashboardStackNavigator = createStackNavigator(
 );
 
 const AppDrawerNavigator = createDrawerNavigator({
-  Dashboard:{
+  Dashboard: {
     screen: DashboardStackNavigator
   }
 });
 
 const AppSwitchNavigator = createSwitchNavigator({
-  Welcome:{screen:Welcome},
-  Signup:{screen:Signup},
-  Dashboard:{screen:AppDrawerNavigator}
+  Welcome: { screen: Welcome },
+  Signup: { screen: Signup },
+  Dashboard: { screen: AppDrawerNavigator }
 });
 
 const AppContainer = createAppContainer(AppSwitchNavigator);
