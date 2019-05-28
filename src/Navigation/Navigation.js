@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { StyleSheet, Text, View, Button } from 'react-native';
 import Icon from 'react-native-vector-icons/Ionicons';
+import IconEv from 'react-native-vector-icons/EvilIcons';
 
 import Welcome from './WelcomeScreen';
 import Events from '../Components/Events';
