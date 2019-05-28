@@ -48,6 +48,7 @@ class Signup extends React.Component{
         },  
       }).then((res) =>{res.json()
         if(res.status === 200){
+          console.warn(this.props);
           this.props.navigation.navigate('Dashboard')
         }
 

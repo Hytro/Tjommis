@@ -1,5 +1,6 @@
 import React from 'react';
 import {View, TouchableOpacity, Text, StyleSheet, TextInput} from 'react-native';
+import axios from 'axios';
 
 
 class Login extends React.Component{
@@ -36,25 +37,20 @@ class Login extends React.Component{
 //      collection.name=this.state.name
       collection.email=this.state.email
       collection.password=this.state.password
-
-      var url = 'http://tjommis.eu-central-1.elasticbeanstalk.com/api/auth/register/';
       
-      access(url, {
-        method: 'POST', // or 'PUT'
-        body: JSON.stringify(collection), // data can be `string` or {object}!
-        headers:{
-          'Content-Type': 'application/json'
-        },  
-      }).then(res => res.json())
-      //.then(response => console.log('Success:', JSON.stringify(response)))
-      .then(response => {
-        response.status
-        response.statusText
-        response.headers
-        response.url
-      })
+      axios.post('http://tjommis.eu-central-1.elasticbeanstalk.com/api/auth/login/', collection)
+      .then(function (response) {
+          
+        console.warn(response.status)
+        if(response.data.token){
+            console.warn(this.props);
+            alert.("dank");
+        }
 
-      .catch(error => console.error('Error:', error));
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
   }
 
     render() {
@@ -78,7 +74,7 @@ class Login extends React.Component{
             />
             <TouchableOpacity
               style={styles.btn}
-              onPress={() => this.props.navigation.navigate('Dashboard')}>
+              onPress={() => this.submit()}>
               <Text style={styles.btnText}>Login</Text>
             </TouchableOpacity>
           </View>
