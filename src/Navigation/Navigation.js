@@ -7,6 +7,7 @@ import Events from '../Components/Events';
 import Messages from './Messages';
 import Profile from './Profile';
 import MyEvents from './MyEvents';
+import Signup from './Signup';
 
 import {
   createSwitchNavigator, 
@@ -163,6 +164,7 @@ const AppDrawerNavigator = createDrawerNavigator({
 
 const AppSwitchNavigator = createSwitchNavigator({
   Welcome:{screen:Welcome},
+  Signup:{screen:Signup},
   Dashboard:{screen:AppDrawerNavigator}
 });
 
