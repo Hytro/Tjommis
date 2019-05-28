@@ -1,3 +1,3 @@
 dependencies: \
-  /Users/gullik/Documents/GitHub/Tjommis/node_modules/react-native/React/Base/RCTVersion.m \
-  /Users/gullik/Documents/GitHub/Tjommis/node_modules/react-native/React/Base/RCTVersion.h
+  /Users/zachosekken/Desktop/Tjommis2/node_modules/react-native/React/Base/RCTVersion.m \
+  /Users/zachosekken/Desktop/Tjommis2/node_modules/react-native/React/Base/RCTVersion.h
