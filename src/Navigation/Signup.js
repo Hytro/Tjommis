@@ -38,6 +38,19 @@ class Signup extends React.Component{
       collection.email=this.state.email
       collection.password=this.state.password
       console.warn(collection);
+
+
+      var url = 'http://tjommis.eu-central-1.elasticbeanstalk.com/api/auth/register/';
+      
+      fetch(url, {
+        method: 'POST', // or 'PUT'
+        body: JSON.stringify(collection), // data can be `string` or {object}!
+        headers:{
+          'Content-Type': 'application/json'
+        }
+      }).then(res => res.json())
+      .then(response => console.log('Success:', JSON.stringify(response)))
+      .catch(error => console.error('Error:', error));
   }
 
     render() {

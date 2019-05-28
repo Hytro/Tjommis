@@ -10,10 +10,11 @@ class EventCard extends React.PureComponent{
             onPress={()=>this.props.navigation.navigate('EventDetail')}
           >
               <Text style={styles.cardTitle}>{this.props.item.title}</Text>
-              <Image style={styles.cardImage} source={{uri:'https://www.visitoslo.com/PageFiles/1545/Oslo%20Mekaniske%20Tord%20Baklund.jpg?t=ScaleToFill%7C1450x720&ts=XDgpGh8lQVI%2BmuOGGMTcpSlnp78%3D&pr=2.625'}} />
+              <Image style={styles.cardImage} source={{uri: 'http://tjommis.eu-central-1.elasticbeanstalk.com/' + this.props.item.image_url}} />
               <Text style={styles.cardText}>{this.props.item.description}</Text>
               <Text style={styles.cardTextBody}>{this.props.item.date}</Text>
               <Text style={styles.cardTextBody}>{this.props.item.time}</Text>
+            
           </TouchableOpacity>
       );
     }
