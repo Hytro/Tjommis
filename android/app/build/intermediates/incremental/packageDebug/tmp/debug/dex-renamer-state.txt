@@ -1,5 +1,10 @@
+<<<<<<< HEAD
+#Tue May 28 14:16:27 CEST 2019
+base.0=C\:\\Users\\Marius\\Documents\\Tjommis\\android\\app\\build\\intermediates\\transforms\\dexMerger\\debug\\0
+=======
 #Tue May 28 13:27:09 CEST 2019
 path.1=classes.dex
+>>>>>>> 3f1c3f65b60e17fd79dbfd40ba5f5d0935f61e35
 path.0=classes.dex
 renamed.10=classes11.dex
 renamed.9=classes10.dex

@@ -9,6 +9,7 @@ import Messages from './Messages';
 import Profile from './Profile';
 import MyEvents from './MyEvents';
 import Signup from './Signup';
+import Login from './Login';
 
 import {
   createSwitchNavigator,
@@ -165,6 +166,7 @@ const AppDrawerNavigator = createDrawerNavigator({
 
 const AppSwitchNavigator = createSwitchNavigator({
   Welcome: { screen: Welcome },
+  Login: {screen: Login},
   Signup: { screen: Signup },
   Dashboard: { screen: AppDrawerNavigator }
 });
