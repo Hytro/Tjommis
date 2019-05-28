@@ -1,0 +1,27 @@
+dependencies: \
+  /Users/gullik/Documents/GitHub/Tjommis/node_modules/react-native-gesture-handler/ios/Handlers/RNPanHandler.m \
+  /Users/gullik/Documents/GitHub/Tjommis/node_modules/react-native-gesture-handler/ios/Handlers/RNPanHandler.h \
+  /Users/gullik/Documents/GitHub/Tjommis/node_modules/react-native-gesture-handler/ios/RNGestureHandler.h \
+  /Users/gullik/Documents/GitHub/Tjommis/node_modules/react-native-gesture-handler/ios/RNGestureHandlerState.h \
+  /Users/gullik/Documents/GitHub/Tjommis/node_modules/react-native-gesture-handler/ios/RNGestureHandlerDirection.h \
+  /Users/gullik/Documents/GitHub/Tjommis/node_modules/react-native-gesture-handler/ios/RNGestureHandlerEvents.h \
+  /Users/gullik/Documents/GitHub/Tjommis/ios/build/Tjommis/Build/Products/Debug-iphonesimulator/include/React/RCTEventDispatcher.h \
+  /Users/gullik/Documents/GitHub/Tjommis/ios/build/Tjommis/Build/Products/Debug-iphonesimulator/include/React/RCTBridge.h \
+  /Users/gullik/Documents/GitHub/Tjommis/ios/build/Tjommis/Build/Products/Debug-iphonesimulator/include/React/RCTBridgeDelegate.h \
+  /Users/gullik/Documents/GitHub/Tjommis/ios/build/Tjommis/Build/Products/Debug-iphonesimulator/include/React/RCTJavaScriptLoader.h \
+  /Users/gullik/Documents/GitHub/Tjommis/ios/build/Tjommis/Build/Products/Debug-iphonesimulator/include/React/RCTDefines.h \
+  /Users/gullik/Documents/GitHub/Tjommis/ios/build/Tjommis/Build/Products/Debug-iphonesimulator/include/React/RCTBridgeModule.h \
+  /Users/gullik/Documents/GitHub/Tjommis/ios/build/Tjommis/Build/Products/Debug-iphonesimulator/include/React/RCTFrameUpdate.h \
+  /Users/gullik/Documents/GitHub/Tjommis/ios/build/Tjommis/Build/Products/Debug-iphonesimulator/include/React/RCTInvalidating.h \
+  /Users/gullik/Documents/GitHub/Tjommis/ios/build/Tjommis/Build/Products/Debug-iphonesimulator/include/React/RCTConvert.h \
+  /Users/gullik/Documents/GitHub/Tjommis/ios/build/Tjommis/Build/Products/Debug-iphonesimulator/include/React/RCTAnimationType.h \
+  /Users/gullik/Documents/GitHub/Tjommis/ios/build/Tjommis/Build/Products/Debug-iphonesimulator/include/React/RCTBorderStyle.h \
+  /Users/gullik/Documents/GitHub/Tjommis/ios/build/Tjommis/Build/Products/Debug-iphonesimulator/include/React/RCTLog.h \
+  /Users/gullik/Documents/GitHub/Tjommis/ios/build/Tjommis/Build/Products/Debug-iphonesimulator/include/React/RCTAssert.h \
+  /Users/gullik/Documents/GitHub/Tjommis/ios/build/Tjommis/Build/Products/Debug-iphonesimulator/include/React/RCTUtils.h \
+  /Users/gullik/Documents/GitHub/Tjommis/ios/build/Tjommis/Build/Products/Debug-iphonesimulator/include/React/RCTPointerEvents.h \
+  /Users/gullik/Documents/GitHub/Tjommis/ios/build/Tjommis/Build/Products/Debug-iphonesimulator/include/React/RCTTextDecorationLineType.h \
+  /Users/gullik/Documents/GitHub/Tjommis/ios/build/Tjommis/Build/Products/Debug-iphonesimulator/include/yoga/Yoga.h \
+  /Users/gullik/Documents/GitHub/Tjommis/ios/build/Tjommis/Build/Products/Debug-iphonesimulator/include/yoga/YGEnums.h \
+  /Users/gullik/Documents/GitHub/Tjommis/ios/build/Tjommis/Build/Products/Debug-iphonesimulator/include/yoga/YGMacros.h \
+  /Users/gullik/Documents/GitHub/Tjommis/ios/build/Tjommis/Build/Products/Debug-iphonesimulator/include/yoga/YGValue.h
