@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { StyleSheet, Text, View, Button } from 'react-native';
 import Icon from 'react-native-vector-icons/Ionicons';
-import IconEv from 'react-native-vector-icons/EvilIcons';
+import IconAD from 'react-native-vector-icons/AntDesign';
 
 import Welcome from './WelcomeScreen';
 import Events from '../Components/Events';
@@ -89,7 +89,7 @@ const MyEventStack = createStackNavigator({
     screen: MyEvents,
     navigationOptions: ({ navigation }) => {
       return {
-        headerTitle: 'MyEvents',
+        headerTitle: 'My Events',
         headerLeft: (
           <Icon
             style={{ paddingLeft: 10 }}
@@ -122,12 +122,63 @@ const ProfileStack = createStackNavigator({
   }
 });
 
-
 const DashboardTabNavigator = createBottomTabNavigator({
-  'Event' :EventStack,
-  'Message' :MessageStack,
-  'My Events':MyEventStack,
-  'Profile' :ProfileStack
+  Event: { 
+    screen: EventStack,
+    navigationOptions:{
+      tabBarLabel:"Event",
+      tabBarIcon: () => (
+        <IconAD
+          style={{ paddingTop: 4 }}
+          name="home" 
+          size={30}
+          color="#4ABDAC"
+        />
+      )
+    }
+  },
+  Message: { 
+    screen: MessageStack,
+    navigationOptions:{
+      tabBarLabel:"Messages",
+      tabBarIcon: () => (
+        <IconAD
+          style={{ paddingTop: 4 }}
+          name="wechat" 
+          size={30}
+          color="#4ABDAC"
+        />
+      )
+    }
+  },
+  MyEvents: { 
+    screen: MyEventStack,
+    navigationOptions:{
+      tabBarLabel:"My Events",
+      tabBarIcon: () => (
+        <IconAD
+          style={{ paddingTop: 4 }}
+          name="calendar" 
+          size={30}
+          color="#4ABDAC"
+        />
+      )
+    }
+  },
+  Profile: { 
+    screen: ProfileStack,
+    navigationOptions:{
+      tabBarLabel:"Profile",
+      tabBarIcon: () => (
+        <IconAD
+          style={{ paddingTop: 4 }}
+          name="user" 
+          size={30}
+          color="#4ABDAC"
+        />
+      )
+    }
+  },
 }, {
     navigationOptions: ({ navigation }) => {
       const { routeName } = navigation.state.routes[navigation.state.index]
