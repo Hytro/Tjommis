@@ -10,7 +10,7 @@
 		</data>
 		<key>Base.lproj/LaunchScreen.nib</key>
 		<data>
-		pYk1TBrvBQUdtvHFsDfCGXhmkKY=
+		B/prcVhsfELiYnMV227cO5K8kf0=
 		</data>
 		<key>Entypo.ttf</key>
 		<data>
@@ -107,7 +107,7 @@
 		</data>
 		<key>Info.plist</key>
 		<data>
-		cLQyVsXxqQaeGcJxqPMurYSn2u0=
+		11CwhltiFyWKcHy7Fsja7GmsChU=
 		</data>
 		<key>Ionicons.ttf</key>
 		<data>
@@ -135,7 +135,7 @@
 		</data>
 		<key>PlugIns/TjommisTests.xctest.dSYM/Contents/Resources/DWARF/TjommisTests</key>
 		<data>
-		YEWruYAU4Ikdwlvqm3u0wmvc5v4=
+		R7ukNcqq7Xj4tZ/P1WvcA2ANrQs=
 		</data>
 		<key>PlugIns/TjommisTests.xctest/Info.plist</key>
 		<data>
@@ -143,7 +143,7 @@
 		</data>
 		<key>PlugIns/TjommisTests.xctest/TjommisTests</key>
 		<data>
-		40PSNIjigYOYgyZ1Nw0sK/UFED0=
+		BM9IbuxO6/T0txuLsZuN7QyH7AQ=
 		</data>
 		<key>PlugIns/TjommisTests.xctest/_CodeSignature/CodeResources</key>
 		<data>
@@ -175,11 +175,11 @@
 		<dict>
 			<key>hash</key>
 			<data>
-			pYk1TBrvBQUdtvHFsDfCGXhmkKY=
+			B/prcVhsfELiYnMV227cO5K8kf0=
 			</data>
 			<key>hash2</key>
 			<data>
-			YfIyIFam0YXzWFq1xGMoNMrJZAV9W3je5z6/jHM4GYE=
+			76Tv6dyFjOyloFqqzU0KD7HBkr+D1mzGh9mWz4q5xPg=
 			</data>
 		</dict>
 		<key>Entypo.ttf</key>
@@ -485,11 +485,11 @@
 		<dict>
 			<key>hash</key>
 			<data>
-			YEWruYAU4Ikdwlvqm3u0wmvc5v4=
+			R7ukNcqq7Xj4tZ/P1WvcA2ANrQs=
 			</data>
 			<key>hash2</key>
 			<data>
-			59fw4IabB7RV539r8GKhyJv2GzeNsxxGFpaI9XA2KW4=
+			3EzxkQ2XYrgWvjGZRGaKueyos73+xq3QJKFylRfVku0=
 			</data>
 		</dict>
 		<key>PlugIns/TjommisTests.xctest/Info.plist</key>
@@ -507,11 +507,11 @@
 		<dict>
 			<key>hash</key>
 			<data>
-			40PSNIjigYOYgyZ1Nw0sK/UFED0=
+			BM9IbuxO6/T0txuLsZuN7QyH7AQ=
 			</data>
 			<key>hash2</key>
 			<data>
-			Gu/sDUFJJ9TMCmezQS8ykNbB9nN/P+SrQupmkeLqS0U=
+			qcEI14p115oMDk0rbF5fmnDI7iRA74Blvk8RNwfw+og=
 			</data>
 		</dict>
 		<key>PlugIns/TjommisTests.xctest/_CodeSignature/CodeResources</key>
@@ -550,7 +550,7 @@
 	</dict>
 	<key>rules</key>
 	<dict>
-		<key>^.*</key>
+		<key>^</key>
 		<true/>
 		<key>^.*\.lproj/</key>
 		<dict>
@@ -581,12 +581,24 @@
 			<key>weight</key>
 			<real>11</real>
 		</dict>
+		<key>^</key>
+		<dict>
+			<key>weight</key>
+			<real>20</real>
+		</dict>
 		<key>^(.*/)?\.DS_Store$</key>
 		<dict>
 			<key>omit</key>
 			<true/>
 			<key>weight</key>
 			<real>2000</real>
+		</dict>
+		<key>^(Frameworks|SharedFrameworks|PlugIns|Plug-ins|XPCServices|Helpers|MacOS|Library/(Automator|Spotlight|LoginItems))/</key>
+		<dict>
+			<key>nested</key>
+			<true/>
+			<key>weight</key>
+			<real>10</real>
 		</dict>
 		<key>^.*</key>
 		<true/>
@@ -622,6 +634,13 @@
 			<true/>
 			<key>weight</key>
 			<real>20</real>
+		</dict>
+		<key>^[^/]+$</key>
+		<dict>
+			<key>nested</key>
+			<true/>
+			<key>weight</key>
+			<real>10</real>
 		</dict>
 		<key>^embedded\.provisionprofile$</key>
 		<dict>

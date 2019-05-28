@@ -122,10 +122,10 @@ const ProfileStack = createStackNavigator({
 
 
 const DashboardTabNavigator = createBottomTabNavigator({
-  EventStack,
-  MessageStack,
-  MyEventStack,
-  ProfileStack
+  'Event' :EventStack,
+  'Message' :MessageStack,
+  'My Events':MyEventStack,
+  'Profile' :ProfileStack
 }, {
     navigationOptions: ({ navigation }) => {
       const { routeName } = navigation.state.routes[navigation.state.index]

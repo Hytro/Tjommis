@@ -1,3 +1,3 @@
 dependencies: \
-  /Users/gullik/Documents/GitHub/Tjommis/node_modules/react-native/React/Base/RCTCxxConvert.m \
-  /Users/gullik/Documents/GitHub/Tjommis/node_modules/react-native/React/Base/RCTCxxConvert.h
+  /Users/zachosekken/Desktop/Tjommis2/node_modules/react-native/React/Base/RCTCxxConvert.m \
+  /Users/zachosekken/Desktop/Tjommis2/node_modules/react-native/React/Base/RCTCxxConvert.h

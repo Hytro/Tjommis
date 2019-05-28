@@ -1,2 +1,2 @@
 dependencies: \
-  /Users/gullik/Documents/GitHub/Tjommis/ios/build/Tjommis/Build/Intermediates.noindex/Tjommis.build/Debug-iphonesimulator/Tjommis.build/DerivedSources/Tjommis_vers.c
+  /Users/zachosekken/Desktop/Tjommis2/ios/build/Tjommis/Build/Intermediates.noindex/Tjommis.build/Debug-iphonesimulator/Tjommis.build/DerivedSources/Tjommis_vers.c

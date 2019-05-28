@@ -1,3 +1,3 @@
 dependencies: \
-  /Users/gullik/Documents/GitHub/Tjommis/node_modules/react-native/Libraries/Text/Text/NSTextStorage+FontScaling.m \
-  /Users/gullik/Documents/GitHub/Tjommis/node_modules/react-native/Libraries/Text/Text/NSTextStorage+FontScaling.h
+  /Users/zachosekken/Desktop/Tjommis2/node_modules/react-native/Libraries/Text/Text/NSTextStorage+FontScaling.m \
+  /Users/zachosekken/Desktop/Tjommis2/node_modules/react-native/Libraries/Text/Text/NSTextStorage+FontScaling.h

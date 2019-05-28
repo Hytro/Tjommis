@@ -1,3 +1,3 @@
 dependencies: \
-  /Users/gullik/Documents/GitHub/Tjommis/node_modules/react-native/Libraries/fishhook/fishhook.c \
-  /Users/gullik/Documents/GitHub/Tjommis/node_modules/react-native/Libraries/fishhook/fishhook.h
+  /Users/zachosekken/Desktop/Tjommis2/node_modules/react-native/Libraries/fishhook/fishhook.c \
+  /Users/zachosekken/Desktop/Tjommis2/node_modules/react-native/Libraries/fishhook/fishhook.h

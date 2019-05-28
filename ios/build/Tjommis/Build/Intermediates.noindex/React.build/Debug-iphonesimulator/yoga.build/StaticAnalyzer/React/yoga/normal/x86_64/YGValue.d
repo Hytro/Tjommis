@@ -1,5 +1,5 @@
 dependencies: \
-  /Users/gullik/Documents/GitHub/Tjommis/node_modules/react-native/ReactCommon/yoga/yoga/YGValue.cpp \
-  /Users/gullik/Documents/GitHub/Tjommis/node_modules/react-native/ReactCommon/yoga/yoga/YGValue.h \
-  /Users/gullik/Documents/GitHub/Tjommis/node_modules/react-native/ReactCommon/yoga/yoga/YGEnums.h \
-  /Users/gullik/Documents/GitHub/Tjommis/node_modules/react-native/ReactCommon/yoga/yoga/YGMacros.h
+  /Users/zachosekken/Desktop/Tjommis2/node_modules/react-native/ReactCommon/yoga/yoga/YGValue.cpp \
+  /Users/zachosekken/Desktop/Tjommis2/node_modules/react-native/ReactCommon/yoga/yoga/YGValue.h \
+  /Users/zachosekken/Desktop/Tjommis2/node_modules/react-native/ReactCommon/yoga/yoga/YGEnums.h \
+  /Users/zachosekken/Desktop/Tjommis2/node_modules/react-native/ReactCommon/yoga/yoga/YGMacros.h
