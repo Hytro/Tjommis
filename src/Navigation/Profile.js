@@ -28,7 +28,7 @@ class Profile extends Component {
 
 const styles = StyleSheet.create({
   header: {
-    backgroundColor: "#00BFFF",
+    backgroundColor: "rgb(74, 189, 172)",
     height: 200,
   },
   avatar: {
@@ -62,7 +62,7 @@ const styles = StyleSheet.create({
   },
   info: {
     fontSize: 16,
-    color: "#00BFFF",
+    color: "rgb(74, 189, 172)",
     marginTop: 10
   },
   description: {
@@ -80,7 +80,7 @@ const styles = StyleSheet.create({
     marginBottom: 20,
     width: 250,
     borderRadius: 30,
-    backgroundColor: "#00BFFF",
+    backgroundColor: "rgb(74, 189, 172)",
   },
 });
 
