@@ -1,7 +1,6 @@
 import React from 'react';
 import {StyleSheet, TouchableOpacity, Image, Text} from 'react-native';
 
-
 class EventCard extends React.PureComponent{
     render() {
       return(
@@ -19,8 +18,6 @@ class EventCard extends React.PureComponent{
       );
     }
   }
-
-export default EventCard;
 
 const styles = StyleSheet.create({
     card:{
@@ -54,3 +51,5 @@ const styles = StyleSheet.create({
         fontSize:20
     }
 });
+
+export default EventCard;

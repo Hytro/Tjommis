@@ -10,8 +10,6 @@ class Messages extends React.Component{
       );
     }
   }
-
-  export default Messages;
     
   const styles = StyleSheet.create({
     container: {
@@ -21,3 +19,5 @@ class Messages extends React.Component{
       backgroundColor: '#F5FCFF',
     }
   });
+
+  export default Messages;

@@ -42,8 +42,6 @@ class Events extends React.Component{
     }
   }
 
-export default Events;
-
 const styles = StyleSheet.create({
     container:{
         marginTop: 20,
@@ -56,3 +54,5 @@ const styles = StyleSheet.create({
 
     }
 });
+
+export default Events;

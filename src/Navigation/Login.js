@@ -8,18 +8,12 @@ class Login extends React.Component{
   constructor(){
     super();
     this.state={
-      //name:'',
       email:'',
       password:''
     }
   }
 
   updateValue(text, field){
-//    if(field=='name'){
-//      this.setState({
-//        name:text,
-//      })
-//    }
     if(field=='email'){
       this.setState({
         email:text,
@@ -32,7 +26,6 @@ class Login extends React.Component{
     }
   }
 
-  //Gulson17@student.kristiania.no
   submit(){
     this.props.navigation.navigate('Dashboard')
     /*
@@ -88,8 +81,6 @@ class Login extends React.Component{
     }
   }
 
-  export default Login;
-    
   const styles = StyleSheet.create({
     container: {
       flex: 1,
@@ -131,3 +122,5 @@ class Login extends React.Component{
       },
 
   });
+
+  export default Login;

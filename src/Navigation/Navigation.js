@@ -26,9 +26,6 @@ class Navigation extends Component {
   }
 }
 
-export default Navigation;
-
-
 class EventDetail extends Component {
   render() {
     return (
@@ -63,7 +60,7 @@ const EventStack = createStackNavigator({
     defaultNavigationOptions: {
       gesturesEnabled: false
     }
-  });
+});
 
 const MessageStack = createStackNavigator({
   Messages: {
@@ -241,3 +238,5 @@ const styles = StyleSheet.create({
     margin: 10,
   },
 });
+
+export default Navigation;

@@ -1,17 +1,7 @@
 import React, { Component } from 'react';
 import { View, Text, Image, StyleSheet, TouchableOpacity } from 'react-native';
 
-/*class Profile extends React.Component {
-  render() {
-    return (
-      <View style={styles.container}>
-        <Text style={styles.welcome}>Profile</Text>
-      </View>
-    );
-  }
-}*/
-
-export default class Profile extends Component {
+class Profile extends Component {
   render() {
     return (
       <View style={styles.container}>
@@ -24,10 +14,10 @@ export default class Profile extends Component {
             <Text style={styles.description}>Lorem ipsum dolor sit amet, saepe sapientem eu nam. Qui ne assum electram expetendis, omittam deseruisse consequuntur ius an,</Text>
 
             <TouchableOpacity style={styles.buttonContainer}>
-              <Text>Opcion 1</Text>
+              <Text>Option 1</Text>
             </TouchableOpacity>
             <TouchableOpacity style={styles.buttonContainer}>
-              <Text>Opcion 2</Text>
+              <Text>Option 2</Text>
             </TouchableOpacity>
           </View>
         </View>
@@ -94,14 +84,4 @@ const styles = StyleSheet.create({
   },
 });
 
-
-
-
-/*const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#F5FCFF',
-  }
-});*/
+export default Profile;

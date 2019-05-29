@@ -7,19 +7,12 @@ class Signup extends React.Component{
   constructor(){
     super();
     this.state={
-      //name:'',
       email:'',
       password:''
     }
   }
 
   updateValue(text, field){
-    
-//    if(field=='name'){
-//      this.setState({
-//        name:text,
-//      })
-//    }
     if(field=='email'){
       this.setState({
         email:text,
@@ -34,7 +27,6 @@ class Signup extends React.Component{
 
   submit(){
     let collection={}
-//      collection.name=this.state.name
       collection.email=this.state.email
       collection.password=this.state.password
 
@@ -65,7 +57,6 @@ class Signup extends React.Component{
 
       .catch(error => console.error('Error:', error));
   }
-
     render() {
       return(
         <View style={styles.container}>
@@ -96,8 +87,6 @@ class Signup extends React.Component{
       );
     }
   }
-
-  export default Signup;
     
   const styles = StyleSheet.create({
     container: {
@@ -138,5 +127,6 @@ class Signup extends React.Component{
       color: '#ECF0F1',
       fontWeight: 'bold'
     },
-
   });
+
+  export default Signup;

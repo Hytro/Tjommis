@@ -1,7 +1,6 @@
 import React from 'react';
-import { View, Text, StyleSheet } from 'react-native';
-import { StyleSheet, TouchableOpacity, Image, Text } from 'react-native';
-import Icon from 'react-native-vector-icons/Ionicons';
+import { View, Text } from 'react-native';
+import { Text } from 'react-native';
 
 class EventDetail extends Component {
     render() {
@@ -12,6 +11,8 @@ class EventDetail extends Component {
         );
     }
 }
+
+export default EventDetail;
 
 
 

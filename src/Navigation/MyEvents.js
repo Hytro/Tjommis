@@ -10,8 +10,6 @@ class MyEvents extends React.Component{
       );
     }
   }
-
-  export default MyEvents;
     
   const styles = StyleSheet.create({
     container: {
@@ -21,3 +19,5 @@ class MyEvents extends React.Component{
       backgroundColor: '#F5FCFF',
     }
   });
+
+  export default MyEvents;

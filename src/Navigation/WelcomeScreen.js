@@ -1,6 +1,5 @@
 import React from 'react';
 import {View, Text, StyleSheet, Image, TouchableOpacity} from 'react-native';
-
 import Logo from '../Assets/Logo.png';
 
 class WelcomeScreen extends React.Component{
@@ -26,8 +25,6 @@ class WelcomeScreen extends React.Component{
       );
     }
   } 
-
-  export default WelcomeScreen;
   
   const styles = StyleSheet.create({
     container: {
@@ -52,5 +49,6 @@ class WelcomeScreen extends React.Component{
       height: 150,
       resizeMode: 'cover'
     }
-
   });
+
+  export default WelcomeScreen;
