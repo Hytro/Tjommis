@@ -32,9 +32,12 @@ class Login extends React.Component{
     }
   }
 
+  //Gulson17@student.kristiania.no
   submit(){
+    this.props.navigation.navigate('Dashboard')
+    /*
     let collection={}
-//      collection.name=this.state.name
+      //collection.name=this.state.name
       collection.email=this.state.email
       collection.password=this.state.password
       
@@ -43,16 +46,18 @@ class Login extends React.Component{
           
         console.warn(response.status)
         if(response.data.token){
+          if(res.status === 200){
             console.warn(this.props);
-            alert.("dank");
+            this.props.navigation.navigate('Dashboard')
+          }
         }
+        console.warn(this.props);
 
       })
       .catch(function (error) {
         console.log(error);
-      });
+      }); */  
   }
-
     render() {
       return(
         <View style={styles.container}>
