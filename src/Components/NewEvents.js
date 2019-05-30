@@ -1,5 +1,6 @@
 import React from 'react';
 import {View, Text, StyleSheet, TextInput, TouchableOpacity} from 'react-native';
+import DatePicker from 'react-native-datepicker';
 
 
 class NewEvent extends React.Component{
@@ -9,7 +10,7 @@ class NewEvent extends React.Component{
     this.state={
       title:'',
       description:'',
-      date:'',
+      date:"2016-05-15",
       time:'',
       userId:''
     }
@@ -18,38 +19,38 @@ class NewEvent extends React.Component{
   updateValue(text, field){
     if(field=='title'){
       this.setState({
-        email:text,
+        title:text,
       })
     }
     else if(field=='description'){
       this.setState({
-        password:text,
+        description:text,
       })
     }
     else if(field=='date'){
         this.setState({
-          password:text,
+          date:text,
         })
       }
     else if(field=='time'){
       this.setState({
-        password:text,
+        time:text,
       })
     }
     else if(field=='userId'){
         this.setState({
-          password:text,
+          userId:text,
         })
       }
   }
 
   submit(){
         let collection={}
-      collection.email=this.state.title
-      collection.password=this.state.description
-      collection.email=this.state.date
-      collection.email=this.state.time
-      collection.email=this.state.userId
+      collection.title=this.state.title
+      collection.description=this.state.description
+      collection.date=this.state.date
+      collection.time=this.state.time
+      collection.userId=27
 
 
       var url = 'http://tjommis.eu-central-1.elasticbeanstalk.com/api/events/';
@@ -59,13 +60,12 @@ class NewEvent extends React.Component{
         body: JSON.stringify(collection), // data can be `string` or {object}!
         headers:{
           'Content-Type': 'application/json'
-        },  
+        },
       }).then((res) =>{res.json()
+        console.warn(collection)
         if(res.status === 200){
-          console.warn(this.props);
           this.props.navigation.navigate('Dashboard')
         }
-
         console.warn(res.status)
       })
       .catch(error => console.error('Error:', error));
@@ -74,6 +74,30 @@ class NewEvent extends React.Component{
     render() {
       return(
         <View style={styles.container}>
+            <DatePicker
+            style={{width: 200}}
+            date={this.state.date}
+            mode="date"
+            placeholder="select date"
+            format="YYYY-MM-DD"
+            minDate="2016-05-01"
+            maxDate="2016-06-01"
+            confirmBtnText="Confirm"
+            cancelBtnText="Cancel"
+            customStyles={{
+            dateIcon: {
+                position: 'absolute',
+                left: 0,
+                top: 4,
+                marginLeft: 0
+            },
+            dateInput: {
+                marginLeft: 36
+            }
+          // ... You can check the source to find the other keys.
+        }}
+        onDateChange={(date) => {this.setState({date: date})}}
+      />
           <View styles={styles.regform}>
             <Text style={styles.header}>Create a new event</Text>
 
