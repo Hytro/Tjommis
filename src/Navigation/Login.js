@@ -27,29 +27,30 @@ class Login extends React.Component{
   }
 
   submit(){
-    
     let collection={}
-      //collection.name=this.state.name
       collection.email=this.state.email
       collection.password=this.state.password
-      
-      axios.post('http://tjommis.eu-central-1.elasticbeanstalk.com/api/auth/login/', collection)
-      .then(function (response) {
-          
-        console.warn(response.status)
-        if(response.data.token){
-          if(res.status === 200){
-            console.warn(this.props);
-            this.props.navigation.navigate('Dashboard')
-          }
-        }
-        console.warn(this.props);
 
+      var url = 'http://tjommis.eu-central-1.elasticbeanstalk.com/api/auth/login/';
+      
+      fetch(url, {
+        method: 'POST', // or 'PUT'
+        body: JSON.stringify(collection), // data can be `string` or {object}!
+        headers:{
+          'Content-Type': 'application/json'
+        },  
+      }).then((res) =>{res.json()
+        if(res.status === 200){
+          console.warn(this.props);
+          this.props.navigation.navigate('Dashboard')
+        }
+
+        console.warn(res.status)
       })
-      .catch(function (error) {
-        console.log(error);
-      });
+      .catch(error => console.error('Error:', error));
   }
+
+
     render() {
       return(
         <View style={styles.container}>

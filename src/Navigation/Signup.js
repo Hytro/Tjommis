@@ -46,15 +46,6 @@ class Signup extends React.Component{
 
         console.warn(res.status)
       })
-
-      //.then(response => console.log('Success:', JSON.stringify(response)))
-     // .then(response => {
-     //   response.status
-     //   response.statusText
-      //  response.headers
-       // response.url
-      //})
-
       .catch(error => console.error('Error:', error));
   }
     render() {
