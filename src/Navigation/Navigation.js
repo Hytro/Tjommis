@@ -10,6 +10,7 @@ import Profile from './Profile';
 import MyEvents from './MyEvents';
 import Signup from './Signup';
 import Login from './Login';
+import NewEvent from '../Components/NewEvents';
 
 import {
   createSwitchNavigator,
@@ -220,7 +221,8 @@ const AppSwitchNavigator = createSwitchNavigator({
   Welcome: { screen: Welcome },
   Login: {screen: Login},
   Signup: { screen: Signup },
-  Dashboard: { screen: AppDrawerNavigator }
+  Dashboard: { screen: AppDrawerNavigator },
+  NewEvent:{ screen: NewEvent}
 });
 
 const AppContainer = createAppContainer(AppSwitchNavigator);
