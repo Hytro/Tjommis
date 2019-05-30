@@ -27,8 +27,7 @@ class Login extends React.Component{
   }
 
   submit(){
-    this.props.navigation.navigate('Dashboard')
-    /*
+    
     let collection={}
       //collection.name=this.state.name
       collection.email=this.state.email
@@ -49,7 +48,7 @@ class Login extends React.Component{
       })
       .catch(function (error) {
         console.log(error);
-      }); */  
+      });
   }
     render() {
       return(

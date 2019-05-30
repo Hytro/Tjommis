@@ -21,6 +21,16 @@ class WelcomeScreen extends React.Component{
              <Text style={styles.btnText}>Signup</Text>
           </TouchableOpacity>
           
+          <TouchableOpacity
+            style={styles.btn}
+            onPress={() => this.props.navigation.navigate('Dashboard')}>
+              <Text style={styles.btnText}>Dashboard</Text>
+          </TouchableOpacity>
+          <TouchableOpacity
+            style={styles.btn}
+            onPress={() => this.props.navigation.navigate('NewEvent')}>
+              <Text style={styles.btnText}>NewEvent</Text>
+          </TouchableOpacity>
         </View>
       );
     }
