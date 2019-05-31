@@ -13,7 +13,6 @@ class EventCard extends React.PureComponent{
               <Text style={styles.cardText}>{this.props.item.description}</Text>
               <Text style={styles.cardTextBody}>{this.props.item.date}</Text>
               <Text style={styles.cardTextBody}>{this.props.item.time}</Text>
-            
           </TouchableOpacity>
       );
     }
