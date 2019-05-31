@@ -102,6 +102,7 @@ class Signup extends React.Component{
     textInput: {
       alignSelf: 'stretch',
       height: 40,
+      width: 255,
       marginBottom: 30,
       color: '#fff',
       borderBottomColor: '#f8f8f8',

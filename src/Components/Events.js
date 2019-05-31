@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import {StyleSheet, View, ActivityIndicator, FlatList} from 'react-native';
-import EventCard from '../Components/EventCard';
+import EventCard from './EventCard';
 
 class Events extends React.Component{
 
@@ -44,8 +44,8 @@ class Events extends React.Component{
 
 const styles = StyleSheet.create({
     container:{
-        marginTop: 20,
-        backgroundColor: '#FAFAFA',
+        paddingTop: 10,
+        backgroundColor: '#F5FCFF',
     },
     loader:{
       flex: 1,

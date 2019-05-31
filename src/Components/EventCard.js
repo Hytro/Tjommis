@@ -21,7 +21,7 @@ class EventCard extends React.PureComponent{
 
 const styles = StyleSheet.create({
     card:{
-        backgroundColor:'#fff',
+        backgroundColor:'lightgray',
         marginBottom: 10,
         marginLeft:'2%',
         width: '96%',

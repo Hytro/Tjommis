@@ -10,8 +10,7 @@ class NewEvent extends React.Component{
       title:'',
       description:'',
       date:'',
-      time:'',
-      userId:''
+      time:''
     }
   }
 
@@ -44,12 +43,12 @@ class NewEvent extends React.Component{
   }
 
   submit(){
-        let collection={}
+      let collection={}
       collection.title=this.state.title
       collection.description=this.state.description
       collection.date=this.state.date
       collection.time=this.state.time
-      collection.userId=27
+      collection.userId=30
 
 
       var url = 'http://tjommis.eu-central-1.elasticbeanstalk.com/api/events/';
@@ -74,87 +73,84 @@ class NewEvent extends React.Component{
       return(
         <View style={styles.container}>
           <View styles={styles.regform}>
-            <Text style={styles.header}>Create a new event</Text>
-
-            <TextInput 
-              style={styles.textInput} 
-              placeholder="Event Title" 
-              underlineColorAndroid={'transparent'}
-              onChangeText={(text)=>this.updateValue(text, 'title')}
+            <View styles={styles.topPart}>
+              <Text style={styles.header}>Create a new event</Text>
+            </View>
+            <View styles={styles.middlePart}>
+              <TextInput 
+                style={styles.textInput} 
+                placeholder="Event Title" 
+                underlineColorAndroid={'transparent'}
+                onChangeText={(text)=>this.updateValue(text, 'title')}
+              />
+              <DatePicker
+                style={styles.dateTime}
+                date={this.state.date}
+                showTimeSelect
+                timeCaption="Time"
+                mode="date"
+                placeholder="Click to select date"
+                format="YYYY-MM-DD"
+                minDate={new Date()}
+                maxDate="2100-01-01"
+                confirmBtnText="Confirm"
+                cancelBtnText="Cancel"
+                customStyles={{
+                dateIcon: {
+                  opacity: 0
+              },
+              dateText: {
+                color: "#f8f8f8"
+              },
+              placeholderText: {
+                color: '#000',
+                opacity: 0.25
+              },
+              dateInput: {
+                  borderWidth: 0,
+                  alignItems: "flex-start"
+              }
+            }}
+            onDateChange={(date) => {this.setState({date: date})}}
             />
             <DatePicker
-              style={styles.dateTime}
-              date={this.state.date}
-              showTimeSelect
-              timeCaption="Time"
-              mode="date"
-              placeholder="Click to select date"
-              format="DD.MM.YYYY"
-              minDate={new Date()}
-              maxDate="31.12.2100"
-              confirmBtnText="Confirm"
-              cancelBtnText="Cancel"
-              customStyles={{
-              dateIcon: {
-                opacity: 0
-            },
-            dateText: {
-              color: "#f8f8f8"
-            },
-            placeholderText: {
-              color: '#000',
-              opacity: 0.25
-            },
-            dateInput: {
-                borderWidth: 0,
-                alignItems: "flex-start"
-            }
-          }}
-          onDateChange={(date) => {this.setState({date: date})}}
-          />
-          <DatePicker
-              style={styles.dateTime}
-              date={this.state.time}
-              mode="time"
-              placeholder="Click to select time"
-              format="HH:MM"
-              minTime="00:00"
-              maxTime="24:00"
-              confirmBtnText="Confirm"
-              cancelBtnText="Cancel"
-              customStyles={{
-              dateIcon: {
-                opacity: 0
-            },
-            dateText: {
-              color: "#f8f8f8"
-            },
-            placeholderText: {
-              color: '#000',
-              opacity: 0.25
-            },
-            dateInput: {
-                borderWidth: 0,
-                alignItems: "flex-start",
-            }
-          }}
-          onDateChange={(time) => {this.setState({time: time})}}
-          />
-            <TextInput 
-              style={styles.textInputDescription} 
-              placeholder="Event Description" 
-              editable={true}
-              multiline={true}
-              numberOfLines={5}
-              underlineColorAndroid={'transparent'}
-              onChangeText={(text)=>this.updateValue(text, 'description')}
+                style={styles.dateTime}
+                date={this.state.time}
+                mode="time"
+                placeholder="Click to select time"
+                format="HH:MM"
+                minTime="00:00"
+                maxTime="24:00"
+                confirmBtnText="Confirm"
+                cancelBtnText="Cancel"
+                customStyles={{
+                dateIcon: {
+                  opacity: 0
+              },
+              dateText: {
+                color: "#f8f8f8"
+              },
+              placeholderText: {
+                color: '#000',
+                opacity: 0.25
+              },
+              dateInput: {
+                  borderWidth: 0,
+                  alignItems: "flex-start",
+              }
+            }}
+            onDateChange={(time) => {this.setState({time: time})}}
             />
-            <TextInput 
-              style={styles.textInput} 
-              placeholder="User ID placeholder thing" 
-              underlineColorAndroid={'transparent'}
-              onChangeText={(text)=>this.updateValue(text, 'userId')}
-            />
+              <TextInput 
+                style={styles.textInputDescription} 
+                placeholder="Event Description" 
+                editable={true}
+                multiline={true}
+                numberOfLines={5}
+                underlineColorAndroid={'transparent'}
+                onChangeText={(text)=>this.updateValue(text, 'description')}
+              />
+            </View>
             <TouchableOpacity
               style={styles.btn}
               onPress={() => this.submit()} >

@@ -98,8 +98,15 @@ const MyEventStack = createStackNavigator({
         )
       };
     }
+  },
+  EventDetail: {
+    screen: EventDetail
   }
-});
+  }, {
+  defaultNavigationOptions: {
+    gesturesEnabled: false
+  }
+})
 
 const ProfileStack = createStackNavigator({
   Profile: {
