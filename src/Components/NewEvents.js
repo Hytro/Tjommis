@@ -2,7 +2,6 @@ import React from 'react';
 import {View, Text, StyleSheet, TextInput, TouchableOpacity} from 'react-native';
 import DatePicker from 'react-native-datepicker';
 
-
 class NewEvent extends React.Component{
 
   constructor(){
@@ -10,7 +9,7 @@ class NewEvent extends React.Component{
     this.state={
       title:'',
       description:'',
-      date:"2016-05-15",
+      date:'',
       time:'',
       userId:''
     }
@@ -74,30 +73,6 @@ class NewEvent extends React.Component{
     render() {
       return(
         <View style={styles.container}>
-            <DatePicker
-            style={{width: 200}}
-            date={this.state.date}
-            mode="date"
-            placeholder="select date"
-            format="YYYY-MM-DD"
-            minDate="2016-05-01"
-            maxDate="2016-06-01"
-            confirmBtnText="Confirm"
-            cancelBtnText="Cancel"
-            customStyles={{
-            dateIcon: {
-                position: 'absolute',
-                left: 0,
-                top: 4,
-                marginLeft: 0
-            },
-            dateInput: {
-                marginLeft: 36
-            }
-          // ... You can check the source to find the other keys.
-        }}
-        onDateChange={(date) => {this.setState({date: date})}}
-      />
           <View styles={styles.regform}>
             <Text style={styles.header}>Create a new event</Text>
 
@@ -107,23 +82,72 @@ class NewEvent extends React.Component{
               underlineColorAndroid={'transparent'}
               onChangeText={(text)=>this.updateValue(text, 'title')}
             />
+            <DatePicker
+              style={styles.dateTime}
+              date={this.state.date}
+              showTimeSelect
+              timeCaption="Time"
+              mode="date"
+              placeholder="Click to select date"
+              format="DD.MM.YYYY"
+              minDate={new Date()}
+              maxDate="31.12.2100"
+              confirmBtnText="Confirm"
+              cancelBtnText="Cancel"
+              customStyles={{
+              dateIcon: {
+                opacity: 0
+            },
+            dateText: {
+              color: "#f8f8f8"
+            },
+            placeholderText: {
+              color: '#000',
+              opacity: 0.25
+            },
+            dateInput: {
+                borderWidth: 0,
+                alignItems: "flex-start"
+            }
+          }}
+          onDateChange={(date) => {this.setState({date: date})}}
+          />
+          <DatePicker
+              style={styles.dateTime}
+              date={this.state.time}
+              mode="time"
+              placeholder="Click to select time"
+              format="HH:MM"
+              minTime="00:00"
+              maxTime="24:00"
+              confirmBtnText="Confirm"
+              cancelBtnText="Cancel"
+              customStyles={{
+              dateIcon: {
+                opacity: 0
+            },
+            dateText: {
+              color: "#f8f8f8"
+            },
+            placeholderText: {
+              color: '#000',
+              opacity: 0.25
+            },
+            dateInput: {
+                borderWidth: 0,
+                alignItems: "flex-start",
+            }
+          }}
+          onDateChange={(time) => {this.setState({time: time})}}
+          />
             <TextInput 
-              style={styles.textInput} 
+              style={styles.textInputDescription} 
               placeholder="Event Description" 
+              editable={true}
+              multiline={true}
+              numberOfLines={5}
               underlineColorAndroid={'transparent'}
               onChangeText={(text)=>this.updateValue(text, 'description')}
-            />
-            <TextInput 
-              style={styles.textInput} 
-              placeholder="Event Date" 
-              underlineColorAndroid={'transparent'}
-              onChangeText={(text)=>this.updateValue(text, 'date')}
-            />
-            <TextInput 
-              style={styles.textInput} 
-              placeholder="Event Time" 
-              underlineColorAndroid={'transparent'}
-              onChangeText={(text)=>this.updateValue(text, 'time')}
             />
             <TextInput 
               style={styles.textInput} 
@@ -131,7 +155,6 @@ class NewEvent extends React.Component{
               underlineColorAndroid={'transparent'}
               onChangeText={(text)=>this.updateValue(text, 'userId')}
             />
-
             <TouchableOpacity
               style={styles.btn}
               onPress={() => this.submit()} >
@@ -165,8 +188,21 @@ class NewEvent extends React.Component{
       borderBottomColor: '#199187',
       borderBottomWidth: 1,
     },
+    dateTime: {
+      width: 255, 
+        marginBottom: 30,
+        borderBottomColor: '#f8f8f8',
+        borderBottomWidth: 1
+    },
     textInput: {
-      alignSelf: 'stretch',
+      height: 40,
+      marginBottom: 30,
+      width: 255,
+      color: '#fff',
+      borderBottomColor: '#f8f8f8',
+      borderBottomWidth: 1
+    },
+    textInputDescription: {
       height: 40,
       marginBottom: 30,
       color: '#fff',
@@ -174,7 +210,6 @@ class NewEvent extends React.Component{
       borderBottomWidth: 1
     },
     btn:{
-      alignSelf: 'stretch',
       alignItems: 'center',
       padding: 20,
       backgroundColor: '#42A99A',
@@ -184,5 +219,4 @@ class NewEvent extends React.Component{
       color: '#ECF0F1',
       fontWeight: 'bold'
     },
-
   });
