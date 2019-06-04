@@ -7,8 +7,6 @@ import moment from 'moment';
 
 //Event card bilde hentet fra server
 // <Image style={styles.cardImage} source={{uri: 'http://tjommis.eu-central-1.elasticbeanstalk.com/' + this.props.item.image_url}} />
-//Trenger ikke description enda
-// <Text style={styles.cardText}>{this.props.item.description}</Text>
 
 class EventCard extends React.PureComponent {
     render() {
@@ -20,6 +18,7 @@ class EventCard extends React.PureComponent {
             onPress={()=>this.props.navigation.navigate('EventDetail')}>
             <View style={styles.flexRow}>
                 <Text style={styles.cardTitle}>{this.props.item.title}</Text>
+                <Text style={styles.cardDate}>{moment(this.props.item.date).endOf('day').fromNow()} </Text>
             </View>
             <View style={styles.flexRow}>
                 <Text style={styles.cardTitle}>Plassering</Text>

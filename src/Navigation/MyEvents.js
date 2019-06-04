@@ -64,7 +64,7 @@ class MyEvents extends React.Component{
       backgroundColor: '#F5FCFF',
     },
     containerFL:{
-      marginTop: 20,
+      paddingTop: 10,
       width: 350,
       backgroundColor: '#FAFAFA',
     },
