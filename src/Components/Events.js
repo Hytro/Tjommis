@@ -1,13 +1,15 @@
-import React, {Component} from 'react';
+import React from 'react';
 import {StyleSheet, View, ActivityIndicator, FlatList} from 'react-native';
 import EventCard from './EventCard';
+import AsyncStorage from '@react-native-community/async-storage';
 
 class Events extends React.Component{
 
   constructor(){
     super();
     this.state = {
-      items:[]
+      items:[],
+      token: []
     }
   }
 
@@ -17,6 +19,7 @@ class Events extends React.Component{
         this.setState({items: data})
       }
     )
+    getData();
   }
     render() {
       if(this.state.items.length===0){
@@ -33,6 +36,7 @@ class Events extends React.Component{
         keyExtractor={(item, index) => index.toString()}
         renderItem={({item}) => <EventCard navigation={this.props.navigation} item={item}/>}
         />
+        
       );
     }
     _get = async (endpoint) => {
@@ -54,5 +58,16 @@ const styles = StyleSheet.create({
 
     }
 });
+
+getData = async () => {
+  try {
+    const value = await AsyncStorage.getItem('token')
+    if(value !== null) {
+      console.warn('event tok: ', value)
+    }
+  } catch(e) {
+    // error reading value
+  }
+}
 
 export default Events;

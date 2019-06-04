@@ -1,6 +1,8 @@
 import React from 'react';
 import {View, TouchableOpacity, Text, StyleSheet, TextInput} from 'react-native';
 import axios from 'axios';
+import AsyncStorage from '@react-native-community/async-storage';
+
 
 
 class Login extends React.Component{
@@ -9,7 +11,8 @@ class Login extends React.Component{
     super();
     this.state={
       email:'',
-      password:''
+      password:'',
+      token: ''
     }
   }
 
@@ -26,28 +29,20 @@ class Login extends React.Component{
     }
   }
 
-  submit(){
+  async submit(){
     let collection={}
       collection.email=this.state.email
       collection.password=this.state.password
 
       var url = 'http://tjommis.eu-central-1.elasticbeanstalk.com/api/auth/login/';
-      
-      fetch(url, {
-        method: 'POST', // or 'PUT'
-        body: JSON.stringify(collection), // data can be `string` or {object}!
-        headers:{
-          'Content-Type': 'application/json'
-        },  
-      }).then((res) =>{res.json()
-        if(res.status === 200){
-          console.warn(this.props);
-          this.props.navigation.navigate('Dashboard')
-        }
+      const response = await axios.post(url, collection);
+      if(response.status === 200) {
+        //console.warn(response.data.token);
+        this.props.navigation.navigate('Dashboard');
+        storeData(response.data.token)
 
-        console.warn(res.status)
-      })
-      .catch(error => console.error('Error:', error));
+      }
+      //console.warn(response);
   }
 
 
@@ -125,3 +120,13 @@ class Login extends React.Component{
   });
 
   export default Login;
+
+
+  storeData = async (token) => {
+    try {
+      await AsyncStorage.setItem('token', token)
+      console.warn('login tok: ', token)
+    } catch (e) {
+      
+    }
+  }
