@@ -1,6 +1,6 @@
 import React from 'react';
 import { View, Text } from 'react-native';
-import { Text } from 'react-native';
+import { StyleSheet, TouchableOpacity, Image, Text } from 'react-native';
 
 class EventDetail extends Component {
     render() {
