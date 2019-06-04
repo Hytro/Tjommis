@@ -20,60 +20,62 @@ class Events extends React.Component{
       }
     )
   }
-    render() {
-      if(this.state.items.length===0){
-        return(
-          <View style={styles.loader}>
-            <ActivityIndicator size="large" />
-          </View>
-        )
+
+  getData = async () => {
+    try {
+      const value = await AsyncStorage.getItem('token')
+      if(value !== null) {
+        console.warn('event tok: ', value)
       }
-      return(
-        <FlatList 
-        style={styles.container}
-        data={this.state.items}
-        keyExtractor={(item, index) => index.toString()}
-        renderItem={({item}) => <EventCard navigation={this.props.navigation} item={item}/>}
-        />
-      );
+    } catch(e) {
+      // error reading value
     }
-    _get = async (endpoint) => {
-      const res = await fetch(endpoint);
-      const data = await res.json();
-      return data;
+  };
+  
+  storeUser = async (idUser) => {
+    try {
+      await AsyncStorage.setItem('userId', idUser)
+      console.warn('UserId: ', idUser)
+    } catch (e) {
+      
     }
+  };
+
+  _get = async (endpoint) => {
+    const res = await fetch(endpoint);
+    const data = await res.json();
+    return data;
   }
+
+  render() {
+    if(this.state.items.length===0){
+      return(
+        <View style={styles.loader}>
+          <ActivityIndicator size="large" />
+        </View>
+      )
+    }
+    return(
+      <FlatList 
+      style={styles.container}
+      data={this.state.items}
+      keyExtractor={(item, index) => index.toString()}
+      renderItem={({item}) => <EventCard navigation={this.props.navigation} item={item}/>}
+      />
+    );
+  }
+}
 
 const styles = StyleSheet.create({
-    container:{
-        paddingTop: 10,
-        backgroundColor: '#F5FCFF',
-    },
-    loader:{
-      flex: 1,
-      alignItems: 'center',
-      justifyContent: 'center',
-    }
+  container:{
+      paddingTop: 10,
+      backgroundColor: '#F5FCFF',
+  },
+  loader:{
+    flex: 1,
+    alignItems: 'center',
+    justifyContent: 'center',
+  }
 });
-
-getData = async () => {
-  try {
-    const value = await AsyncStorage.getItem('token')
-    if(value !== null) {
-      console.warn('event tok: ', value)
-    }
-  } catch(e) {
-    // error reading value
-  }
-};
-
-storeUser = async (idUser) => {
-  try {
-    await AsyncStorage.setItem('userId', idUser)
-    console.warn('UserId: ', idUser)
-  } catch (e) {
-    
-  }
-};
 
 export default Events;
