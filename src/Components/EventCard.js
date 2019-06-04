@@ -28,9 +28,7 @@ class EventCard extends React.PureComponent {
                 <Image style={styles.cardImage} source={{uri: 'https://i.imgur.com/1jONy1i.jpg'}} />
             </View>
             <View style={styles.flexRowBottom}>
-                <View style={{ flexDirection: 'row', alignItems: 'center' }}>
-                    <Text style={{opacity:0.7}}>Skal?</Text>
-                </View>
+                
                 <View style={{ flexDirection: 'row', alignItems: 'center' }}>
                     <IconFA5
                         style={{ paddingTop: 4 }}

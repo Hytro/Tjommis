@@ -28,8 +28,6 @@ class Navigation extends Component {
   }
 }
 
-
-
 const EventStack = createStackNavigator({
   Events: {
     screen: Events,

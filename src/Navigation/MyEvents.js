@@ -2,6 +2,8 @@ import React from 'react';
 import {View, Text, StyleSheet, TouchableOpacity, ActivityIndicator, FlatList} from 'react-native';
 import EventCard from '../Components/EventCard';
 
+import IconFA from 'react-native-vector-icons/FontAwesome'
+
 class MyEvents extends React.Component{
   constructor(){
     super();
@@ -38,7 +40,14 @@ class MyEvents extends React.Component{
         <TouchableOpacity
           style={styles.btn}
           onPress={() => this.props.navigation.navigate('NewEvent')}>
-          <Text style={styles.btnText}>NewEvent</Text>
+          <View style={{ flexDirection: 'row', alignItems: 'center' }}>
+            <Text style={styles.btnText}>Create new event  </Text>
+            <IconFA
+                name="calendar-plus-o" 
+                size={20}
+                color={ 'white' }
+            />
+          </View>
         </TouchableOpacity>
         <FlatList 
           style={styles.containerFL}
@@ -76,16 +85,20 @@ class MyEvents extends React.Component{
     btn:{
       alignSelf: 'stretch',
       alignItems: 'center',
-      backgroundColor: 'white',
+      backgroundColor: '#4ABDAC',
       borderColor: '#4ABDAC',
       borderWidth: 3,
       borderRadius: 6,
       margin: 10,
-      padding: 30
+      padding: 10,
+      width:'85%',
+      marginLeft: '7.5%',
+      height: 50
     },
     btnText:{
-      color: '#4ABDAC',
-      fontWeight: 'bold'
+      color: 'white',
+      fontWeight: 'bold',
+      fontSize: 18
     },
   });
 

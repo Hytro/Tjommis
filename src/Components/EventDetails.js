@@ -22,7 +22,7 @@ class EventDetails extends React.PureComponent {
     render() {
         return (
             <View style={styles.card}>
-                <Text style={styles.cardTitle}>Dank</Text>
+                <Text style={styles.cardTitle}>{this.props.item.title}</Text>
                 <Image style={styles.cardImage} source={{ uri: 'https://www.mch-group.com/-/media/mch-group/Images/Content/News/Blog/2017/2017-04/mch-group-live-marketing-aktivierung.jpg' }} />
                 <Text style={styles.cardText}>Dank</Text>
                 <Text style={styles.cardTextBody}>Dank</Text>
