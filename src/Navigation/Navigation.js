@@ -11,6 +11,7 @@ import MyEvents from './MyEvents';
 import Signup from './Signup';
 import Login from './Login';
 import NewEvent from '../Components/NewEvents';
+import EventDetail from '../Components/EventDetails';
 
 import {
   createSwitchNavigator,
@@ -27,15 +28,7 @@ class Navigation extends Component {
   }
 }
 
-class EventDetail extends Component {
-  render() {
-    return (
-      <View style={styles.container}>
-        <Text style={styles.welcome}>Event Details</Text>
-      </View>
-    );
-  }
-}
+
 
 const EventStack = createStackNavigator({
   Events: {
@@ -60,11 +53,11 @@ const EventStack = createStackNavigator({
   NewEvent: {
     screen: NewEvent
   },
-  }, {
+}, {
     defaultNavigationOptions: {
       gesturesEnabled: false
     }
-});
+  });
 
 const MessageStack = createStackNavigator({
   Messages: {
@@ -108,11 +101,11 @@ const MyEventStack = createStackNavigator({
   NewEvent: {
     screen: NewEvent
   },
-  }, {
-  defaultNavigationOptions: {
-    gesturesEnabled: false
-  }
-})
+}, {
+    defaultNavigationOptions: {
+      gesturesEnabled: false
+    }
+  })
 
 const ProfileStack = createStackNavigator({
   Profile: {
@@ -134,58 +127,58 @@ const ProfileStack = createStackNavigator({
 });
 
 const DashboardTabNavigator = createBottomTabNavigator({
-  Event: { 
+  Event: {
     screen: EventStack,
-    navigationOptions:{
-      tabBarLabel:"Event",
+    navigationOptions: {
+      tabBarLabel: "Event",
       tabBarIcon: ({ tintColor }) => (
         <IconAD
           style={{ paddingTop: 4 }}
-          name="home" 
+          name="home"
           size={30}
-          color={ tintColor }
+          color={tintColor}
         />
       )
     }
   },
-  Message: { 
+  Message: {
     screen: MessageStack,
-    navigationOptions:{
-      tabBarLabel:"Messages",
+    navigationOptions: {
+      tabBarLabel: "Messages",
       tabBarIcon: ({ tintColor }) => (
         <IconAD
           style={{ paddingTop: 4 }}
-          name="wechat" 
+          name="wechat"
           size={30}
-          color={ tintColor }
+          color={tintColor}
         />
       )
     }
   },
-  MyEvents: { 
+  MyEvents: {
     screen: MyEventStack,
-    navigationOptions:{
-      tabBarLabel:"My Events",
+    navigationOptions: {
+      tabBarLabel: "My Events",
       tabBarIcon: ({ tintColor }) => (
         <IconAD
           style={{ paddingTop: 4 }}
-          name="calendar" 
+          name="calendar"
           size={30}
-          color={ tintColor }
+          color={tintColor}
         />
       )
     }
   },
-  Profile: { 
+  Profile: {
     screen: ProfileStack,
-    navigationOptions:{
-      tabBarLabel:"Profile",
+    navigationOptions: {
+      tabBarLabel: "Profile",
       tabBarIcon: ({ tintColor }) => (
         <IconAD
           style={{ paddingTop: 4 }}
-          name="user" 
+          name="user"
           size={30}
-          color={ tintColor }
+          color={tintColor}
         />
       )
     }
@@ -198,8 +191,8 @@ const DashboardTabNavigator = createBottomTabNavigator({
       }
     },
     tabBarOptions: {
-      activeTintColor:"#4ABDAC",
-      inactiveTintColor:"gray"
+      activeTintColor: "#4ABDAC",
+      inactiveTintColor: "gray"
     }
   });
 
@@ -238,10 +231,10 @@ const AppDrawerNavigator = createDrawerNavigator({
 
 const AppSwitchNavigator = createSwitchNavigator({
   Welcome: { screen: Welcome },
-  Login: {screen: Login},
+  Login: { screen: Login },
   Signup: { screen: Signup },
   Dashboard: { screen: AppDrawerNavigator },
-  NewEvent:{ screen: NewEvent}
+  NewEvent: { screen: NewEvent }
 });
 
 const AppContainer = createAppContainer(AppSwitchNavigator);
