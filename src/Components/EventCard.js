@@ -21,7 +21,7 @@ class EventCard extends React.PureComponent {
                 <Text style={styles.cardDate}>{moment(this.props.item.date).endOf('day').fromNow()} </Text>
             </View>
             <View style={styles.flexRow}>
-                <Text style={styles.cardTitle}>Plassering</Text>
+                <Text style={styles.cardTitle}>{this.props.item.location}</Text>
                 <Text style={styles.cardDate}>{moment(this.props.item.date).format('Do MMM YYYY')} - {moment(getTime).format('HH:mm')}</Text>
             </View>
             <View>

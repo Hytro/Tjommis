@@ -8,6 +8,7 @@ class NewEvent extends React.Component {
     super();
     this.state = {
       title: '',
+      location: '',
       description: '',
       date: '',
       time: ''
@@ -18,6 +19,11 @@ class NewEvent extends React.Component {
     if (field == 'title') {
       this.setState({
         title: text,
+      })
+    }
+    else if (field == 'location') {
+      this.setState({
+        location: text,
       })
     }
     else if (field == 'description') {
@@ -45,6 +51,7 @@ class NewEvent extends React.Component {
   submit() {
     let collection = {}
     collection.title = this.state.title
+    collection.location = this.state.location
     collection.description = this.state.description
     collection.date = this.state.date
     collection.time = this.state.time
@@ -83,6 +90,12 @@ class NewEvent extends React.Component {
               placeholder="Event Title"
               underlineColorAndroid={'transparent'}
               onChangeText={(text) => this.updateValue(text, 'title')}
+            />
+            <TextInput
+              style={styles.textInput}
+              placeholder="Event Location"
+              underlineColorAndroid={'transparent'}
+              onChangeText={(text) => this.updateValue(text, 'location')}
             />
             <DatePicker
               style={styles.dateTime}
@@ -163,8 +176,6 @@ class NewEvent extends React.Component {
   }
 }
 
-export default NewEvent;
-
 const styles = StyleSheet.create({
   container: {
     flex: 1,
@@ -217,3 +228,5 @@ const styles = StyleSheet.create({
     fontWeight: 'bold'
   },
 });
+
+export default NewEvent;
