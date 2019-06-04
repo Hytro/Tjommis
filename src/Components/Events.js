@@ -19,7 +19,6 @@ class Events extends React.Component{
         this.setState({items: data})
       }
     )
-    getData();
   }
     render() {
       if(this.state.items.length===0){
@@ -36,7 +35,6 @@ class Events extends React.Component{
         keyExtractor={(item, index) => index.toString()}
         renderItem={({item}) => <EventCard navigation={this.props.navigation} item={item}/>}
         />
-        
       );
     }
     _get = async (endpoint) => {
@@ -55,7 +53,6 @@ const styles = StyleSheet.create({
       flex: 1,
       alignItems: 'center',
       justifyContent: 'center',
-
     }
 });
 
@@ -68,6 +65,15 @@ getData = async () => {
   } catch(e) {
     // error reading value
   }
-}
+};
+
+storeUser = async (idUser) => {
+  try {
+    await AsyncStorage.setItem('userId', idUser)
+    console.warn('UserId: ', idUser)
+  } catch (e) {
+    
+  }
+};
 
 export default Events;

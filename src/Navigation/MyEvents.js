@@ -16,6 +16,13 @@ class MyEvents extends React.Component{
         this.setState({items: data})
       }
     )
+    fetch('http://tjommis.eu-central-1.elasticbeanstalk.com/api/users/me')
+      .then(function(response) {
+        return response.json();
+      })
+      .then(function(myJson) {
+        console.log(JSON.stringify(myJson));
+      });
   }
 
   render() {

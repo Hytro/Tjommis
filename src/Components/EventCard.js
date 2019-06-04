@@ -10,7 +10,7 @@ import moment from 'moment';
 //Trenger ikke description enda
 // <Text style={styles.cardText}>{this.props.item.description}</Text>
 
-class EventCard extends React.PureComponent{
+class EventCard extends React.PureComponent {
     render() {
       //Adding a random date before the time, to properly display the time
       const getTime = "2020-01-03 " + this.props.item.time
@@ -54,7 +54,7 @@ class EventCard extends React.PureComponent{
           </TouchableOpacity>
       );
     }
-  }
+}
 
 const styles = StyleSheet.create({
     card:{
@@ -94,13 +94,13 @@ const styles = StyleSheet.create({
         height: 125,    
         resizeMode: 'cover'
     },
-    cardText:{
-        padding:10,
-        fontSize:16
+    cardText: {
+        padding: 10,
+        fontSize: 16
     },
-    cardTextBody:{
-        padding:10,
-        fontSize:10
+    cardTextBody: {
+        padding: 10,
+        fontSize: 10
     },
     cardTitle:{
         padding:4,

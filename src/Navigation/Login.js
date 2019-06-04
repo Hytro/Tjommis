@@ -3,8 +3,6 @@ import {View, TouchableOpacity, Text, StyleSheet, TextInput} from 'react-native'
 import axios from 'axios';
 import AsyncStorage from '@react-native-community/async-storage';
 
-
-
 class Login extends React.Component{
 
   constructor(){
@@ -40,11 +38,9 @@ class Login extends React.Component{
         //console.warn(response.data.token);
         this.props.navigation.navigate('Dashboard');
         storeData(response.data.token)
-
       }
       //console.warn(response);
   }
-
 
     render() {
       return(

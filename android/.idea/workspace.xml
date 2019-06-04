@@ -3,17 +3,11 @@
   <component name="ChangeListManager">
     <list default="true" id="a78bb3be-e06f-4974-b2cb-c673de111e61" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/caches/gradle_models.ser" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/caches/gradle_models.ser" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/app/build.gradle" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/tjommis/MainApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/tjommis/MainApplication.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/settings.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/settings.gradle" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../ios/Tjommis.xcodeproj/project.pbxproj" beforeDir="false" afterPath="$PROJECT_DIR$/../ios/Tjommis.xcodeproj/project.pbxproj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../package.json" beforeDir="false" afterPath="$PROJECT_DIR$/../package.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../src/Components/Events.js" beforeDir="false" afterPath="$PROJECT_DIR$/../src/Components/Events.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../src/Navigation/Login.js" beforeDir="false" afterPath="$PROJECT_DIR$/../src/Navigation/Login.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../src/Navigation/Navigation.js" beforeDir="false" afterPath="$PROJECT_DIR$/../src/Navigation/Navigation.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../yarn.lock" beforeDir="false" afterPath="$PROJECT_DIR$/../yarn.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/Navigation/MyEvents.js" beforeDir="false" afterPath="$PROJECT_DIR$/../src/Navigation/MyEvents.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/Navigation/Signup.js" beforeDir="false" afterPath="$PROJECT_DIR$/../src/Navigation/Signup.js" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -43,10 +37,10 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="AndroidView" />
-      <pane id="PackagesPane" />
       <pane id="Scope" />
+      <pane id="AndroidView" />
       <pane id="ProjectPane" />
+      <pane id="PackagesPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">

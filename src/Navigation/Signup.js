@@ -43,7 +43,6 @@ class Signup extends React.Component{
           console.warn(this.props);
           this.props.navigation.navigate('Dashboard')
         }
-
         console.warn(res.status)
       })
       .catch(error => console.error('Error:', error));
