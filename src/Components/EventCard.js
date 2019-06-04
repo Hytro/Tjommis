@@ -1,21 +1,56 @@
 import React from 'react';
-import {StyleSheet, TouchableOpacity, Image, Text} from 'react-native';
+import {StyleSheet, TouchableOpacity, Image, Text, View, tintColor } from 'react-native';
+
+import IconFA from 'react-native-vector-icons/FontAwesome'
+import IconFA5 from 'react-native-vector-icons/FontAwesome5'
+import moment from 'moment';
 
 //Event card bilde hentet fra server
 // <Image style={styles.cardImage} source={{uri: 'http://tjommis.eu-central-1.elasticbeanstalk.com/' + this.props.item.image_url}} />
+//Trenger ikke description enda
+// <Text style={styles.cardText}>{this.props.item.description}</Text>
 
 class EventCard extends React.PureComponent{
     render() {
+      //Adding a random date before the time, to properly display the time
+      const getTime = "2020-01-03 " + this.props.item.time
       return(
           <TouchableOpacity 
             style={styles.card}
-            onPress={()=>this.props.navigation.navigate('EventDetail')}
-          >
-              <Text style={styles.cardTitle}>{this.props.item.title}</Text>
-              <Image style={styles.cardImage} source={{uri: 'https://www.mch-group.com/-/media/mch-group/Images/Content/News/Blog/2017/2017-04/mch-group-live-marketing-aktivierung.jpg'}} />
-              <Text style={styles.cardText}>{this.props.item.description}</Text>
-              <Text style={styles.cardTextBody}>{this.props.item.date}</Text>
-              <Text style={styles.cardTextBody}>{this.props.item.time}</Text>
+            onPress={()=>this.props.navigation.navigate('EventDetail')}>
+            <View style={styles.flexRow}>
+                <Text style={styles.cardTitle}>{this.props.item.title}</Text>
+            </View>
+            <View style={styles.flexRow}>
+                <Text style={styles.cardTitle}>Plassering</Text>
+                <Text style={styles.cardDate}>{moment(this.props.item.date).format('Do MMM YYYY')} - {moment(getTime).format('HH:mm')}</Text>
+            </View>
+            <View>
+                <Image style={styles.cardImage} source={{uri: 'https://i.imgur.com/1jONy1i.jpg'}} />
+            </View>
+            <View style={styles.flexRowBottom}>
+                <View style={{ flexDirection: 'row', alignItems: 'center' }}>
+                    <Text style={{opacity:0.7}}>Skal?</Text>
+                </View>
+                <View style={{ flexDirection: 'row', alignItems: 'center' }}>
+                    <IconFA5
+                        style={{ paddingTop: 4 }}
+                        name="users" 
+                        size={20}
+                        color={ '#4ABDAC' }
+                    />
+                    <Text style={{fontSize: 10, opacity:0.7}}> TODO</Text>
+                </View>
+                <View style={{ flexDirection: 'row', alignItems: 'center' }}>
+                    <IconFA
+                        style={{ paddingTop: 4 }}
+                        name="share-square-o" 
+                        size={20}
+                        color={ '#4ABDAC' }
+                    />
+                    <Text style={{fontSize: 10, opacity:0.7}}> TODO</Text>
+                </View>
+            </View>
           </TouchableOpacity>
       );
     }
@@ -23,21 +58,40 @@ class EventCard extends React.PureComponent{
 
 const styles = StyleSheet.create({
     card:{
-        backgroundColor:'lightgray',
-        marginBottom: 10,
-        marginLeft:'2%',
-        width: '96%',
+        backgroundColor:'white',
+        marginBottom: 20,
+        marginLeft:'5%',
+        width: '90%',
+        borderWidth: 0.1,
+        borderRadius: 6,
         shadowColor: '#000',
-        shadowOpacity:0.2,
-        shadowRadius:1,
+        shadowOpacity:0.5,
+        shadowRadius:5,
         shadowOffset:{
-            width:3,
-            height:3
+            width:0,
+            height:0
         }
     },
+    flexRow:{
+        flex: 1, 
+        flexDirection: 'row', 
+        justifyContent: 'space-between',
+        width: '98%',
+        marginLeft: '1%'
+    },
+    flexRowBottom:{
+        flex: 1, 
+        flexDirection: 'row', 
+        justifyContent: 'space-between',
+        width: '85%',
+        marginLeft: '7.5%',
+        paddingTop: 7,
+        paddingBottom: 7
+    },
     cardImage:{
-        width: '100%',
-        height: 200,    
+        width: '95%',
+        marginLeft: '2.5%',
+        height: 125,    
         resizeMode: 'cover'
     },
     cardText:{
@@ -51,6 +105,12 @@ const styles = StyleSheet.create({
     cardTitle:{
         padding:4,
         fontSize:20
+    },
+    cardDate: {
+        paddingTop: 15,
+        paddingRight: 5,
+        opacity: 0.6,
+        fontSize: 12
     }
 });
 
