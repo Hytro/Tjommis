@@ -38,16 +38,7 @@ const styles = StyleSheet.create({
         backgroundColor: 'white',
         marginBottom: 20,
         marginLeft: '5%',
-        width: '90%',
-        borderWidth: 0.1,
-        borderRadius: 6,
-        shadowColor: '#000',
-        shadowOpacity: 0.5,
-        shadowRadius: 5,
-        shadowOffset: {
-            width: 0,
-            height: 0
-        }
+        width: '90%'
     },
     flexRow: {
         flex: 1,
