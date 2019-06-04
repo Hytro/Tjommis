@@ -1,6 +1,9 @@
 import React from 'react';
 import {StyleSheet, TouchableOpacity, Image, Text} from 'react-native';
 
+//Event card bilde hentet fra server
+// <Image style={styles.cardImage} source={{uri: 'http://tjommis.eu-central-1.elasticbeanstalk.com/' + this.props.item.image_url}} />
+
 class EventCard extends React.PureComponent{
     render() {
       return(
@@ -9,7 +12,7 @@ class EventCard extends React.PureComponent{
             onPress={()=>this.props.navigation.navigate('EventDetail')}
           >
               <Text style={styles.cardTitle}>{this.props.item.title}</Text>
-              <Image style={styles.cardImage} source={{uri: 'http://tjommis.eu-central-1.elasticbeanstalk.com/' + this.props.item.image_url}} />
+              <Image style={styles.cardImage} source={{uri: 'https://www.mch-group.com/-/media/mch-group/Images/Content/News/Blog/2017/2017-04/mch-group-live-marketing-aktivierung.jpg'}} />
               <Text style={styles.cardText}>{this.props.item.description}</Text>
               <Text style={styles.cardTextBody}>{this.props.item.date}</Text>
               <Text style={styles.cardTextBody}>{this.props.item.time}</Text>

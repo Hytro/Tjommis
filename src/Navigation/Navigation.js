@@ -56,8 +56,11 @@ const EventStack = createStackNavigator({
   },
   EventDetail: {
     screen: EventDetail
-  }
-}, {
+  },
+  NewEvent: {
+    screen: NewEvent
+  },
+  }, {
     defaultNavigationOptions: {
       gesturesEnabled: false
     }
@@ -101,7 +104,10 @@ const MyEventStack = createStackNavigator({
   },
   EventDetail: {
     screen: EventDetail
-  }
+  },
+  NewEvent: {
+    screen: NewEvent
+  },
   }, {
   defaultNavigationOptions: {
     gesturesEnabled: false
@@ -221,6 +227,12 @@ const DashboardStackNavigator = createStackNavigator(
 const AppDrawerNavigator = createDrawerNavigator({
   Dashboard: {
     screen: DashboardStackNavigator
+  },
+  NewEvent: {
+    screen: NewEvent,
+    navigationOptions: () => ({
+      title: `Create new event`,
+    })
   }
 });
 

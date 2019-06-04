@@ -13,8 +13,3 @@ class EventDetail extends Component {
 }
 
 export default EventDetail;
-
-
-
-
-
