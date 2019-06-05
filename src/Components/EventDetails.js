@@ -6,15 +6,15 @@ import axios from 'axios';
 //Event card bilde hentet fra server
 // <Image style={styles.cardImage} source={{uri: 'http://tjommis.eu-central-1.elasticbeanstalk.com/' + this.props.item.image_url}} />
 
-
-
 class EventDetails extends React.PureComponent {
 
     constructor() {
         super();
         this.state = {
-            items: []
+            items: [],
+            eventIdText: ''
         }
+        this.getData()
     }
 
     getData = async () => {
@@ -22,18 +22,19 @@ class EventDetails extends React.PureComponent {
             const value = await AsyncStorage.getItem('eventId')
             if (value !== null) {
                 console.warn('user Id: ', value)
+                this.setState({eventIdText:value}, async () => {
+                    const eventResponse = await axios.get('http://tjommis.eu-central-1.elasticbeanstalk.com/api/events/' + this.state.eventIdText);
+                    this.setState({ items: eventResponse.data })
+                })
             }
+            return value
         } catch (e) {
             // error reading value
         }
     };
 
-    componentDidMount() {
-        this._get('http://tjommis.eu-central-1.elasticbeanstalk.com/api/events/' + this.getData()).then(
-            data => {
-                this.setState({ items: data })
-            }
-        )
+    async componentDidMount() {
+        this.getData()
     }
 
     _get = async (endpoint) => {
@@ -43,13 +44,12 @@ class EventDetails extends React.PureComponent {
     }
 
     render() {
-        Alert.alert(this.state.items)
         return (
             <View style={styles.card}>
-                <Text style={styles.cardTitle}>Dank Title</Text>
+                <Text style={styles.cardTitle}>{this.state.items.title}</Text>
                 <Image style={styles.cardImage} source={{ uri: 'https://i.imgur.com/1jONy1i.jpg' }} />
-                <Text style={styles.cardTitle}>Dank Title</Text>
-                <Text style={styles.cardText}>Dank Location</Text>
+                <Text style={styles.cardTitle}>{this.state.items.location}</Text>
+                <Text style={styles.cardText}>{this.state.items.description}</Text>
                 <Text style={styles.cardTextBody}>Info om evenet</Text>
                 <Text style={styles.cardTextBody}>Dank beskrivelse av eventet</Text>
             </View>
