@@ -6,21 +6,41 @@ import axios from 'axios';
 //Event card bilde hentet fra server
 // <Image style={styles.cardImage} source={{uri: 'http://tjommis.eu-central-1.elasticbeanstalk.com/' + this.props.item.image_url}} />
 
+
+
 class EventDetails extends React.PureComponent {
+
+    constructor() {
+        super();
+        this.state = {
+            items: []
+        }
+    }
+
     getData = async () => {
         try {
-          const value = await AsyncStorage.getItem('eventId')
-          if(value !== null) {
-            console.warn('user Id: ', value)
-          }
-        } catch(e) {
-          // error reading value
+            const value = await AsyncStorage.getItem('eventId')
+            if (value !== null) {
+                console.warn('user Id: ', value)
+            }
+        } catch (e) {
+            // error reading value
         }
-      };
+    };
 
-    componentDidMount(){
-        console.warn("dank" + this.getData())
-      }
+    componentDidMount() {
+        this._get('http://tjommis.eu-central-1.elasticbeanstalk.com/api/events/' + this.getData()).then(
+            data => {
+                this.setState({ items: data })
+            }
+        )
+    }
+
+    _get = async (endpoint) => {
+        const res = await fetch(endpoint);
+        const data = await res.json();
+        return data;
+    }
 
     render() {
         return (
@@ -88,4 +108,3 @@ const styles = StyleSheet.create({
 
 export default EventDetails;
 
-  
