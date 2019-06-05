@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, TouchableOpacity, Image, Text, View, tintColor } from 'react-native';
+import { StyleSheet, TouchableOpacity, Image, Text, View } from 'react-native';
 import AsyncStorage from '@react-native-community/async-storage';
 
 import IconFA from 'react-native-vector-icons/FontAwesome'
@@ -13,9 +13,7 @@ class EventCard extends React.PureComponent {
     storeData = async (eventId) => {
         try {
             await AsyncStorage.setItem('eventId', eventId)
-            console.warn('eventId: ', eventId)
         } catch (e) {
-
         }
     }
 

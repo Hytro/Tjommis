@@ -2,9 +2,7 @@ import React from 'react';
 import { StyleSheet, View, Image, Text } from 'react-native';
 import AsyncStorage from '@react-native-community/async-storage';
 import axios from 'axios';
-
-//Event card bilde hentet fra server
-// <Image style={styles.cardImage} source={{uri: 'http://tjommis.eu-central-1.elasticbeanstalk.com/' + this.props.item.image_url}} />
+import moment from 'moment';
 
 class EventDetails extends React.PureComponent {
 
@@ -43,18 +41,25 @@ class EventDetails extends React.PureComponent {
     }
 
     render() {
+        //Adding a random date before the time, to properly display the time
+        const getTime = "2020-01-03 " + this.state.items.time
         return (
-            <View style={styles.card}>
-                <Image style={styles.cardImage} source={{ uri: 'https://i.imgur.com/1jONy1i.jpg' }} />
-                <View styles={styles.flexRow}>
-                    <Text style={styles.cardTitle}>{this.state.items.title}</Text>
+            <View style={styles.event}>
+                <Image style={styles.eventImage} source={{ uri: 'https://i.imgur.com/1jONy1i.jpg' }} />
+                <View style={styles.topInfo}>
+                    <View style={styles.flexRow}>
+                        <Text style={styles.eventTitle}>{this.state.items.title}</Text>
+                    </View>
+                    <View style={styles.flexRow}>
+                        <Text style={styles.eventLocation}>{this.state.items.location}</Text>
+                        <Text style={styles.eventDate}>{moment(this.state.items.date).format('Do MMM YYYY')} - {moment(getTime).format('HH:mm')}</Text>
+                    </View>
                 </View>
-                <View>
-                    <Text style={styles.cardTitle}>{this.state.items.location}</Text>
-                    <Text style={styles.cardTitle}>{this.state.items.date}</Text>
+                <View style={styles.flexRow}>
+                    <Text style={styles.eventInfo}>Info om eventet</Text>
                 </View>
-                <View>
-                    <Text style={styles.cardText}>{this.state.items.description}</Text>
+                <View style={styles.flexRow}>
+                    <Text style={styles.eventText}>{this.state.items.description}</Text>
                 </View>
             </View>
         );
@@ -62,46 +67,46 @@ class EventDetails extends React.PureComponent {
 }
 
 const styles = StyleSheet.create({
-    card: {
-        backgroundColor: 'white'
+    event: {
+        backgroundColor: 'white',
+        height: '100%'
     },
+    topInfo: {
+        backgroundColor: '#ECF0F1',
+        flexDirection: 'column'
+    },  
     flexRow: {
-        flex: 1,
-        flexDirection: 'row',
-        width: '80%',
-        marginLeft: '10%'
-    },
-    flexRowBottom: {
-        flex: 1,
         flexDirection: 'row',
         justifyContent: 'space-between',
-        width: '85%',
-        marginLeft: '7.5%',
-        paddingTop: 7,
-        paddingBottom: 7
+        width: '100%',
+        paddingLeft: '10%',
+        paddingRight: '10%',
     },
-    cardImage: {
+    eventImage: {
         width: '100%',
         height: 125,
         resizeMode: 'cover'
     },
-    cardTitle: {
+    eventTitle: {
         padding: 4,
-        fontSize: 18
+        fontSize: 24,
+        color: '#4ABDAC'
     },
-    cardLocation: {
+    eventInfo: {
+        paddingLeft: '35%',
+        paddingTop: 5,
+        paddingBottom: 10
+    },
+    eventText: {
+        padding: 4,
+    },
+    eventLocation: {
         paddingTop: 4,
         paddingBottom: 4,
         paddingLeft: 5,
         fontSize: 12
     },
-    cardDate: {
-        paddingTop: 8,
-        paddingRight: 5,
-        opacity: 0.6,
-        fontSize: 12
-    },
-    cardTime: {
+    eventDate: {
         paddingTop: 4,
         paddingBottom: 4,
         paddingRight: 5,
