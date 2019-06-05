@@ -1,23 +1,25 @@
 import React from 'react';
 import { StyleSheet, View, Image, Text } from 'react-native';
+import AsyncStorage from '@react-native-community/async-storage';
 import axios from 'axios';
 
 //Event card bilde hentet fra server
 // <Image style={styles.cardImage} source={{uri: 'http://tjommis.eu-central-1.elasticbeanstalk.com/' + this.props.item.image_url}} />
 
 class EventDetails extends React.PureComponent {
+    getData = async () => {
+        try {
+          const value = await AsyncStorage.getItem('eventId')
+          if(value !== null) {
+            console.warn('user Id: ', value)
+          }
+        } catch(e) {
+          // error reading value
+        }
+      };
 
     componentDidMount(){
-        this._get('http://tjommis.eu-central-1.elasticbeanstalk.com/api/events/' + getEventId()).then(
-          data=> {
-            this.setState({items: data})
-          }
-        )
-      }
-      _get = async (endpoint) => {
-        const res = await fetch(endpoint);
-        const data = await res.json();
-        return data;
+        console.warn("dank" + this.getData())
       }
 
     render() {
@@ -32,6 +34,7 @@ class EventDetails extends React.PureComponent {
             </View>
         );
     }
+
 }
 
 const styles = StyleSheet.create({
@@ -85,13 +88,4 @@ const styles = StyleSheet.create({
 
 export default EventDetails;
 
-getEventId = async () => {
-    try {
-      const value = await AsyncStorage.getItem('eventId')
-      if(value !== null) {
-        console.warn('user Id: ', value)
-      }
-    } catch(e) {
-      // error reading value
-    }
-  };
+  
