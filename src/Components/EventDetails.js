@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, View, Image, Text, Alert } from 'react-native';
+import { StyleSheet, View, Image, Text } from 'react-native';
 import AsyncStorage from '@react-native-community/async-storage';
 import axios from 'axios';
 
@@ -21,7 +21,6 @@ class EventDetails extends React.PureComponent {
         try {
             const value = await AsyncStorage.getItem('eventId')
             if (value !== null) {
-                console.warn('user Id: ', value)
                 this.setState({eventIdText:value}, async () => {
                     const eventResponse = await axios.get('http://tjommis.eu-central-1.elasticbeanstalk.com/api/events/' + this.state.eventIdText);
                     this.setState({ items: eventResponse.data })
@@ -46,12 +45,17 @@ class EventDetails extends React.PureComponent {
     render() {
         return (
             <View style={styles.card}>
-                <Text style={styles.cardTitle}>{this.state.items.title}</Text>
                 <Image style={styles.cardImage} source={{ uri: 'https://i.imgur.com/1jONy1i.jpg' }} />
-                <Text style={styles.cardTitle}>{this.state.items.location}</Text>
-                <Text style={styles.cardText}>{this.state.items.description}</Text>
-                <Text style={styles.cardTextBody}>Info om evenet</Text>
-                <Text style={styles.cardTextBody}>Dank beskrivelse av eventet</Text>
+                <View styles={styles.flexRow}>
+                    <Text style={styles.cardTitle}>{this.state.items.title}</Text>
+                </View>
+                <View>
+                    <Text style={styles.cardTitle}>{this.state.items.location}</Text>
+                    <Text style={styles.cardTitle}>{this.state.items.date}</Text>
+                </View>
+                <View>
+                    <Text style={styles.cardText}>{this.state.items.description}</Text>
+                </View>
             </View>
         );
     }
@@ -59,17 +63,13 @@ class EventDetails extends React.PureComponent {
 
 const styles = StyleSheet.create({
     card: {
-        backgroundColor: 'white',
-        marginBottom: 20,
-        marginLeft: '5%',
-        width: '90%'
+        backgroundColor: 'white'
     },
     flexRow: {
         flex: 1,
         flexDirection: 'row',
-        justifyContent: 'space-between',
-        width: '98%',
-        marginLeft: '1%'
+        width: '80%',
+        marginLeft: '10%'
     },
     flexRowBottom: {
         flex: 1,
@@ -81,8 +81,7 @@ const styles = StyleSheet.create({
         paddingBottom: 7
     },
     cardImage: {
-        width: '95%',
-        marginLeft: '2.5%',
+        width: '100%',
         height: 125,
         resizeMode: 'cover'
     },
