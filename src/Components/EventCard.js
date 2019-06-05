@@ -40,8 +40,8 @@ class EventCard extends React.PureComponent {
                     <Text style={styles.cardDate}>{moment(this.props.item.date).endOf('day').fromNow()} </Text>
                 </View>
                 <View style={styles.flexRow}>
-                    <Text style={styles.cardTitle}>{this.props.item.location}</Text>
-                    <Text style={styles.cardDate}>{moment(this.props.item.date).format('Do MMM YYYY')} - {moment(getTime).format('HH:mm')}</Text>
+                    <Text style={styles.cardLocation}>{this.props.item.location}</Text>
+                    <Text style={styles.cardTime}>{moment(this.props.item.date).format('Do MMM YYYY')} - {moment(getTime).format('HH:mm')}</Text>
                 </View>
                 <View>
                     <Image style={styles.cardImage} source={{ uri: 'https://i.imgur.com/1jONy1i.jpg' }} />
@@ -120,10 +120,23 @@ const styles = StyleSheet.create({
     },
     cardTitle: {
         padding: 4,
-        fontSize: 20
+        fontSize: 18
+    },
+    cardLocation: {
+        paddingTop: 4,
+        paddingBottom: 4,
+        paddingLeft: 5,
+        fontSize: 12
     },
     cardDate: {
-        paddingTop: 15,
+        paddingTop: 8,
+        paddingRight: 5,
+        opacity: 0.6,
+        fontSize: 12
+    },
+    cardTime: {
+        paddingTop: 4,
+        paddingBottom: 4,
         paddingRight: 5,
         opacity: 0.6,
         fontSize: 12
