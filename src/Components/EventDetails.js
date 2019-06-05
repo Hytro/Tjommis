@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, View, Image, Text } from 'react-native';
+import { StyleSheet, View, Image, Text, Alert } from 'react-native';
 import AsyncStorage from '@react-native-community/async-storage';
 import axios from 'axios';
 
@@ -43,18 +43,18 @@ class EventDetails extends React.PureComponent {
     }
 
     render() {
+        Alert.alert(this.state.items)
         return (
             <View style={styles.card}>
-                <Text style={styles.cardTitle}>Dank Titel</Text>
-                <Image style={styles.cardImage} source={{ uri: 'https://www.mch-group.com/-/media/mch-group/Images/Content/News/Blog/2017/2017-04/mch-group-live-marketing-aktivierung.jpg' }} />
-                <Text style={styles.cardTitle}>Dank Titel</Text>
-                <Text style={styles.cardText}>Dank lokasjon</Text>
+                <Text style={styles.cardTitle}>Dank Title</Text>
+                <Image style={styles.cardImage} source={{ uri: 'https://i.imgur.com/1jONy1i.jpg' }} />
+                <Text style={styles.cardTitle}>Dank Title</Text>
+                <Text style={styles.cardText}>Dank Location</Text>
                 <Text style={styles.cardTextBody}>Info om evenet</Text>
                 <Text style={styles.cardTextBody}>Dank beskrivelse av eventet</Text>
             </View>
         );
     }
-
 }
 
 const styles = StyleSheet.create({
@@ -86,20 +86,25 @@ const styles = StyleSheet.create({
         height: 125,
         resizeMode: 'cover'
     },
-    cardText: {
-        padding: 10,
-        fontSize: 16
-    },
-    cardTextBody: {
-        padding: 10,
-        fontSize: 10
-    },
     cardTitle: {
         padding: 4,
-        fontSize: 20
+        fontSize: 18
+    },
+    cardLocation: {
+        paddingTop: 4,
+        paddingBottom: 4,
+        paddingLeft: 5,
+        fontSize: 12
     },
     cardDate: {
-        paddingTop: 15,
+        paddingTop: 8,
+        paddingRight: 5,
+        opacity: 0.6,
+        fontSize: 12
+    },
+    cardTime: {
+        paddingTop: 4,
+        paddingBottom: 4,
         paddingRight: 5,
         opacity: 0.6,
         fontSize: 12
