@@ -51,7 +51,8 @@ const styles = StyleSheet.create({
     marginTop: 40,
   },
   bodyContent: {
-    flex: 1,
+    flexDirection: 'column',
+    justifyContent: 'space-between',
     alignItems: 'center',
     padding: 30,
   },
