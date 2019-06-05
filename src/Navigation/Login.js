@@ -9,8 +9,7 @@ class Login extends React.Component{
     super();
     this.state={
       email:'',
-      password:'',
-      token: ''
+      password:''
     }
   }
 

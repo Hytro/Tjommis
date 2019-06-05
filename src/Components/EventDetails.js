@@ -7,17 +7,18 @@ import axios from 'axios';
 
 class EventDetails extends React.PureComponent {
 
-
-    async getProfile() {
-
-        var url = 'http://tjommis.eu-central-1.elasticbeanstalk.com/api/users/30';
-        const response = await axios.get(url);
-        if (response.status === 200) {
-            console.warn("Dank boi works")
-        }
-    }
-
-
+    componentDidMount(){
+        this._get('http://tjommis.eu-central-1.elasticbeanstalk.com/api/events/' + getEventId()).then(
+          data=> {
+            this.setState({items: data})
+          }
+        )
+      }
+      _get = async (endpoint) => {
+        const res = await fetch(endpoint);
+        const data = await res.json();
+        return data;
+      }
 
     render() {
         return (
@@ -83,3 +84,14 @@ const styles = StyleSheet.create({
 });
 
 export default EventDetails;
+
+getEventId = async () => {
+    try {
+      const value = await AsyncStorage.getItem('eventId')
+      if(value !== null) {
+        console.warn('user Id: ', value)
+      }
+    } catch(e) {
+      // error reading value
+    }
+  };

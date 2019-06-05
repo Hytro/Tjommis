@@ -1,5 +1,6 @@
 import React from 'react';
 import {StyleSheet, TouchableOpacity, Image, Text, View, tintColor } from 'react-native';
+import AsyncStorage from '@react-native-community/async-storage';
 
 import IconFA from 'react-native-vector-icons/FontAwesome'
 import IconFA5 from 'react-native-vector-icons/FontAwesome5'
@@ -9,14 +10,25 @@ import moment from 'moment';
 // <Image style={styles.cardImage} source={{uri: 'http://tjommis.eu-central-1.elasticbeanstalk.com/' + this.props.item.image_url}} />
 
 class EventCard extends React.PureComponent {
+
+    goToEventDetail() {
+        this.props.navigation.navigate('EventDetail')
+      }
+    
+      saveAndGo(){
+        this.storeEventId(this.props.item.id)
+        this.goToEventDetail();
+      }
+
     render() {
       //Adding a random date before the time, to properly display the time
       const getTime = "2020-01-03 " + this.props.item.time
       return(
           <TouchableOpacity 
             style={styles.card}
-            onPress={()=>this.props.navigation.navigate('EventDetail')}>
+            onPress={()=>this.saveAndGo()}>
             <View style={styles.flexRow}>
+            <Text style={styles.cardTitle}>{this.props.item.id}</Text>
                 <Text style={styles.cardTitle}>{this.props.item.title}</Text>
                 <Text style={styles.cardDate}>{moment(this.props.item.date).endOf('day').fromNow()} </Text>
             </View>
@@ -112,3 +124,12 @@ const styles = StyleSheet.create({
 });
 
 export default EventCard;
+
+storeEventId = async (eventId) => {
+    try {
+      await AsyncStorage.setItem('eventId', eventId)
+      console.warn('eventId: ', eventId)
+    } catch (e) {
+
+    }
+  }

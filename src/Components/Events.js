@@ -32,14 +32,6 @@ class Events extends React.Component{
     }
   };
   
-  storeUser = async (idUser) => {
-    try {
-      await AsyncStorage.setItem('userId', idUser)
-      console.warn('UserId: ', idUser)
-    } catch (e) {
-      
-    }
-  };
 
   _get = async (endpoint) => {
     const res = await fetch(endpoint);
