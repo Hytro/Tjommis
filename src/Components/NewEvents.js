@@ -1,6 +1,7 @@
 import React from 'react';
 import { View, Text, StyleSheet, TextInput, TouchableOpacity } from 'react-native';
 import DatePicker from 'react-native-datepicker';
+import AsyncStorage from '@react-native-community/async-storage';
 
 class NewEvent extends React.Component {
 
@@ -11,8 +12,13 @@ class NewEvent extends React.Component {
       location: '',
       description: '',
       date: '',
-      time: ''
+      time: '',
+      userId: 0
     }
+  }
+
+  async componentDidMount() {
+    this.setState({userId: await AsyncStorage.getItem('userId')})
   }
 
   updateValue(text, field) {
@@ -55,7 +61,7 @@ class NewEvent extends React.Component {
     collection.description = this.state.description
     collection.date = this.state.date
     collection.time = this.state.time
-    collection.userId = 30
+    collection.userId = this.state.userId
 
 
     var url = 'http://tjommis.eu-central-1.elasticbeanstalk.com/api/events/';
