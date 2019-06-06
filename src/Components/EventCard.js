@@ -12,8 +12,9 @@ import moment from 'moment';
 class EventCard extends React.PureComponent {
     storeData = async (eventId) => {
         try {
-            await AsyncStorage.setItem('eventId', eventId)
+            await AsyncStorage.setItem('eventId', eventId + "")
         } catch (e) {
+            console.log("EVENT ID NOT SET", e)
         }
     }
 
