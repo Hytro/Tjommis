@@ -1,62 +1,27 @@
 import React from 'react';
 import {View, Text, TextInput, Button, StyleSheet} from 'react-native';
-import io from 'socket.io-client';
 import axios from 'axios'
+import AsyncStorage from '@react-native-community/async-storage';
 
 class Messages extends React.Component{
-  state = {
-    users: [],
-    messages: [],
-    eventId: 6,
-    userId: 14,
-    message: ''
-  }
-  async componentDidMount() {
-    const usersResponse = await axios.get(`http://tjommis.eu-central-1.elasticbeanstalk.com/api/events/${this.state.eventId}/users`);
-    const msgResponse = await axios.get(`http://tjommis.eu-central-1.elasticbeanstalk.com/api/events/${this.state.eventId}/messages`);
-
-    this.setState({users: usersResponse.data, messages: msgResponse.data})
-    this.socket = io('http://tjommis.eu-central-1.elasticbeanstalk.com/', {
-      extraHeaders: {
-          Authorization: 'Test'
-      }
-    });
-    this.socket.emit('join', this.state.eventId)
-    this.socket.on('RECEIVE_MESSAGE', function(data){
-        addMessage(data);
-    });
-    const addMessage = data => {
-        console.log(data);
-        this.setState({messages: [...this.state.messages, data]});
-    };
-    console.log(usersResponse.data)
-    console.log(msgResponse.data)
-  }
-  onMessageChange = (text) => {
-    console.log(text)
-    this.setState({message: text})
-  }
-  sendMessage = () => {
-    this.socket.emit('SEND_MESSAGE', {
-        sender_id: this.state.userId,
-        message: this.state.message,
-        eventId: this.state.eventId
-    });
-    this.setState({message: ''});
-  }
+    state = {
+      events: []
+    }
+    async componentDidMount() {
+      const userId = await AsyncStorage.getItem('userId');
+      const eventsResponse = await axios.get(`http://tjommis.eu-central-1.elasticbeanstalk.com/api/users/${userId}/events`)
+      this.setState({events: eventsResponse.data})
+    }
 
     render() {
       return(
         <View style={styles.container}>
-        {this.state.messages.map((message, i) => {
-          return (<View key={i} style={styles.message}>
-            <Text>{message.message}</Text>
+        {this.state.events.map((event, i) => {
+          return (<View key={i} style={styles.chat}>
+            <View style={styles.avatar}/>
+            <Text>{event.title}</Text>
           </View>)
         })}
-        <View>
-          <TextInput value={this.state.message} onChangeText={(text) => this.onMessageChange(text)} placeholder="test"/>
-          <Button onPress={this.sendMessage} title={'This'}></Button>
-        </View>
         </View>
       );
     }
@@ -65,12 +30,20 @@ class Messages extends React.Component{
   const styles = StyleSheet.create({
     container: {
       flex: 1,
-      backgroundColor: '#FF1111',
+      backgroundColor: '#ecf0f1',
     },
-    message: {
-      height: 30,
+    chat: {
+      height: 90,
       width: '100%',
-      backgroundColor: '#11ff11'
+      backgroundColor: '#ffffff',
+      padding: 10,
+      marginTop: 10
+    },
+    avatar: {
+      borderRadius: 30,
+      height: 50,
+      width: 50,
+      backgroundColor: '#8e44ad'
     }
   });
 

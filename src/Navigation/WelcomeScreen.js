@@ -1,8 +1,16 @@
 import React from 'react';
 import {View, Text, StyleSheet, Image, TouchableOpacity} from 'react-native';
 import Logo from '../Assets/Logo.png';
+import AsyncStorage from '@react-native-community/async-storage'
 
 class WelcomeScreen extends React.Component{
+
+    async componentDidMount() {
+      const token = await AsyncStorage.getItem('token');
+      if(token) {
+        this.props.navigation.navigate('Dashboard')
+      }
+    }
     render() {
       return(
         <View style={styles.container}>
