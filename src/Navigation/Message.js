@@ -2,37 +2,42 @@ import React from 'react';
 import {View, Text, TextInput, Button, StyleSheet} from 'react-native';
 import io from 'socket.io-client';
 import axios from 'axios'
+import { YellowBox } from 'react-native';
+import AsyncStorage from '@react-native-community/async-storage';
+
 
 class Messages extends React.Component{
   state = {
     users: [],
     messages: [],
     eventId: 6,
-    userId: 14,
+    userId: false,
     message: ''
   }
   async componentDidMount() {
     const eventId = this.props.navigation.getParam('eventId', 'NO-ID')
-    this.setState({eventId: eventId})
+    console.log("EVENT ID", eventId)
+    this.setState({eventId: eventId, userId: await AsyncStorage.getItem('userId')}, () => {
+      console.log("UID", this.state.userId)
+    })
     const usersResponse = await axios.get(`http://tjommis.eu-central-1.elasticbeanstalk.com/api/events/${eventId}/users`);
     const msgResponse = await axios.get(`http://tjommis.eu-central-1.elasticbeanstalk.com/api/events/${eventId}/messages`);
-
-    this.setState({users: usersResponse.data, messages: msgResponse.data})
-    this.socket = io('http://tjommis.eu-central-1.elasticbeanstalk.com/', {
-      extraHeaders: {
-          Authorization: 'Test'
-      }
-    });
+    const users = {};
+    usersResponse.data.forEach(user => users[user.id] = user)
+    console.log(users)
+    this.setState({users: users, messages: msgResponse.data})
+    this.socket = io('http://tjommis.eu-central-1.elasticbeanstalk.com/');
     this.socket.emit('join', eventId)
     this.socket.on('RECEIVE_MESSAGE', function(data){
         addMessage(data);
     });
+    console.log("WE HERE")
     const addMessage = data => {
         console.log(data);
         this.setState({messages: [...this.state.messages, data]});
     };
-    console.log(usersResponse.data)
-    console.log(msgResponse.data)
+    console.log("USERS IN EVENT:", usersResponse.data)
+    console.log("Messages in event",msgResponse.data)
   }
   onMessageChange = (text) => {
     console.log(text)
@@ -50,11 +55,11 @@ class Messages extends React.Component{
     render() {
       return(
         <View style={styles.container}>
-        {this.state.messages.map((message, i) => {
+        {Object.keys(this.state.users).length > 0 ? this.state.messages.map((message, i) => {
           return (<View key={i} style={styles.message}>
-            <Text>{message.message}</Text>
+            <Text>{this.state.users[message.sender_id].firstName}-{message.message}</Text>
           </View>)
-        })}
+        }): null}
         <View>
           <TextInput value={this.state.message} onChangeText={(text) => this.onMessageChange(text)} placeholder="test"/>
           <Button onPress={this.sendMessage} title={'This'}></Button>
