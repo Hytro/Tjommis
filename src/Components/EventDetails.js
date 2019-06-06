@@ -11,9 +11,9 @@ class EventDetails extends React.PureComponent {
         super();
         this.state = {
             items: [],
-            eventIdText: ''
+            eventIdText: '',
+            joined: false
         }
-        this.getData()
     }
 
     getData = async () => {
@@ -23,6 +23,11 @@ class EventDetails extends React.PureComponent {
                 this.setState({ eventIdText: value }, async () => {
                     const eventResponse = await axios.get('http://tjommis.eu-central-1.elasticbeanstalk.com/api/events/' + this.state.eventIdText);
                     this.setState({ items: eventResponse.data })
+                    const userId = await AsyncStorage.getItem('userId')
+                    const userEventsResponse = await axios.get(`http://tjommis.eu-central-1.elasticbeanstalk.com/api/users/${userId}/events`)
+                    userEventsResponse.data.forEach(event => {
+                        if(event.id == value) this.setState({joined: true})
+                    })
                 })
             }
             return value
@@ -43,14 +48,17 @@ class EventDetails extends React.PureComponent {
 
     joinEvent = async () => {
         const userId = await AsyncStorage.getItem('userId');
-
-        await axios.post(`http://tjommis.eu-central-1.elasticbeanstalk.com/api/users/${userId}/events`, { eventId: this.state.eventIdText })
+        const joinResponse = await axios.post(`http://tjommis.eu-central-1.elasticbeanstalk.com/api/users/${userId}/events`, { eventId: this.state.eventIdText })
+        if(joinResponse.status === 201) {
+            this.setState({joined: true})
+        }
     }
 
     LeaveEvent = async () => {
         const userId = await AsyncStorage.getItem('userId');
 
-        await axios.post(`http://tjommis.eu-central-1.elasticbeanstalk.com/api/users/${userId}/events`, { eventId: this.state.eventIdText })
+        const leaveResponse = await axios.delete(`http://tjommis.eu-central-1.elasticbeanstalk.com/api/users/${userId}/events/${this.state.eventIdText}`)
+        leaveResponse.status === 204 ? this.setState({joined: false}) : null
     }
 
     render() {
@@ -74,11 +82,12 @@ class EventDetails extends React.PureComponent {
                 <View style={styles.flexRow}>
                     <Text style={styles.eventText}>{this.state.items.description}</Text>
                 </View>
+                {this.state.joined !== true ?
                 <TouchableOpacity
                     style={styles.btnJoin}
                     onPress={this.joinEvent}>
                     <View style={{ flexDirection: 'row', alignItems: 'center' }}>
-                        <Text style={styles.btnText}>Join event  </Text>
+                        <Text style={styles.btnText}>Join event</Text>
                         <IconFA
                             name="user-plus"
                             size={20}
@@ -86,6 +95,7 @@ class EventDetails extends React.PureComponent {
                         />
                     </View>
                 </TouchableOpacity>
+                :
                 <TouchableOpacity
                     style={styles.btnLeave}
                     onPress={this.LeaveEvent}>
@@ -98,6 +108,7 @@ class EventDetails extends React.PureComponent {
                         />
                     </View>
                 </TouchableOpacity>
+                }
             </View>
         );
     }
