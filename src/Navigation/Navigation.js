@@ -12,6 +12,7 @@ import Signup from './Signup';
 import Login from './Login';
 import NewEvent from '../Components/NewEvents';
 import EventDetail from '../Components/EventDetails';
+import Logout from '../Components/Logout';
 
 import {
   createSwitchNavigator,
@@ -51,6 +52,9 @@ const EventStack = createStackNavigator({
   NewEvent: {
     screen: NewEvent
   },
+  Logout: {
+    screen: Logout
+  }
 }, {
     defaultNavigationOptions: {
       gesturesEnabled: false
@@ -73,6 +77,12 @@ const MessageStack = createStackNavigator({
         )
       };
     }
+  },
+  NewEvent: {
+    screen: NewEvent
+  },
+  Logout: {
+    screen: Logout
   }
 });
 
@@ -99,6 +109,9 @@ const MyEventStack = createStackNavigator({
   NewEvent: {
     screen: NewEvent
   },
+  Logout: {
+    screen: Logout
+  }
 }, {
     defaultNavigationOptions: {
       gesturesEnabled: false
@@ -121,6 +134,12 @@ const ProfileStack = createStackNavigator({
         )
       };
     }
+  },
+  NewEvent: {
+    screen: NewEvent
+  },
+  Logout: {
+    screen: Logout
   }
 });
 
@@ -224,7 +243,13 @@ const AppDrawerNavigator = createDrawerNavigator({
     navigationOptions: () => ({
       title: `Create new event`,
     })
-  }
+  },
+  Logout: {
+    screen: Logout,
+    navigationOptions: () => ({
+      title: `Logout`,
+    })
+  },
 });
 
 const AppSwitchNavigator = createSwitchNavigator({
@@ -232,7 +257,8 @@ const AppSwitchNavigator = createSwitchNavigator({
   Login: { screen: Login },
   Signup: { screen: Signup },
   Dashboard: { screen: AppDrawerNavigator },
-  NewEvent: { screen: NewEvent }
+  NewEvent: { screen: NewEvent },
+
 });
 
 const AppContainer = createAppContainer(AppSwitchNavigator);
