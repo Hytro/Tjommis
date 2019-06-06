@@ -20,7 +20,7 @@ class EventDetails extends React.PureComponent {
         try {
             const value = await AsyncStorage.getItem('eventId')
             if (value !== null) {
-                this.setState({eventIdText:value}, async () => {
+                this.setState({ eventIdText: value }, async () => {
                     const eventResponse = await axios.get('http://tjommis.eu-central-1.elasticbeanstalk.com/api/events/' + this.state.eventIdText);
                     this.setState({ items: eventResponse.data })
                 })
@@ -43,8 +43,14 @@ class EventDetails extends React.PureComponent {
 
     joinEvent = async () => {
         const userId = await AsyncStorage.getItem('userId');
-        
-        await axios.post(`http://tjommis.eu-central-1.elasticbeanstalk.com/api/users/${userId}/events`, {eventId: this.state.eventIdText })
+
+        await axios.post(`http://tjommis.eu-central-1.elasticbeanstalk.com/api/users/${userId}/events`, { eventId: this.state.eventIdText })
+    }
+
+    LeaveEvent = async () => {
+        const userId = await AsyncStorage.getItem('userId');
+
+        await axios.post(`http://tjommis.eu-central-1.elasticbeanstalk.com/api/users/${userId}/events`, { eventId: this.state.eventIdText })
     }
 
     render() {
@@ -69,14 +75,26 @@ class EventDetails extends React.PureComponent {
                     <Text style={styles.eventText}>{this.state.items.description}</Text>
                 </View>
                 <TouchableOpacity
-                    style={styles.btn}
+                    style={styles.btnJoin}
                     onPress={this.joinEvent}>
                     <View style={{ flexDirection: 'row', alignItems: 'center' }}>
                         <Text style={styles.btnText}>Join event  </Text>
                         <IconFA
-                            name="user-plus" 
+                            name="user-plus"
                             size={20}
-                            color={ 'white' }
+                            color={'white'}
+                        />
+                    </View>
+                </TouchableOpacity>
+                <TouchableOpacity
+                    style={styles.btnLeave}
+                    onPress={this.LeaveEvent}>
+                    <View style={{ flexDirection: 'row', alignItems: 'center' }}>
+                        <Text style={styles.btnText}>Leave event  </Text>
+                        <IconFA
+                            name="user-plus"
+                            size={20}
+                            color={'white'}
                         />
                     </View>
                 </TouchableOpacity>
@@ -93,7 +111,7 @@ const styles = StyleSheet.create({
     topInfo: {
         backgroundColor: '#ECF0F1',
         flexDirection: 'column'
-    },  
+    },
     flexRow: {
         flexDirection: 'row',
         justifyContent: 'space-between',
@@ -132,7 +150,7 @@ const styles = StyleSheet.create({
         opacity: 0.6,
         fontSize: 12
     },
-    btn:{
+    btnJoin: {
         alignSelf: 'stretch',
         alignItems: 'center',
         backgroundColor: '#4ABDAC',
@@ -141,11 +159,24 @@ const styles = StyleSheet.create({
         borderRadius: 6,
         margin: 10,
         padding: 10,
-        width:'85%',
+        width: '85%',
         marginLeft: '7.5%',
         height: 50
     },
-    btnText:{
+    btnLeave: {
+        alignSelf: 'stretch',
+        alignItems: 'center',
+        backgroundColor: '#F95937',
+        borderColor: '#E95130',
+        borderWidth: 3,
+        borderRadius: 6,
+        margin: 10,
+        padding: 10,
+        width: '85%',
+        marginLeft: '7.5%',
+        height: 50
+    },
+    btnText: {
         color: 'white',
         fontWeight: 'bold',
         fontSize: 18
