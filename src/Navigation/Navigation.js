@@ -10,6 +10,7 @@ import Profile from './Profile';
 import MyEvents from './MyEvents';
 import Signup from './Signup';
 import Login from './Login';
+import Message from './Message'
 import NewEvent from '../Components/NewEvents';
 import EventDetail from '../Components/EventDetails';
 import Logout from '../Components/Logout';
@@ -77,6 +78,9 @@ const MessageStack = createStackNavigator({
         )
       };
     }
+  },
+  Message: {
+    screen: Message
   },
   NewEvent: {
     screen: NewEvent

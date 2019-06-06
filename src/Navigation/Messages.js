@@ -2,6 +2,7 @@ import React from 'react';
 import {View, FlatList, Text, TextInput, Button, StyleSheet} from 'react-native';
 import axios from 'axios'
 import AsyncStorage from '@react-native-community/async-storage';
+import { TouchableOpacity } from 'react-native-gesture-handler';
 
 class Messages extends React.Component{
     state = {
@@ -12,6 +13,9 @@ class Messages extends React.Component{
       const eventsResponse = await axios.get(`http://tjommis.eu-central-1.elasticbeanstalk.com/api/users/${userId}/events`)
       this.setState({events: eventsResponse.data})
     }
+    goToMessageRoom(id) {
+      this.props.navigation.navigate('Message', {eventId: id})
+    }
 
     render() {
       return(
@@ -19,7 +23,7 @@ class Messages extends React.Component{
         style={styles.container}
         data={this.state.events}
         keyExtractor={(item, index) => index.toString()}
-        renderItem={({ item}) => <View style={styles.chat}><View style={styles.avatar}/><Text>{ item.title }</Text></View>}
+        renderItem={({ item}) => <TouchableOpacity onPress={() => this.goToMessageRoom(item.id)}><View style={styles.chat}><View style={styles.avatar}/><Text>{ item.title }</Text></View></TouchableOpacity>}
         />
       );
     }

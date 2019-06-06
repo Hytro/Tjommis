@@ -12,8 +12,10 @@ class Messages extends React.Component{
     message: ''
   }
   async componentDidMount() {
-    const usersResponse = await axios.get(`http://tjommis.eu-central-1.elasticbeanstalk.com/api/events/${this.state.eventId}/users`);
-    const msgResponse = await axios.get(`http://tjommis.eu-central-1.elasticbeanstalk.com/api/events/${this.state.eventId}/messages`);
+    const eventId = this.props.navigation.getParam('eventId', 'NO-ID')
+    this.setState({eventId: eventId})
+    const usersResponse = await axios.get(`http://tjommis.eu-central-1.elasticbeanstalk.com/api/events/${eventId}/users`);
+    const msgResponse = await axios.get(`http://tjommis.eu-central-1.elasticbeanstalk.com/api/events/${eventId}/messages`);
 
     this.setState({users: usersResponse.data, messages: msgResponse.data})
     this.socket = io('http://tjommis.eu-central-1.elasticbeanstalk.com/', {
@@ -21,7 +23,7 @@ class Messages extends React.Component{
           Authorization: 'Test'
       }
     });
-    this.socket.emit('join', this.state.eventId)
+    this.socket.emit('join', eventId)
     this.socket.on('RECEIVE_MESSAGE', function(data){
         addMessage(data);
     });
