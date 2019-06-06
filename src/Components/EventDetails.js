@@ -1,7 +1,8 @@
 import React from 'react';
-import { StyleSheet, View, Image, Text } from 'react-native';
+import { StyleSheet, TouchableOpacity, View, Image, Text } from 'react-native';
 import AsyncStorage from '@react-native-community/async-storage';
 import axios from 'axios';
+import IconFA from 'react-native-vector-icons/FontAwesome'
 import moment from 'moment';
 
 class EventDetails extends React.PureComponent {
@@ -40,6 +41,12 @@ class EventDetails extends React.PureComponent {
         return data;
     }
 
+    joinEvent = async () => {
+        const userId = await AsyncStorage.getItem('userId');
+        
+        await axios.post(`http://tjommis.eu-central-1.elasticbeanstalk.com/api/users/${userId}/events`, {eventId: this.state.eventIdText })
+    }
+
     render() {
         //Adding a random date before the time, to properly display the time
         const getTime = "2020-01-03 " + this.state.items.time
@@ -61,6 +68,18 @@ class EventDetails extends React.PureComponent {
                 <View style={styles.flexRow}>
                     <Text style={styles.eventText}>{this.state.items.description}</Text>
                 </View>
+                <TouchableOpacity
+                    style={styles.btn}
+                    onPress={this.joinEvent}>
+                    <View style={{ flexDirection: 'row', alignItems: 'center' }}>
+                        <Text style={styles.btnText}>Join event  </Text>
+                        <IconFA
+                            name="user-plus" 
+                            size={20}
+                            color={ 'white' }
+                        />
+                    </View>
+                </TouchableOpacity>
             </View>
         );
     }
@@ -112,6 +131,24 @@ const styles = StyleSheet.create({
         paddingRight: 5,
         opacity: 0.6,
         fontSize: 12
+    },
+    btn:{
+        alignSelf: 'stretch',
+        alignItems: 'center',
+        backgroundColor: '#4ABDAC',
+        borderColor: '#4ABDAC',
+        borderWidth: 3,
+        borderRadius: 6,
+        margin: 10,
+        padding: 10,
+        width:'85%',
+        marginLeft: '7.5%',
+        height: 50
+    },
+    btnText:{
+        color: 'white',
+        fontWeight: 'bold',
+        fontSize: 18
     }
 });
 

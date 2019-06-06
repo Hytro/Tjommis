@@ -1,5 +1,5 @@
 import React from 'react';
-import {View, Text, TextInput, Button, StyleSheet} from 'react-native';
+import {View, FlatList, Text, TextInput, Button, StyleSheet} from 'react-native';
 import axios from 'axios'
 import AsyncStorage from '@react-native-community/async-storage';
 
@@ -15,14 +15,12 @@ class Messages extends React.Component{
 
     render() {
       return(
-        <View style={styles.container}>
-        {this.state.events.map((event, i) => {
-          return (<View key={i} style={styles.chat}>
-            <View style={styles.avatar}/>
-            <Text>{event.title}</Text>
-          </View>)
-        })}
-        </View>
+        <FlatList 
+        style={styles.container}
+        data={this.state.events}
+        keyExtractor={(item, index) => index.toString()}
+        renderItem={({ item}) => <View style={styles.chat}><View style={styles.avatar}/><Text>{ item.title }</Text></View>}
+        />
       );
     }
   }
