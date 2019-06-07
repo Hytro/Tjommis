@@ -78,7 +78,7 @@ class EventDetails extends React.PureComponent {
                                 size={20}
                                 color="#4ABDAC"
                             />
-                            <Text style={styles.eventLocation}>  {this.state.items.location}</Text>
+                            <Text style={styles.eventLocation}>{this.state.items.location}</Text>
                         </View>
                         <View style={styles.flexRowHalf}>
                             <IconFA
