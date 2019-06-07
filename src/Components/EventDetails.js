@@ -51,6 +51,7 @@ class EventDetails extends React.PureComponent {
         const joinResponse = await axios.post(`http://tjommis.eu-central-1.elasticbeanstalk.com/api/users/${userId}/events`, { eventId: this.state.eventIdText })
         if(joinResponse.status === 201) {
             this.setState({joined: true})
+            this.props.navigation.navigate('Messages')
         }
     }
 
@@ -78,7 +79,7 @@ class EventDetails extends React.PureComponent {
                                 size={20}
                                 color="#4ABDAC"
                             />
-                            <Text style={styles.eventLocation}>  {this.state.items.location}</Text>
+                            <Text style={styles.eventLocation}>{this.state.items.location}</Text>
                         </View>
                         <View style={styles.flexRowHalf}>
                             <IconFA
