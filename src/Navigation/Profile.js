@@ -3,6 +3,16 @@ import { View, Text, Image, StyleSheet, TouchableOpacity } from 'react-native';
 
 class Profile extends Component {
   render() {
+
+
+
+
+
+
+
+
+
+
     return (
       <View style={styles.container}>
         <View style={styles.header}></View>
