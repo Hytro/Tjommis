@@ -4,6 +4,7 @@ import io from 'socket.io-client';
 import axios from 'axios'
 import { YellowBox } from 'react-native';
 import AsyncStorage from '@react-native-community/async-storage';
+import { GiftedChat } from 'react-native-gifted-chat'
 
 
 class Messages extends React.Component{
@@ -24,47 +25,64 @@ class Messages extends React.Component{
     const msgResponse = await axios.get(`http://tjommis.eu-central-1.elasticbeanstalk.com/api/events/${eventId}/messages`);
     const users = {};
     usersResponse.data.forEach(user => users[user.id] = user)
-    console.log(users)
-    this.setState({users: users, messages: msgResponse.data})
+    const messages = msgResponse.data.map(msg => {
+      return {
+        _id: msg.id,
+        createdAt: msg.sent_at,
+        text: msg.message,
+        user: {
+          _id: msg.sender_id,
+          name: users[msg.sender_id].firstName
+        }
+      }
+    }).reverse();
+    this.setState({users: users, messages})
     this.socket = io('http://tjommis.eu-central-1.elasticbeanstalk.com/');
     this.socket.emit('join', eventId)
     this.socket.on('RECEIVE_MESSAGE', function(data){
-        addMessage(data);
+        addMessage({
+          _id: data._id,
+          text: data.text,
+          createdAt: data.createdAt,
+          user: {
+            _id: data.sender_id,
+            name: users[data.sender_id].firstName
+          }
+        });
     });
     console.log("WE HERE")
     const addMessage = data => {
-        console.log(data);
-        this.setState({messages: [...this.state.messages, data]});
+        this.setState(previousState => ({
+          messages: GiftedChat.append(previousState.messages, data)
+        }))
     };
     console.log("USERS IN EVENT:", usersResponse.data)
-    console.log("Messages in event",msgResponse.data)
+    console.log("Messages in event",messages)
+    this.render();
   }
   onMessageChange = (text) => {
     console.log(text)
     this.setState({message: text})
   }
-  sendMessage = () => {
+  sendMessage = (messages) => {
     this.socket.emit('SEND_MESSAGE', {
         sender_id: this.state.userId,
-        message: this.state.message,
+        message: messages[0].text,
         eventId: this.state.eventId
     });
-    this.setState({message: ''});
   }
 
-    render() {
+    render = () => {
+      console.log("Rendered")
       return(
-        <View style={styles.container}>
-        {Object.keys(this.state.users).length > 0 ? this.state.messages.map((message, i) => {
-          return (<View key={i} style={styles.message}>
-            <Text>{this.state.users[message.sender_id].firstName}-{message.message}</Text>
-          </View>)
-        }): null}
-        <View>
-          <TextInput value={this.state.message} onChangeText={(text) => this.onMessageChange(text)} placeholder="test"/>
-          <Button onPress={this.sendMessage} title={'This'}></Button>
-        </View>
-        </View>
+        <GiftedChat
+          messages={this.state.messages}
+          onSend={messages => this.sendMessage(messages)}
+          placeholder="Your message.."
+          user={{
+            _id: this.state.userId,
+          }}
+        />
       );
     }
   }
