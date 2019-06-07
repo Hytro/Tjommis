@@ -71,9 +71,23 @@ class EventDetails extends React.PureComponent {
                     <View style={styles.flexRow}>
                         <Text style={styles.eventTitle}>{this.state.items.title}</Text>
                     </View>
-                    <View style={styles.flexRow}>
-                        <Text style={styles.eventLocation}>{this.state.items.location}</Text>
-                        <Text style={styles.eventDate}>{moment(this.state.items.date).format('Do MMM YYYY')} - {moment(getTime).format('HH:mm')}</Text>
+                    <View style={{justifyContent: 'space-between', flexDirection: 'row'}}>
+                        <View style={styles.flexRowHalf}>
+                            <IconFA
+                                name="map-marker"
+                                size={20}
+                                color="#4ABDAC"
+                            />
+                            <Text style={styles.eventLocation}>  {this.state.items.location}</Text>
+                        </View>
+                        <View style={styles.flexRowHalf}>
+                            <IconFA
+                                name="calendar"
+                                size={18}
+                                color="#4ABDAC"
+                            />
+                            <Text style={styles.eventDate}>  {moment(this.state.items.date).format('Do MMM YYYY')} - {moment(getTime).format('HH:mm')}</Text>
+                        </View>
                     </View>
                 </View>
                 <View style={styles.flexRow}>
@@ -117,7 +131,7 @@ class EventDetails extends React.PureComponent {
 const styles = StyleSheet.create({
     event: {
         backgroundColor: 'white',
-        height: '100%'
+        height: '100%',
     },
     topInfo: {
         backgroundColor: '#ECF0F1',
@@ -125,38 +139,47 @@ const styles = StyleSheet.create({
     },
     flexRow: {
         flexDirection: 'row',
-        justifyContent: 'space-between',
         width: '100%',
-        paddingLeft: '10%',
-        paddingRight: '10%',
+        paddingLeft: '5%',
+        paddingRight: '5%',
+    },
+    flexRowHalf: {
+        flexDirection: 'row',
+        width: '50%',
+        paddingLeft: '5%',
+        paddingRight: '5%',
     },
     eventImage: {
         width: '100%',
-        height: 125,
+        height: 175,
         resizeMode: 'cover'
     },
     eventTitle: {
-        padding: 4,
+        paddingTop: 4,
+        paddingBottom: 4,
         fontSize: 24,
         color: '#4ABDAC'
     },
     eventInfo: {
-        paddingLeft: '35%',
-        paddingTop: 5,
-        paddingBottom: 10
+        alignItems: 'center',
+        paddingTop: 8,
+        paddingBottom: 10,
+        fontSize: 16,
+        textDecorationLine: 'underline'
     },
     eventText: {
-        padding: 4,
+        paddingTop: 4,
+        paddingBottom: 4
     },
     eventLocation: {
         paddingTop: 4,
-        paddingBottom: 4,
+        paddingBottom: 8,
         paddingLeft: 5,
         fontSize: 12
     },
     eventDate: {
         paddingTop: 4,
-        paddingBottom: 4,
+        paddingBottom: 8,
         paddingRight: 5,
         opacity: 0.6,
         fontSize: 12
