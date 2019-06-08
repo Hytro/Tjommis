@@ -18,7 +18,7 @@ class Messages extends React.Component{
   async componentDidMount() {
     const eventId = this.props.navigation.getParam('eventId', 'NO-ID')
     console.log("EVENT ID", eventId)
-    this.setState({eventId: eventId, userId: await AsyncStorage.getItem('userId')}, () => {
+    this.setState({eventId: eventId, userId: parseInt((await AsyncStorage.getItem('userId')), 10)}, () => {
       console.log("UID", this.state.userId)
     })
     const usersResponse = await axios.get(`http://tjommis.eu-central-1.elasticbeanstalk.com/api/events/${eventId}/users`);
@@ -57,7 +57,6 @@ class Messages extends React.Component{
         }))
     };
     console.log("USERS IN EVENT:", usersResponse.data)
-    console.log("Messages in event",messages)
     this.render();
   }
   onMessageChange = (text) => {
@@ -65,15 +64,17 @@ class Messages extends React.Component{
     this.setState({message: text})
   }
   sendMessage = (messages) => {
-    this.socket.emit('SEND_MESSAGE', {
+    messages.forEach(message => {
+      this.socket.emit('SEND_MESSAGE', {
         sender_id: this.state.userId,
-        message: messages[0].text,
+        message: message.text,
         eventId: this.state.eventId
     });
+    })
   }
 
     render = () => {
-      console.log("Rendered")
+      console.log(this.state.messages)
       return(
         <GiftedChat
           messages={this.state.messages}
