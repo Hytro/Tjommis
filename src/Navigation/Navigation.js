@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import Icon from 'react-native-vector-icons/Ionicons';
 import IconAD from 'react-native-vector-icons/AntDesign';
+import Logo from '../Assets/LogoColor.png';
+import {View, Image, StyleSheet } from 'react-native';
 
 import Welcome from './WelcomeScreen';
 import Events from '../Components/Events';
@@ -15,14 +17,18 @@ import NewEvent from '../Components/NewEvents';
 import NewSubEvent from '../Components/NewSubEvents';
 import EventDetail from '../Components/EventDetails';
 import Logout from '../Components/Logout';
+//import CustomDrawer from './CustomeDrawerNav';
 
 import {
   createSwitchNavigator,
   createAppContainer,
   createDrawerNavigator,
   createBottomTabNavigator,
-  createStackNavigator
+  createStackNavigator,
+  SafeAreaView,
+  DrawerItems
 } from 'react-navigation';
+import { ScrollView } from 'react-native-gesture-handler';
 
 
 class Navigation extends Component {
@@ -245,6 +251,17 @@ const DashboardStackNavigator = createStackNavigator(
   }
 );
 
+const CustomeDrawerComponent = (props) => (
+  <SafeAreaView style={{ flex: 1}}>
+    <View style={{height: 150, backgroundColor: 'white'}}>
+      <Image source={Logo} style={styles.image}/>
+    </View>
+    <ScrollView>
+      <DrawerItems {...props} />
+    </ScrollView>
+  </SafeAreaView>
+);
+
 const AppDrawerNavigator = createDrawerNavigator({
   Dashboard: {
     screen: DashboardStackNavigator
@@ -261,6 +278,8 @@ const AppDrawerNavigator = createDrawerNavigator({
       title: `Logout`,
     })
   },
+}, {
+  contentComponent: CustomeDrawerComponent
 });
 
 const AppSwitchNavigator = createSwitchNavigator({
@@ -273,6 +292,14 @@ const AppSwitchNavigator = createSwitchNavigator({
 });
 
 const AppContainer = createAppContainer(AppSwitchNavigator);
+
+const styles = StyleSheet.create({
+  image:{
+    width: '80%',
+    height: 150,
+    resizeMode: 'cover'
+  }
+});
 
 
 export default Navigation;
