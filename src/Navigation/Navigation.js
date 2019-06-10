@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import Icon from 'react-native-vector-icons/Ionicons';
 import IconAD from 'react-native-vector-icons/AntDesign';
-import Logo from '../Assets/LogoColored.png';
+import Logo from '../Assets/Logo.png';
 import {View, Image, StyleSheet, Text } from 'react-native';
 
 import Welcome from './WelcomeScreen';
@@ -303,12 +303,12 @@ const styles = StyleSheet.create({
   image:{
     width: '80%',
     height: 100,
-    resizeMode: 'cover',
-    margin: 10,
-    marginTop: 20
+    resizeMode: 'cover'
   }, drawerView:{
     height: 150,
-    backgroundColor:'white'
+    backgroundColor:'#4ABDAC',
+    alignItems: 'center',
+    justifyContent: 'center'
   }, linkView: {
       fontSize: 16
   }, footer:{
