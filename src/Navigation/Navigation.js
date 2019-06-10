@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import Icon from 'react-native-vector-icons/Ionicons';
 import IconAD from 'react-native-vector-icons/AntDesign';
-import Logo from '../Assets/LogoColor.png';
+import Logo from '../Assets/LogoColored.png';
 import {View, Image, StyleSheet } from 'react-native';
 
 import Welcome from './WelcomeScreen';
