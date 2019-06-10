@@ -39,7 +39,7 @@ class Signup extends React.Component{
 
   submit(){
     let collection={}
-      collection.email=this.state.email
+      collection.email=this.state.email.toLowerCase()
       collection.password=this.state.password
       collection.firstName=this.state.firstName
       collection.lastName=this.state.lastName

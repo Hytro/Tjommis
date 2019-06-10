@@ -1,6 +1,7 @@
 import React from 'react';
 import {View, StyleSheet , ActivityIndicator, FlatList} from 'react-native';
 import SubEventCard from '../Components/SubEventCard';
+import axios from 'axios'
 
 class MySubEvents extends React.Component{
   constructor(){
@@ -10,19 +11,11 @@ class MySubEvents extends React.Component{
     }
   }
 
-  componentDidMount(){
-    this._get('http://tjommis.eu-central-1.elasticbeanstalk.com/api/users/30/events/').then(
-      data=> {
-        this.setState({items: data})
-      }
-    )
-    fetch('http://tjommis.eu-central-1.elasticbeanstalk.com/api/users/me')
-      .then(function(response) {
-        return response.json();
-      })
-      .then(function(myJson) {
-        console.log(JSON.stringify(myJson));
-      });
+  async componentDidMount(){
+    const eventId = this.props.navigation.getParam('eventId', 'NO-ID')
+    console.log('eventid', eventId)
+    const subsResponse = await axios.get(`http://tjommis.eu-central-1.elasticbeanstalk.com/api/events/${eventId}/subs`)
+    console.log(subsResponse.data)
   }
 
   render() {

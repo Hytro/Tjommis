@@ -79,7 +79,7 @@ class Messages extends React.Component{
           <View style={styles.eventTop}>
             <TouchableOpacity 
               style={styles.btn}
-              onPress={() => this.props.navigation.navigate('NewSubEvent')}>
+              onPress={() => this.props.navigation.navigate('NewSubEvent',  {eventId: this.state.eventId})}>
               <View 
                 style={styles.flexRowHalf}>
                   <IconFA
@@ -92,7 +92,7 @@ class Messages extends React.Component{
             </TouchableOpacity>
             <TouchableOpacity
               style={styles.btn}
-              onPress={() => this.props.navigation.navigate('MySubEvent')}>
+              onPress={() => this.props.navigation.navigate('MySubEvent', { eventId: this.state.eventId })}>
               <View style={styles.flexRowHalf}>
                   <IconFA
                       name="calendar"
