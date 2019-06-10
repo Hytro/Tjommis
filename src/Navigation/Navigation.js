@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import Icon from 'react-native-vector-icons/Ionicons';
 import IconAD from 'react-native-vector-icons/AntDesign';
 import Logo from '../Assets/LogoColored.png';
-import {View, Image, StyleSheet } from 'react-native';
+import {View, Image, StyleSheet, Text } from 'react-native';
 
 import Welcome from './WelcomeScreen';
 import Events from '../Components/Events';
@@ -253,12 +253,15 @@ const DashboardStackNavigator = createStackNavigator(
 
 const CustomeDrawerComponent = (props) => (
   <SafeAreaView style={{ flex: 1}}>
-    <View style={{height: 150, backgroundColor: 'white'}}>
+    <View style={styles.drawerView}>
       <Image source={Logo} style={styles.image}/>
     </View>
-    <ScrollView>
+    <ScrollView style={styles.linkView}>
       <DrawerItems {...props} />
     </ScrollView>
+    <View style={styles.footer}>
+      
+    </View>
   </SafeAreaView>
 );
 
@@ -279,7 +282,10 @@ const AppDrawerNavigator = createDrawerNavigator({
     })
   },
 }, {
-  contentComponent: CustomeDrawerComponent
+  contentComponent: CustomeDrawerComponent,
+  contentOptions: {
+    
+  }
 });
 
 const AppSwitchNavigator = createSwitchNavigator({
@@ -296,8 +302,17 @@ const AppContainer = createAppContainer(AppSwitchNavigator);
 const styles = StyleSheet.create({
   image:{
     width: '80%',
+    height: 100,
+    resizeMode: 'cover',
+    margin: 10,
+    marginTop: 20
+  }, drawerView:{
     height: 150,
-    resizeMode: 'cover'
+    backgroundColor:'white'
+  }, linkView: {
+      fontSize: 16
+  }, footer:{
+    margin: 20
   }
 });
 
