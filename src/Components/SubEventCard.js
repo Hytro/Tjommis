@@ -89,6 +89,7 @@ class SubEventCard extends React.PureComponent {
     }
 }
 
+/*********************************Stylesheet Start*********************************/
 const styles = StyleSheet.create({
     card: {
         backgroundColor: 'white',
@@ -176,5 +177,6 @@ const styles = StyleSheet.create({
         paddingRight: 8
     }
 });
+/*********************************Stylesheet End*********************************/
 
 export default SubEventCard;

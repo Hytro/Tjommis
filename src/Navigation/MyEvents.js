@@ -65,6 +65,7 @@ class MyEvents extends React.Component{
       }
     }
     
+  /*********************************Stylesheet Start*********************************/ 
   const styles = StyleSheet.create({
     container: {
       flex: 1,
@@ -101,5 +102,6 @@ class MyEvents extends React.Component{
       fontSize: 18
     },
   });
+  /*********************************Stylesheet End*********************************/
 
   export default MyEvents;

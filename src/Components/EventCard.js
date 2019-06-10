@@ -1,13 +1,9 @@
 import React from 'react';
 import { StyleSheet, TouchableOpacity, Image, Text, View } from 'react-native';
 import AsyncStorage from '@react-native-community/async-storage';
-
 import IconFA from 'react-native-vector-icons/FontAwesome'
 import IconFA5 from 'react-native-vector-icons/FontAwesome5'
 import moment from 'moment';
-
-//Event card bilde hentet fra server
-// <Image style={styles.cardImage} source={{uri: 'http://tjommis.eu-central-1.elasticbeanstalk.com/' + this.props.item.image_url}} />
 
 class EventCard extends React.PureComponent {
     storeData = async (eventId) => {
@@ -71,6 +67,7 @@ class EventCard extends React.PureComponent {
     }
 }
 
+/*********************************Stylesheet Start*********************************/
 const styles = StyleSheet.create({
     card: {
         backgroundColor: 'white',
@@ -141,5 +138,6 @@ const styles = StyleSheet.create({
         fontSize: 12
     }
 });
+/*********************************Stylesheet End*********************************/
 
 export default EventCard;

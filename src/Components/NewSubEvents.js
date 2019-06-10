@@ -156,6 +156,7 @@ class NewSubEvent extends React.Component {
   }
 }
 
+/*********************************Stylesheet Start*********************************/
 const styles = StyleSheet.create({
   container: {
     flex: 1,
@@ -208,5 +209,6 @@ const styles = StyleSheet.create({
     fontWeight: 'bold'
   },
 });
+/*********************************Stylesheet End*********************************/
 
 export default NewSubEvent;

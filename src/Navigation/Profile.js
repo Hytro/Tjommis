@@ -70,6 +70,7 @@ class Profile extends Component {
   }
 };
 
+/*********************************Stylesheet Start*********************************/
 const styles = StyleSheet.create({
   header: {
     backgroundColor: "rgb(74, 189, 172)",
@@ -128,5 +129,6 @@ const styles = StyleSheet.create({
     backgroundColor: "rgb(74, 189, 172)",
   },
 });
+/*********************************Stylesheet End*********************************/
 
 export default Profile;

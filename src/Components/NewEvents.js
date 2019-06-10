@@ -54,8 +54,6 @@ class NewEvent extends React.Component {
     }
   }
 
-
-
   submit() {
     let collection = {}
     collection.title = this.state.title
@@ -184,6 +182,7 @@ class NewEvent extends React.Component {
   }
 }
 
+/*********************************Stylesheet Start*********************************/
 const styles = StyleSheet.create({
   container: {
     flex: 1,
@@ -236,5 +235,6 @@ const styles = StyleSheet.create({
     fontWeight: 'bold'
   },
 });
+/*********************************Stylesheet End*********************************/
 
 export default NewEvent;

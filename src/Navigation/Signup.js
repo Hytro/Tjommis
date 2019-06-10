@@ -102,7 +102,8 @@ class Signup extends React.Component{
       );
     }
   }
-    
+
+  /*********************************Stylesheet Start*********************************/
   const styles = StyleSheet.create({
     container: {
       flex: 1,
@@ -144,5 +145,6 @@ class Signup extends React.Component{
       fontWeight: 'bold'
     },
   });
+  /*********************************Stylesheet End*********************************/
 
   export default Signup;

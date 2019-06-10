@@ -35,7 +35,6 @@ class Events extends React.Component{
       // error reading value
     }
   };
-  
 
   _get = async (endpoint) => {
     const res = await fetch(endpoint);
@@ -62,6 +61,7 @@ class Events extends React.Component{
   }
 }
 
+/*********************************Stylesheet Start*********************************/
 const styles = StyleSheet.create({
   container:{
       paddingTop: 10,
@@ -73,5 +73,6 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   }
 });
+/*********************************Stylesheet End*********************************/
 
 export default Events;

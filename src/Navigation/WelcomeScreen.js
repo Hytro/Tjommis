@@ -33,6 +33,7 @@ class WelcomeScreen extends React.Component{
     }
   } 
   
+  /*********************************Stylesheet Start*********************************/
   const styles = StyleSheet.create({
     container: {
       flex: 1,
@@ -57,5 +58,6 @@ class WelcomeScreen extends React.Component{
       resizeMode: 'cover'
     }
   });
+  /*********************************Stylesheet End*********************************/
 
   export default WelcomeScreen;

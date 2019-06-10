@@ -116,6 +116,7 @@ class Messages extends React.Component{
     }
   }
     
+  /*********************************Stylesheet Start*********************************/
   const styles = StyleSheet.create({
     container: {
       flex: 1,
@@ -154,5 +155,6 @@ class Messages extends React.Component{
       fontSize: 12
     },
   });
+  /*********************************Stylesheet End*********************************/
 
   export default Messages;

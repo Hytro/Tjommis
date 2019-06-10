@@ -13,6 +13,7 @@ const CustomeDrawerNav = props => (
   </ScrollView>
 );
 
+/*********************************Stylesheet Start*********************************/
 const styles = StyleSheet.create({
   container: {
     flex: 1,
@@ -25,5 +26,6 @@ const styles = StyleSheet.create({
       width: 120
   }
 });
+/*********************************Stylesheet End*********************************/
 
 export default CustomeDrawerNav;

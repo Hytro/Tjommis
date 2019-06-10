@@ -2,6 +2,7 @@ import React from 'react';
 import {View, TouchableOpacity, Text, StyleSheet, TextInput} from 'react-native';
 import axios from 'axios';
 import AsyncStorage from '@react-native-community/async-storage';
+import Icon from 'react-native-vector-icons/AntDesign';
 
 class Login extends React.Component{
 
@@ -12,6 +13,10 @@ class Login extends React.Component{
       password:'',
       errorMsg: ''
     }
+  }
+
+  goToWelcomeScreen(){
+    this.props.navigation.navigate('Welcome')
   }
 
   updateValue(text, field){
@@ -56,6 +61,15 @@ class Login extends React.Component{
     render() {
       return(
         <View style={styles.container}>
+          <TouchableOpacity
+              style={styles.btn}
+              onPress={() => this.goToWelcomeScreen()}>
+                <Icon
+                  style={{ paddingLeft: 10 }}
+                  name="left"
+                  size={30}
+                />
+            </TouchableOpacity>
           <View styles={styles.regform}>
             <Text style={styles.header}>Login</Text>
             {this.state.errorMsg !== '' ?
@@ -85,6 +99,7 @@ class Login extends React.Component{
     }
   }
 
+  /*********************************Stylesheet Start*********************************/
   const styles = StyleSheet.create({
     container: {
       flex: 1,
@@ -132,6 +147,7 @@ class Login extends React.Component{
       }
 
   });
+  /*********************************Stylesheet End*********************************/
 
   export default Login;
 

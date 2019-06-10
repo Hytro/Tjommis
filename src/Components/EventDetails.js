@@ -129,6 +129,7 @@ class EventDetails extends React.PureComponent {
     }
 }
 
+/*********************************Stylesheet Start*********************************/
 const styles = StyleSheet.create({
     event: {
         backgroundColor: 'white',
@@ -217,6 +218,7 @@ const styles = StyleSheet.create({
         fontSize: 18
     }
 });
+/*********************************Stylesheet End*********************************/
 
 export default EventDetails;
 
