@@ -299,7 +299,7 @@ const AppSwitchNavigator = createSwitchNavigator({
 
 const AppContainer = createAppContainer(AppSwitchNavigator);
 
-/*********************************Stylesheet Start*********************************/
+/********************************* Stylesheet Start *********************************/
 const styles = StyleSheet.create({
   image:{
     width: '80%',
@@ -316,6 +316,6 @@ const styles = StyleSheet.create({
     margin: 20
   }
 });
-/*********************************Stylesheet End*********************************/
+/********************************* Stylesheet End *********************************/
 
 export default Navigation;

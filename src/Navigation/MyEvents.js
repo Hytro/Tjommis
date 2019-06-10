@@ -12,6 +12,12 @@ class MyEvents extends React.Component{
     }
   }
 
+  _get = async (endpoint) => {
+    const res = await fetch(endpoint);
+    const data = await res.json();
+    return data;
+  }
+
   componentDidMount(){
     this._get('http://tjommis.eu-central-1.elasticbeanstalk.com/api/users/30/events/').then(
       data=> {
@@ -28,6 +34,7 @@ class MyEvents extends React.Component{
   }
 
   render() {
+    // If there are no events in the event list, display an activity indicator
     if(this.state.items.length===0){
       return(
         <View style={styles.loader}>
@@ -35,6 +42,10 @@ class MyEvents extends React.Component{
         </View>
       )
     }
+    // Creates the 'My Events' layout.
+    // A touchable button at the top to create new events
+    // Displays a flatlist with all the events that the user has either created
+    // or decided to join
     return(
       <View style={styles.container}>
         <TouchableOpacity
@@ -57,15 +68,9 @@ class MyEvents extends React.Component{
         />
       </View>
     )}
-      
-    _get = async (endpoint) => {
-      const res = await fetch(endpoint);
-      const data = await res.json();
-      return data;
-      }
-    }
+  }
     
-  /*********************************Stylesheet Start*********************************/ 
+  /********************************* Stylesheet Start *********************************/ 
   const styles = StyleSheet.create({
     container: {
       flex: 1,
@@ -102,6 +107,6 @@ class MyEvents extends React.Component{
       fontSize: 18
     },
   });
-  /*********************************Stylesheet End*********************************/
+  /********************************* Stylesheet End *********************************/
 
   export default MyEvents;

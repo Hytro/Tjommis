@@ -14,16 +14,20 @@ class Messages extends React.Component{
     userId: false,
     message: ''
   }
+  // If the page is rendered correctly, get the event id and set the user id state
   async componentDidMount() {
     const eventId = this.props.navigation.getParam('eventId', 'NO-ID')
     console.log("EVENT ID", eventId)
     this.setState({eventId: eventId, userId: parseInt((await AsyncStorage.getItem('userId')), 10)}, () => {
       console.log("UID", this.state.userId)
     })
+    // Get the reponse from the other users from the event id and the users connected to that event id
     const usersResponse = await axios.get(`http://tjommis.eu-central-1.elasticbeanstalk.com/api/events/${eventId}/users`);
+    // Get the response from the current user from the event id and the users message
     const msgResponse = await axios.get(`http://tjommis.eu-central-1.elasticbeanstalk.com/api/events/${eventId}/messages`);
     const users = {};
     usersResponse.data.forEach(user => users[user.id] = user)
+    // Maps the message response and return it with both an image, the message and the id/name of the sender
     const messages = msgResponse.data.map(msg => {
       return {
         _id: msg.id,
@@ -34,10 +38,12 @@ class Messages extends React.Component{
           name: users[msg.sender_id].firstName
         }
       }
-    }).reverse();
+    }).reverse(); // Reverse the chat, we want the last message at the bottom, not the top
+    // Updates the state, and adds the users and messages to the users array
     this.setState({users: users, messages})
     this.socket = io('http://tjommis.eu-central-1.elasticbeanstalk.com/');
     this.socket.emit('join', eventId)
+    // Uses the socket to receive a message with the added data
     this.socket.on('RECEIVE_MESSAGE', function(data){
         addMessage({
           _id: data._id,
@@ -50,30 +56,37 @@ class Messages extends React.Component{
         });
     });
     console.log("WE HERE")
+    // Updates the state, by setting the previous state and adding the new message to that state
     const addMessage = data => {
         this.setState(previousState => ({
           messages: GiftedChat.append(previousState.messages, data)
         }))
     };
     console.log("USERS IN EVENT:", usersResponse.data)
+    // Renders the page to display the new message
     this.render();
   }
+  // Set the message state with the new message
   onMessageChange = (text) => {
     console.log(text)
     this.setState({message: text})
   }
+  // Sends a message with a socket, containing the sender id, message and the event id
   sendMessage = (messages) => {
     messages.forEach(message => {
       this.socket.emit('SEND_MESSAGE', {
         sender_id: this.state.userId,
         message: message.text,
         eventId: this.state.eventId
-    });
+      });
     })
   }
 
     render = () => {
       console.log(this.state.messages)
+      // Creates two buttons at the top of the page, one to add a new sub event, and one to view
+      // already created sub events
+      // Uses the GiftedChat library to display the chat with the given messages
       return(
         <View style={{flex: 1, flexDirection: 'column'}}>
           <View style={styles.eventTop}>
@@ -116,12 +129,8 @@ class Messages extends React.Component{
     }
   }
     
-  /*********************************Stylesheet Start*********************************/
+  /********************************* Stylesheet Start *********************************/
   const styles = StyleSheet.create({
-    container: {
-      flex: 1,
-      backgroundColor: '#FF1111',
-    },
     message: {
       height: 30,
       width: '100%',
@@ -155,6 +164,6 @@ class Messages extends React.Component{
       fontSize: 12
     },
   });
-  /*********************************Stylesheet End*********************************/
+  /********************************* Stylesheet End *********************************/
 
   export default Messages;

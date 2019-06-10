@@ -5,24 +5,23 @@ import AsyncStorage from '@react-native-community/async-storage'
 
 class WelcomeScreen extends React.Component{
 
+    // If the page is rendered correctly, then user is redirected to dashboard
     async componentDidMount() {
       const token = await AsyncStorage.getItem('token');
       if(token) {
         this.props.navigation.navigate('Dashboard')
       }
     }
+    // Render values for login and signup. On press navigation to proper screens
     render() {
       return(
         <View style={styles.container}>
-
         <Image source={Logo} style={styles.image}/>
-
           <TouchableOpacity
             style={styles.btn}
             onPress={() => this.props.navigation.navigate('Login')}>
               <Text style={styles.btnText}>Login</Text>
           </TouchableOpacity>
-
           <TouchableOpacity
             style={styles.btn}
             onPress={() => this.props.navigation.navigate('Signup')}>
@@ -33,7 +32,7 @@ class WelcomeScreen extends React.Component{
     }
   } 
   
-  /*********************************Stylesheet Start*********************************/
+  /********************************* Stylesheet Start *********************************/
   const styles = StyleSheet.create({
     container: {
       flex: 1,
@@ -58,6 +57,6 @@ class WelcomeScreen extends React.Component{
       resizeMode: 'cover'
     }
   });
-  /*********************************Stylesheet End*********************************/
+  /********************************* Stylesheet End *********************************/
 
   export default WelcomeScreen;

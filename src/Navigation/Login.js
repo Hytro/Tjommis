@@ -33,6 +33,15 @@ class Login extends React.Component{
     }
   }
 
+  storeData = async (token) => {
+    try {
+      await AsyncStorage.setItem('token', token)
+      console.warn('login tok: ', token)
+    } catch (e) {
+      
+    }
+  }
+
   async submit(){
     let collection={}
       collection.email=this.state.email.toLowerCase()
@@ -150,13 +159,3 @@ class Login extends React.Component{
   /*********************************Stylesheet End*********************************/
 
   export default Login;
-
-
-  storeData = async (token) => {
-    try {
-      await AsyncStorage.setItem('token', token)
-      console.warn('login tok: ', token)
-    } catch (e) {
-      
-    }
-  }

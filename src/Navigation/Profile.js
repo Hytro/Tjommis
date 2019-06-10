@@ -3,9 +3,6 @@ import { View, Text, Image, StyleSheet, TouchableOpacity } from 'react-native';
 import AsyncStorage from '@react-native-community/async-storage';
 import axios from 'axios';
 
-
-
-
 class Profile extends Component {
   state = {
     user: {
@@ -15,11 +12,16 @@ class Profile extends Component {
     }
   }
 
+  // If the page is rendered correctly, axios will use the user token and get the proper profile data
   async componentDidMount() {
     const token = await AsyncStorage.getItem('token');
     const userResponse = await axios.get(`http://tjommis.eu-central-1.elasticbeanstalk.com/api/auth/me`, { token })
     this.setState({ user: userResponse.data })
   }
+
+ // This is currently a dummy profile. The avatar is a static picture collected from the database.
+ // The description and filters for each user is currently static.
+ // The name is displayed by the user info in the database
   render() {
     return (
       <View style={styles.container}>
@@ -70,7 +72,7 @@ class Profile extends Component {
   }
 };
 
-/*********************************Stylesheet Start*********************************/
+/********************************* Stylesheet Start *********************************/
 const styles = StyleSheet.create({
   header: {
     backgroundColor: "rgb(74, 189, 172)",
@@ -101,11 +103,6 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     padding: 30,
   },
-  name: {
-    fontSize: 28,
-    color: "#696969",
-    fontWeight: "600"
-  },
   info: {
     fontSize: 16,
     color: "rgb(74, 189, 172)",
@@ -129,6 +126,6 @@ const styles = StyleSheet.create({
     backgroundColor: "rgb(74, 189, 172)",
   },
 });
-/*********************************Stylesheet End*********************************/
+/********************************* Stylesheet End *********************************/
 
 export default Profile;

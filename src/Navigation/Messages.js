@@ -7,16 +7,21 @@ class Messages extends React.Component{
     state = {
       events: []
     }
+    // If the page is rendered correctly, get the current users id, and get the list of the
+    // events that the selected user is interessted in/created
     async componentDidMount() {
       const userId = await AsyncStorage.getItem('userId');
       const eventsResponse = await axios.get(`http://tjommis.eu-central-1.elasticbeanstalk.com/api/users/${userId}/events`)
       this.setState({events: eventsResponse.data})
     }
+    // Navigates the user to a specific message chain, with the given event id
     goToMessageRoom(id) {
       this.props.navigation.navigate('Message', {eventId: id})
     }
 
     render() {
+      // Displays a scrollable flatlist with a list of all the event chats that the user is
+      // currently interested in.
       return(
         <FlatList 
         style={styles.container}
@@ -28,7 +33,7 @@ class Messages extends React.Component{
     }
   }
     
-  /*********************************Stylesheet Start*********************************/
+  /********************************* Stylesheet Start *********************************/
   const styles = StyleSheet.create({
     container: {
       flex: 1,
@@ -48,6 +53,6 @@ class Messages extends React.Component{
       backgroundColor: '#8e44ad'
     },
   });
-  /*********************************Stylesheet End*********************************/
+  /********************************* Stylesheet End *********************************/
 
   export default Messages;

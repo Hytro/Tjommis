@@ -11,6 +11,9 @@ class MySubEvents extends React.Component{
     }
   }
 
+  // If the page is rendered correctly, axios will get the current eventID and 
+  // use this eventID to populate the item array with the database data of the users
+  // sub events
   async componentDidMount(){
     const eventId = this.props.navigation.getParam('eventId', 'NO-ID')
     console.log('eventid', eventId)
@@ -19,6 +22,7 @@ class MySubEvents extends React.Component{
   }
 
   render() {
+    // If there are no events in the event list, display an activity indicator
     if(this.state.items.length===0){
       return(
         <View style={styles.loader}>
@@ -40,22 +44,10 @@ class MySubEvents extends React.Component{
         />
       </View>
     )}
-      
-    _get = async (endpoint) => {
-      const res = await fetch(endpoint);
-      const data = await res.json();
-      return data;
-      }
-    }
+  }
     
-  /*********************************Stylesheet Start*********************************/
+  /********************************* Stylesheet Start *********************************/
   const styles = StyleSheet.create({
-    container: {
-      flex: 1,
-      justifyContent: 'flex-start',
-      alignItems: 'center',
-      backgroundColor: '#F5FCFF',
-    },
     headerText: {
       fontSize: 24
     },
@@ -67,26 +59,8 @@ class MySubEvents extends React.Component{
       flex: 1,
       alignItems: 'center',
       justifyContent: 'center',
-    },
-    btn:{
-      alignSelf: 'stretch',
-      alignItems: 'center',
-      backgroundColor: '#4ABDAC',
-      borderColor: '#4ABDAC',
-      borderWidth: 3,
-      borderRadius: 6,
-      margin: 10,
-      padding: 10,
-      width:'85%',
-      marginLeft: '7.5%',
-      height: 50
-    },
-    btnText:{
-      color: 'white',
-      fontWeight: 'bold',
-      fontSize: 18
-    },
+    }
   });
-  /*********************************Stylesheet End*********************************/
+  /********************************* Stylesheet End *********************************/
 
   export default MySubEvents;

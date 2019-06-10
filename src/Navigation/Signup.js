@@ -14,6 +14,7 @@ class Signup extends React.Component{
     }
   }
 
+  /****************** UPDATE STATES START ******************/
   updateValue(text, field){
     if(field=='email'){
       this.setState({
@@ -36,7 +37,9 @@ class Signup extends React.Component{
       })
     }
   }
+  /****************** UPDATE STATES END ******************/
 
+  // Adding all state data to a collection
   submit(){
     let collection={}
       collection.email=this.state.email.toLowerCase()
@@ -44,8 +47,11 @@ class Signup extends React.Component{
       collection.firstName=this.state.firstName
       collection.lastName=this.state.lastName
 
+      // Url to the database register
       var url = 'http://tjommis.eu-central-1.elasticbeanstalk.com/api/auth/register/';
       
+      // Fetches the url, then parses the data from the collection to the database
+      // If this is successful, navigate the user to the dashboard, else display an error message
       fetch(url, {
         method: 'POST', // or 'PUT'
         body: JSON.stringify(collection), // data can be `string` or {object}!
@@ -61,49 +67,49 @@ class Signup extends React.Component{
       })
       .catch(error => console.error('Error:', error));
   }
-    render() {
-      return(
-        <View style={styles.container}>
-          <View styles={styles.regform}>
-            <Text style={styles.header}>Registration</Text>
-
-            <TextInput 
-              style={styles.textInput} 
-              placeholder="Your email" 
-              underlineColorAndroid={'transparent'}
-              onChangeText={(text)=>this.updateValue(text, 'email')}
-            />
-            <TextInput 
-              style={styles.textInput} 
-              placeholder="Your password" 
-              secureTextEntry={true}
-              underlineColorAndroid={'transparent'}
-              onChangeText={(text)=>this.updateValue(text, 'password')}
-            />
-            <TextInput
-              style={styles.textInput}
-              placeholder="First name"
-              underlineColorAndroid={'transparent'}
-              onChangeText={(text)=>this.updateValue(text, 'firstName')}
-            />
-            <TextInput
-              style={styles.textInput}
-              placeholder="Last name"
-              underlineColorAndroid={'transparent'}
-              onChangeText={(text)=>this.updateValue(text, 'lastName')}
-            />
-            <TouchableOpacity
-              style={styles.btn}
-              onPress={() => this.submit()} >
-              <Text style={styles.btnText}>Signup</Text>
-            </TouchableOpacity>
-          </View>
+  // Creates the registration layout, and parses the values given to the updateValue method
+  render() {
+    return(
+      <View style={styles.container}>
+        <View styles={styles.regform}>
+          <Text style={styles.header}>Registration</Text>
+          <TextInput 
+            style={styles.textInput} 
+            placeholder="Your email" 
+            underlineColorAndroid={'transparent'}
+            onChangeText={(text)=>this.updateValue(text, 'email')}
+          />
+          <TextInput 
+            style={styles.textInput} 
+            placeholder="Your password" 
+            secureTextEntry={true}
+            underlineColorAndroid={'transparent'}
+            onChangeText={(text)=>this.updateValue(text, 'password')}
+          />
+          <TextInput
+            style={styles.textInput}
+            placeholder="First name"
+            underlineColorAndroid={'transparent'}
+            onChangeText={(text)=>this.updateValue(text, 'firstName')}
+          />
+          <TextInput
+            style={styles.textInput}
+            placeholder="Last name"
+            underlineColorAndroid={'transparent'}
+            onChangeText={(text)=>this.updateValue(text, 'lastName')}
+          />
+          <TouchableOpacity
+            style={styles.btn}
+            onPress={() => this.submit()} >
+            <Text style={styles.btnText}>Signup</Text>
+          </TouchableOpacity>
         </View>
-      );
-    }
+      </View>
+    );
   }
+}
 
-  /*********************************Stylesheet Start*********************************/
+  /********************************* Stylesheet Start *********************************/
   const styles = StyleSheet.create({
     container: {
       flex: 1,
@@ -145,6 +151,6 @@ class Signup extends React.Component{
       fontWeight: 'bold'
     },
   });
-  /*********************************Stylesheet End*********************************/
+  /********************************* Stylesheet End *********************************/
 
   export default Signup;
