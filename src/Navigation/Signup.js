@@ -8,7 +8,9 @@ class Signup extends React.Component{
     super();
     this.state={
       email:'',
-      password:''
+      password:'',
+      firstName: '',
+      lastName: ''
     }
   }
 
@@ -23,12 +25,24 @@ class Signup extends React.Component{
         password:text,
       })
     }
+    else if(field=='firstName') {
+      this.setState({
+        firstName: text
+      })
+    }
+    else if(field=='lastName') {
+      this.setState({
+        lastName: text
+      })
+    }
   }
 
   submit(){
     let collection={}
       collection.email=this.state.email
       collection.password=this.state.password
+      collection.firstName=this.state.firstName
+      collection.lastName=this.state.lastName
 
       var url = 'http://tjommis.eu-central-1.elasticbeanstalk.com/api/auth/register/';
       
@@ -66,7 +80,18 @@ class Signup extends React.Component{
               underlineColorAndroid={'transparent'}
               onChangeText={(text)=>this.updateValue(text, 'password')}
             />
-
+            <TextInput
+              style={styles.textInput}
+              placeholder="First name"
+              underlineColorAndroid={'transparent'}
+              onChangeText={(text)=>this.updateValue(text, 'firstName')}
+            />
+            <TextInput
+              style={styles.textInput}
+              placeholder="Last name"
+              underlineColorAndroid={'transparent'}
+              onChangeText={(text)=>this.updateValue(text, 'lastName')}
+            />
             <TouchableOpacity
               style={styles.btn}
               onPress={() => this.submit()} >
