@@ -27,16 +27,42 @@ class Profile extends Component {
         <Image style={styles.avatar} source={{ uri: 'https://bootdey.com/img/Content/avatar/avatar6.png' }} />
         <View style={styles.body}>
           <View style={styles.bodyContent}>
-            <Text style={styles.name}>{`${this.state.user.firstName} ${this.state.user.lastName}`}, 22</Text>
-            <Text style={styles.info}>UX Designer / Mobile developer</Text>
-            <Text style={styles.description}>Lorem ipsum dolor sit amet, saepe sapientem eu nam. Qui ne assum electram expetendis, omittam deseruisse consequuntur ius an,</Text>
-
-            <TouchableOpacity style={styles.buttonContainer}>
-              <Text>Option 1</Text>
-            </TouchableOpacity>
-            <TouchableOpacity style={styles.buttonContainer}>
-              <Text>Option 2</Text>
-            </TouchableOpacity>
+            <Text style={styles.name}>{`${this.state.user.firstName} ${this.state.user.lastName}`}</Text>
+            <Text style={styles.info}>Høyskolen Kristiania - Westerdals</Text>
+            <Text style={styles.description}>Jeg er en student som går Frontend- og Mobilutvikling ved Høyskolen Kristiania. Jeg digger å game, dra på konserter, ta en fin tur på kino, eller vandre tankeløst på en lang skogtur!</Text>
+            <View style={{flexDirection: 'row'}}>
+              <TouchableOpacity style={styles.buttonContainer}>
+                <Text style={{color: 'white'}}>Fjelltur</Text>
+              </TouchableOpacity>
+              <TouchableOpacity style={styles.buttonContainer}>
+                <Text style={{color: 'white'}}>Gaming</Text>
+              </TouchableOpacity>
+              <TouchableOpacity style={styles.buttonContainer}>
+                <Text style={{color: 'white'}}>Fisking</Text>
+              </TouchableOpacity>
+            </View>
+            <View style={{flexDirection: 'row'}}>
+              <TouchableOpacity style={styles.buttonContainer}>
+                <Text style={{color: 'white'}}>Konserter</Text>
+              </TouchableOpacity>
+              <TouchableOpacity style={styles.buttonContainer}>
+                <Text style={{color: 'white'}}>Skogtur</Text>
+              </TouchableOpacity>
+              <TouchableOpacity style={styles.buttonContainer}>
+                <Text style={{color: 'white'}}>Hunder</Text>
+              </TouchableOpacity>
+            </View>
+            <View style={{flexDirection: 'row'}}>
+              <TouchableOpacity style={styles.buttonContainer}>
+                <Text style={{color: 'white'}}>Programmering</Text>
+              </TouchableOpacity>
+              <TouchableOpacity style={styles.buttonContainer}>
+                <Text style={{color: 'white'}}>Fotografi</Text>
+              </TouchableOpacity>
+              <TouchableOpacity style={styles.buttonContainer}>
+                <Text style={{color: 'white'}}>Musikk</Text>
+              </TouchableOpacity>
+            </View>
           </View>
         </View>
       </View>
@@ -47,7 +73,7 @@ class Profile extends Component {
 const styles = StyleSheet.create({
   header: {
     backgroundColor: "rgb(74, 189, 172)",
-    height: 200,
+    height: 125,
   },
   avatar: {
     width: 130,
@@ -58,7 +84,7 @@ const styles = StyleSheet.create({
     marginBottom: 10,
     alignSelf: 'center',
     position: 'absolute',
-    marginTop: 130
+    marginTop: 50
   },
   name: {
     fontSize: 22,
@@ -88,16 +114,16 @@ const styles = StyleSheet.create({
     fontSize: 16,
     color: "#696969",
     marginTop: 10,
-    textAlign: 'center'
+    textAlign: 'center',
+    paddingBottom: 25
   },
   buttonContainer: {
-    marginTop: 10,
+    margin: 5,
     height: 45,
     flexDirection: 'row',
     justifyContent: 'center',
     alignItems: 'center',
-    marginBottom: 20,
-    width: 250,
+    width: 110,
     borderRadius: 30,
     backgroundColor: "rgb(74, 189, 172)",
   },
