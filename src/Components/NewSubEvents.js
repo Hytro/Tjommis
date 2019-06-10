@@ -2,6 +2,7 @@ import React from 'react';
 import { View, Text, StyleSheet, TextInput, TouchableOpacity } from 'react-native';
 import DatePicker from 'react-native-datepicker';
 import AsyncStorage from '@react-native-community/async-storage';
+import axios from 'axios';
 
 class NewSubEvent extends React.Component {
 
@@ -12,12 +13,15 @@ class NewSubEvent extends React.Component {
       description: '',
       date: '',
       time: '',
-      userId: 0
+      userId: 0,
+      eventId: 0
     }
   }
 
   async componentDidMount() {
     this.setState({userId: await AsyncStorage.getItem('userId')})
+    const eventId = this.props.navigation.getParam('eventId', 'NO-ID')
+    this.setState({ eventId })
   }
 
   updateValue(text, field) {
@@ -41,14 +45,9 @@ class NewSubEvent extends React.Component {
         time: text,
       })
     }
-    else if (field == 'userId') {
-      this.setState({
-        userId: text,
-      })
-    }
   }
 
-  submit() {
+  async submit() {
     let collection = {}
     collection.title = this.state.title
     collection.description = this.state.description
@@ -56,24 +55,15 @@ class NewSubEvent extends React.Component {
     collection.time = this.state.time
     collection.userId = this.state.userId
 
+    
+  
 
-    var url = ('http://tjommis.eu-central-1.elasticbeanstalk.com/api/events/'+userId+'/subs');
 
-    fetch(url, {
-      method: 'POST', // or 'PUT'
-      body: JSON.stringify(collection), // data can be `string` or {object}!
-      headers: {
-        'Content-Type': 'application/json'
-      },
-    }).then((res) => {
-      res.json()
-      console.warn(collection)
-      if (res.status === 200) {
-        this.props.navigation.navigate('Dashboard')
-      }
-      console.warn(res.status)
-    })
-      .catch(error => console.error('Error:', error));
+    var url = `http://tjommis.eu-central-1.elasticbeanstalk.com/api/events/${this.state.eventId}/subs`;
+    const response = await axios.post(url, collection);
+    if(response.status === 201) {
+      console.log("Success")
+    }
   }
 
   render() {
