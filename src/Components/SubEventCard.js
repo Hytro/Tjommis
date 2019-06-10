@@ -91,7 +91,7 @@ class SubEventCard extends React.PureComponent {
     }
 }
 
-/*********************************Stylesheet Start*********************************/
+/********************************* Stylesheet Start *********************************/
 const styles = StyleSheet.create({
     card: {
         backgroundColor: 'white',
@@ -105,23 +105,6 @@ const styles = StyleSheet.create({
         justifyContent: 'space-between',
         width: '98%',
         marginLeft: '1%'
-    },
-    flexRowBottom: {
-        flex: 1,
-        flexDirection: 'row',
-        justifyContent: 'space-between',
-        width: '85%',
-        marginLeft: '7.5%',
-        paddingTop: 7,
-        paddingBottom: 7
-    },
-    cardText: {
-        padding: 10,
-        fontSize: 16
-    },
-    cardTextBody: {
-        padding: 10,
-        fontSize: 10
     },
     cardTitle: {
         padding: 4,
@@ -179,6 +162,6 @@ const styles = StyleSheet.create({
         paddingRight: 8
     }
 });
-/*********************************Stylesheet End*********************************/
+/********************************* Stylesheet End *********************************/
 
 export default SubEventCard;

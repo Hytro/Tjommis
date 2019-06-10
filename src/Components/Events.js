@@ -62,7 +62,7 @@ class Events extends React.Component {
   }
 }
 
-/*********************************Stylesheet Start*********************************/
+/********************************* Stylesheet Start *********************************/
 const styles = StyleSheet.create({
   container: {
     paddingTop: 10,
@@ -74,6 +74,6 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   }
 });
-/*********************************Stylesheet End*********************************/
+/********************************* Stylesheet End *********************************/
 
 export default Events;
