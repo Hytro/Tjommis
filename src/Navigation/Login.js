@@ -9,11 +9,13 @@ class Login extends React.Component{
     super();
     this.state={
       email:'',
-      password:''
+      password:'',
+      errorMsg: ''
     }
   }
 
   updateValue(text, field){
+    this.setState({errorMsg: ''})
     if(field=='email'){
       this.setState({
         email:text,
@@ -28,17 +30,27 @@ class Login extends React.Component{
 
   async submit(){
     let collection={}
-      collection.email=this.state.email
+      collection.email=this.state.email.toLowerCase()
       collection.password=this.state.password
+      this.setState({errorMsg: ''})
 
       var url = 'http://tjommis.eu-central-1.elasticbeanstalk.com/api/auth/login/';
-      const response = await axios.post(url, collection);
-      if(response.status === 200) {
-        //console.warn(response.data.token);
-        this.props.navigation.navigate('Dashboard');
-        storeData(response.data.token)
+      try {
+        const response = await axios.post(url, collection);
+        if(response.status === 200) {
+          //console.warn(response.data.token);
+          this.props.navigation.navigate('Dashboard');
+          storeData(response.data.token)
+        }
+        console.log(response.status)
+        if(response.status === 401 || response.status === 400) {
+          console.log('UNAOTHORIZED')
+          this.setState({errorMsg: 'Incorrect username or password.'})
+       }
+      } catch(e) {
+        console.log('Unaothirzed')
+        this.setState({errorMsg: 'Error while logging in.'})
       }
-      //console.warn(response);
   }
 
     render() {
@@ -46,7 +58,9 @@ class Login extends React.Component{
         <View style={styles.container}>
           <View styles={styles.regform}>
             <Text style={styles.header}>Login</Text>
-
+            {this.state.errorMsg !== '' ?
+            <View style={styles.error}><Text styles={styles.error}>{this.state.errorMsg}</Text></View>
+            : null}
             <TextInput 
               style={styles.textInput} 
               placeholder="Your email" 
@@ -100,6 +114,11 @@ class Login extends React.Component{
       borderBottomColor: '#f8f8f8',
       borderBottomWidth: 1
     },
+    error: {
+      backgroundColor: '#c0392b',
+      color: '#fff',
+      padding: 10
+    },
     btn:{
         alignSelf: 'stretch',
         alignItems: 'center',
@@ -110,7 +129,7 @@ class Login extends React.Component{
       btnText:{
         color: '#ECF0F1',
         fontWeight: 'bold'
-      },
+      }
 
   });
 
