@@ -54,6 +54,8 @@ class NewEvent extends React.Component {
     }
   }
 
+
+
   submit() {
     let collection = {}
     collection.title = this.state.title
@@ -76,7 +78,7 @@ class NewEvent extends React.Component {
       res.json()
       console.warn(collection)
       if (res.status === 201) {
-        this.props.navigation.navigate('Dashboard')
+        this.props.navigation.goBack()
       }
       console.warn(res.status)
     })
