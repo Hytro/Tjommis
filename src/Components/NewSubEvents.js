@@ -56,7 +56,6 @@ class NewSubEvent extends React.Component {
     collection.time = this.state.time
     collection.userId = this.state.userId
 
-
     var url = ('http://tjommis.eu-central-1.elasticbeanstalk.com/api/events/'+userId+'/subs');
 
     fetch(url, {
