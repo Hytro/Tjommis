@@ -1,5 +1,5 @@
 import React from 'react';
-import {View, StyleSheet , ActivityIndicator, FlatList} from 'react-native';
+import {View, StyleSheet , ActivityIndicator, FlatList, Text} from 'react-native';
 import SubEventCard from '../Components/SubEventCard';
 import axios from 'axios'
 
@@ -15,7 +15,7 @@ class MySubEvents extends React.Component{
     const eventId = this.props.navigation.getParam('eventId', 'NO-ID')
     console.log('eventid', eventId)
     const subsResponse = await axios.get(`http://tjommis.eu-central-1.elasticbeanstalk.com/api/events/${eventId}/subs`)
-    console.log(subsResponse.data)
+    this.setState({items: subsResponse.data})
   }
 
   render() {
@@ -27,12 +27,17 @@ class MySubEvents extends React.Component{
       )
     }
     return(
-      <FlatList 
-        style={styles.containerFL}
-        data={this.state.items}
-        keyExtractor={(item, index) => index.toString()}
-        renderItem={({item}) => <SubEventCard navigation={this.props.navigation} item={item}/>}
-      />
+      <View style={{alignItems: 'center',}}>
+        <View style={styles.flexRow}>
+            <Text style={styles.headerText}>Undereventer</Text>
+        </View>
+        <FlatList 
+          style={styles.containerFL}
+          data={this.state.items}
+          keyExtractor={(item, index) => index.toString()}
+          renderItem={({item}) => <SubEventCard navigation={this.props.navigation} item={item}/>}
+        />
+      </View>
     )}
       
     _get = async (endpoint) => {
@@ -48,6 +53,9 @@ class MySubEvents extends React.Component{
       justifyContent: 'flex-start',
       alignItems: 'center',
       backgroundColor: '#F5FCFF',
+    },
+    headerText: {
+      fontSize: 24
     },
     containerFL:{
       paddingTop: 10,

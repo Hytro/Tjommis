@@ -55,10 +55,6 @@ class NewSubEvent extends React.Component {
     collection.time = this.state.time
     collection.userId = this.state.userId
 
-    
-  
-
-
     var url = `http://tjommis.eu-central-1.elasticbeanstalk.com/api/events/${this.state.eventId}/subs`;
     const response = await axios.post(url, collection);
     if(response.status === 201) {

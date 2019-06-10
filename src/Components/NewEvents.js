@@ -75,7 +75,7 @@ class NewEvent extends React.Component {
     }).then((res) => {
       res.json()
       console.warn(collection)
-      if (res.status === 200) {
+      if (res.status === 201) {
         this.props.navigation.navigate('Dashboard')
       }
       console.warn(res.status)

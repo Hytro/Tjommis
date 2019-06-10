@@ -7,6 +7,14 @@ import IconFA5 from 'react-native-vector-icons/FontAwesome5'
 import moment from 'moment';
 
 class SubEventCard extends React.PureComponent {
+
+    constructor() {
+        super();
+        this.state = {
+            joined: false
+        }
+    }
+
     storeData = async (eventId) => {
         try {
             await AsyncStorage.setItem('eventId', eventId + "")
@@ -15,13 +23,20 @@ class SubEventCard extends React.PureComponent {
         }
     }
 
-    goToEventDetail() {
-        this.props.navigation.navigate('EventDetail')
+    joinSubEvent = async () => {
+        const userId = await AsyncStorage.getItem('userId');
+        const joinResponse = await axios.post(`http://tjommis.eu-central-1.elasticbeanstalk.com/api/users/${userId}/events/subs`, { eventId: this.state.eventIdText })
+        if(joinResponse.status === 201) {
+            this.setState({joined: true})
+            this.props.navigation.navigate('Messages')
+        }
     }
 
-    saveAndGo() {
-        this.storeData(this.props.item.id)
-        this.goToEventDetail();
+    LeaveSubEvent = async () => {
+        const userId = await AsyncStorage.getItem('userId');
+
+        const leaveResponse = await axios.delete(`http://tjommis.eu-central-1.elasticbeanstalk.com/api/users/${userId}/events/subs${this.state.eventIdText}`)
+        leaveResponse.status === 204 ? this.setState({joined: false}) : null
     }
 
     render() {
@@ -29,40 +44,47 @@ class SubEventCard extends React.PureComponent {
         const getTime = "2020-01-03 " + this.props.item.time
         return (
             <TouchableOpacity
-                style={styles.card}
-                onPress={() => this.saveAndGo()}>
+                style={styles.card}>
+                <View>
+                    <View style={{alignSelf:'center',position:'absolute',borderBottomColor:'black',borderBottomWidth:1,height:'50%',width:'70%', right: 0, top: 50}}/>
+                </View>
+                <View style={styles.flexRow}>
+                    <Text style={styles.cardTime}>{moment(this.props.item.date).format('Do MMM')}</Text>
+                </View>
                 <View style={styles.flexRow}>
                     <Text style={styles.cardTitle}>{this.props.item.title}</Text>
-                    <Text style={styles.cardDate}>{moment(this.props.item.date).endOf('day').fromNow()} </Text>
+                    <Text style={styles.cardDate}>{moment(getTime).format('HH:mm')} </Text>
                 </View>
                 <View style={styles.flexRow}>
-                    <Text style={styles.cardLocation}>{this.props.item.location}</Text>
-                    <Text style={styles.cardTime}>{moment(this.props.item.date).format('Do MMM YYYY')} - {moment(getTime).format('HH:mm')}</Text>
+                    <Text style={styles.cardDescription}>{this.props.item.description}</Text>
                 </View>
-                <View>
-                    <Image style={styles.cardImage} source={{ uri: 'https://i.imgur.com/1jONy1i.jpg' }} />
-                </View>
-                <View style={styles.flexRowBottom}>
-
+                {this.state.joined !== true ?
+                <TouchableOpacity
+                    style={styles.btnJoin}
+                    onPress={this.joinSubEvent}>
                     <View style={{ flexDirection: 'row', alignItems: 'center' }}>
-                        <IconFA5
-                            style={{ paddingTop: 4 }}
-                            name="users"
-                            size={20}
-                            color={'#4ABDAC'}
-                        />
-                        <Text style={{ fontSize: 10, opacity: 0.7 }}> TODO</Text>
-                    </View>
-                    <View style={{ flexDirection: 'row', alignItems: 'center' }}>
+                        <Text style={styles.btnText}>Delta på underevent</Text>
                         <IconFA
-                            style={{ paddingTop: 4 }}
-                            name="share-square-o"
+                            name="user-plus"
                             size={20}
-                            color={'#4ABDAC'}
+                            color={'white'}
                         />
-                        <Text style={{ fontSize: 10, opacity: 0.7 }}> TODO</Text>
                     </View>
-                </View>
+                </TouchableOpacity>
+                :
+                <TouchableOpacity
+                    style={styles.btnLeave}
+                    onPress={this.LeaveSubEvent}>
+                    <View style={{ flexDirection: 'row', alignItems: 'center' }}>
+                        <Text style={styles.btnText}>Forlat underevent </Text>
+                        <IconFA
+                            name="user-plus"
+                            size={20}
+                            color={'white'}
+                        />
+                    </View>
+                </TouchableOpacity>
+                }
             </TouchableOpacity>
         );
     }
@@ -72,17 +94,8 @@ const styles = StyleSheet.create({
     card: {
         backgroundColor: 'white',
         marginBottom: 20,
-        marginLeft: '5%',
-        width: '90%',
-        borderWidth: 0.1,
-        borderRadius: 6,
-        shadowColor: '#000',
-        shadowOpacity: 0.5,
-        shadowRadius: 5,
-        shadowOffset: {
-            width: 0,
-            height: 0
-        }
+        marginLeft: '2.5%',
+        width: '95%'
     },
     flexRow: {
         flex: 1,
@@ -100,12 +113,6 @@ const styles = StyleSheet.create({
         paddingTop: 7,
         paddingBottom: 7
     },
-    cardImage: {
-        width: '95%',
-        marginLeft: '2.5%',
-        height: 125,
-        resizeMode: 'cover'
-    },
     cardText: {
         padding: 10,
         fontSize: 16
@@ -118,7 +125,7 @@ const styles = StyleSheet.create({
         padding: 4,
         fontSize: 18
     },
-    cardLocation: {
+    cardDescription: {
         paddingTop: 4,
         paddingBottom: 4,
         paddingLeft: 5,
@@ -133,9 +140,41 @@ const styles = StyleSheet.create({
     cardTime: {
         paddingTop: 4,
         paddingBottom: 4,
-        paddingRight: 5,
+        paddingLeft: 4,
         opacity: 0.6,
-        fontSize: 12
+        fontSize: 18
+    },
+    btnJoin: {
+        alignSelf: 'stretch',
+        alignItems: 'center',
+        backgroundColor: '#4ABDAC',
+        borderColor: '#4ABDAC',
+        borderWidth: 3,
+        borderRadius: 6,
+        margin: 10,
+        padding: 10,
+        width: '85%',
+        marginLeft: '7.5%',
+        height: 50
+    },
+    btnLeave: {
+        alignSelf: 'stretch',
+        alignItems: 'center',
+        backgroundColor: '#F95937',
+        borderColor: '#E95130',
+        borderWidth: 3,
+        borderRadius: 6,
+        margin: 10,
+        padding: 10,
+        width: '85%',
+        marginLeft: '7.5%',
+        height: 50
+    },
+    btnText: {
+        color: 'white',
+        fontWeight: 'bold',
+        fontSize: 18,
+        paddingRight: 8
     }
 });
 
