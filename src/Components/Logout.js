@@ -2,6 +2,7 @@ import React from 'react';
 import {View, Text, TextInput, Image, Button, TouchableOpacity, StyleSheet} from 'react-native';
 import AsyncStorage from '@react-native-community/async-storage';
 import Logo from '../Assets/Logo.png';
+import Icon from 'react-native-vector-icons/AntDesign';
 
 class Logout extends React.Component{
     removeValue = async () => {
@@ -25,6 +26,16 @@ class Logout extends React.Component{
     render() {
         return(
           <View style={styles.container}>
+            <TouchableOpacity
+              style={styles.btn}
+              onPress={() => this.props.navigation.navigate('Welcome')}>
+                <Icon
+                  style={{ paddingLeft: 10 }}
+                  onPress={() => navigation.openDrawer()}
+                  name="left"
+                  size={30}
+                />
+            </TouchableOpacity>
   
           <Image source={Logo} style={styles.image}/>
   
