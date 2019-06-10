@@ -143,9 +143,9 @@ class Messages extends React.Component{
       borderColor: '#4ABDAC',
       borderWidth: 1,
       borderRadius: 4,
-      margin: 4,
+      margin: 8,
       width:'45%',
-      marginLeft: '3%',
+      marginLeft: '2.5%',
       height: 50
     },
     btnText:{

@@ -27,8 +27,9 @@ class MySubEvents extends React.Component{
       )
     }
     return(
-      <View style={{alignItems: 'center',}}>
-        <View style={styles.flexRow}>
+      <View style={{alignItems: 'center', backgroundColor: 'white'}}>
+        <Text>{this.state.items.title}</Text>
+        <View>
             <Text style={styles.headerText}>Undereventer</Text>
         </View>
         <FlatList 
@@ -59,8 +60,7 @@ class MySubEvents extends React.Component{
     },
     containerFL:{
       paddingTop: 10,
-      width: 350,
-      backgroundColor: '#FAFAFA',
+      width: 350
     },
     loader:{
       flex: 1,

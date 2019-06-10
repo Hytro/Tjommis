@@ -3,7 +3,6 @@ import { StyleSheet, TouchableOpacity, Image, Text, View } from 'react-native';
 import AsyncStorage from '@react-native-community/async-storage';
 
 import IconFA from 'react-native-vector-icons/FontAwesome'
-import IconFA5 from 'react-native-vector-icons/FontAwesome5'
 import moment from 'moment';
 
 class SubEventCard extends React.PureComponent {
@@ -46,7 +45,7 @@ class SubEventCard extends React.PureComponent {
             <TouchableOpacity
                 style={styles.card}>
                 <View>
-                    <View style={{alignSelf:'center',position:'absolute',borderBottomColor:'black',borderBottomWidth:1,height:'50%',width:'70%', right: 0, top: 50}}/>
+                    <View style={{alignSelf:'center',position:'absolute',borderBottomColor:'black',borderBottomWidth:1,height:'50%',width:'70%', right: 10, top: 15}}/>
                 </View>
                 <View style={styles.flexRow}>
                     <Text style={styles.cardTime}>{moment(this.props.item.date).format('Do MMM')}</Text>
