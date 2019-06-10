@@ -3,6 +3,9 @@ import { View, Text, Image, StyleSheet, TouchableOpacity } from 'react-native';
 import AsyncStorage from '@react-native-community/async-storage';
 import axios from 'axios';
 
+
+
+
 class Profile extends Component {
   state = {
     user: {
@@ -14,8 +17,8 @@ class Profile extends Component {
 
   async componentDidMount() {
     const token = await AsyncStorage.getItem('token');
-    const userResponse = await axios.get(`http://tjommis.eu-central-1.elasticbeanstalk.com/api/auth/me`, {token})
-    this.setState({user: userResponse.data})
+    const userResponse = await axios.get(`http://tjommis.eu-central-1.elasticbeanstalk.com/api/auth/me`, { token })
+    this.setState({ user: userResponse.data })
   }
   render() {
     return (
