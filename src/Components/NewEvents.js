@@ -142,7 +142,7 @@ class NewEvent extends React.Component {
               placeholder="Click to select time"
               format="HH:MM"
               minTime="00:00"
-              maxTime="24:00"
+              maxTime="23:59"
               confirmBtnText="Confirm"
               cancelBtnText="Cancel"
               customStyles={{
