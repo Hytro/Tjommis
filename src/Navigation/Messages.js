@@ -1,8 +1,7 @@
 import React from 'react';
-import {View, FlatList, Text, TextInput, Button, StyleSheet} from 'react-native';
+import {View, FlatList, Text, StyleSheet, TouchableOpacity} from 'react-native';
 import axios from 'axios'
 import AsyncStorage from '@react-native-community/async-storage';
-import { TouchableOpacity } from 'react-native-gesture-handler';
 
 class Messages extends React.Component{
     state = {
@@ -46,7 +45,7 @@ class Messages extends React.Component{
       height: 50,
       width: 50,
       backgroundColor: '#8e44ad'
-    }
+    },
   });
 
   export default Messages;

@@ -1,11 +1,10 @@
 import React from 'react';
-import {View, Text, TextInput, Button, StyleSheet} from 'react-native';
+import {View, Text, StyleSheet, TouchableOpacity } from 'react-native';
 import io from 'socket.io-client';
 import axios from 'axios'
-import { YellowBox } from 'react-native';
 import AsyncStorage from '@react-native-community/async-storage';
 import { GiftedChat } from 'react-native-gifted-chat'
-
+import IconFA from 'react-native-vector-icons/FontAwesome'
 
 class Messages extends React.Component{
   state = {
@@ -76,14 +75,43 @@ class Messages extends React.Component{
     render = () => {
       console.log(this.state.messages)
       return(
-        <GiftedChat
-          messages={this.state.messages}
-          onSend={messages => this.sendMessage(messages)}
-          placeholder="Your message.."
-          user={{
-            _id: this.state.userId,
-          }}
-        />
+        <View style={{flex: 1, flexDirection: 'column'}}>
+          <View style={styles.eventTop}>
+            <TouchableOpacity 
+              style={styles.btn}
+              onPress={() => this.props.navigation.navigate('NewSubEvent')}>
+              <View 
+                style={styles.flexRowHalf}>
+                  <IconFA
+                      name="map-marker"
+                      size={18}
+                      color="white"
+                  />
+                  <Text numberOfLines={1} style={styles.btnText}>Opprett Underevent</Text>
+              </View>
+            </TouchableOpacity>
+            <TouchableOpacity
+              style={styles.btn}
+              onPress={() => this.props.navigation.navigate('MySubEvent')}>
+              <View style={styles.flexRowHalf}>
+                  <IconFA
+                      name="calendar"
+                      size={18}
+                      color="white"
+                  />
+                  <Text numberOfLines={1} style={styles.btnText}>Underevent Liste</Text>
+              </View>
+            </TouchableOpacity>
+          </View>
+          <GiftedChat
+            messages={this.state.messages}
+            onSend={messages => this.sendMessage(messages)}
+            placeholder="Skriv melding.."
+            user={{
+              _id: this.state.userId,
+            }}
+          />
+        </View>
       );
     }
   }
@@ -97,7 +125,34 @@ class Messages extends React.Component{
       height: 30,
       width: '100%',
       backgroundColor: '#11ff11'
-    }
+    },
+    eventTop: {
+      flexDirection: 'row', 
+      backgroundColor: '#ecf0f1'
+    },
+    flexRowHalf: {
+      flex: 1,
+      justifyContent: 'center',
+      flexDirection: 'column',
+      alignItems: 'center',
+    },
+    btn:{
+      alignSelf: 'stretch',
+      alignItems: 'center',
+      backgroundColor: '#4ABDAC',
+      borderColor: '#4ABDAC',
+      borderWidth: 1,
+      borderRadius: 4,
+      margin: 4,
+      width:'45%',
+      marginLeft: '3%',
+      height: 50
+    },
+    btnText:{
+      color: 'white',
+      alignSelf: 'flex-start',
+      fontSize: 12
+    },
   });
 
   export default Messages;

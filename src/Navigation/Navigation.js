@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { StyleSheet, Text, View } from 'react-native';
 import Icon from 'react-native-vector-icons/Ionicons';
 import IconAD from 'react-native-vector-icons/AntDesign';
 
@@ -8,10 +7,12 @@ import Events from '../Components/Events';
 import Messages from './Messages';
 import Profile from './Profile';
 import MyEvents from './MyEvents';
+import MySubEvent from './MySubEvents';
 import Signup from './Signup';
 import Login from './Login';
 import Message from './Message'
 import NewEvent from '../Components/NewEvents';
+import NewSubEvent from '../Components/NewSubEvents';
 import EventDetail from '../Components/EventDetails';
 import Logout from '../Components/Logout';
 
@@ -87,6 +88,12 @@ const MessageStack = createStackNavigator({
   },
   Logout: {
     screen: Logout
+  },
+  NewSubEvent: {
+    screen: NewSubEvent
+  },
+  MySubEvent: {
+    screen: MySubEvent
   }
 });
 
@@ -267,18 +274,5 @@ const AppSwitchNavigator = createSwitchNavigator({
 
 const AppContainer = createAppContainer(AppSwitchNavigator);
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#F5FCFF',
-  },
-  welcome: {
-    fontSize: 20,
-    textAlign: 'center',
-    margin: 10,
-  },
-});
 
 export default Navigation;
