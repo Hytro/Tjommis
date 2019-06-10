@@ -5,6 +5,7 @@ import IconFA from 'react-native-vector-icons/FontAwesome'
 import IconFA5 from 'react-native-vector-icons/FontAwesome5'
 import moment from 'moment';
 
+// setting ID on Eventcards
 class EventCard extends React.PureComponent {
     storeData = async (eventId) => {
         try {
@@ -67,7 +68,7 @@ class EventCard extends React.PureComponent {
     }
 }
 
-/*********************************Stylesheet Start*********************************/
+/********************************* Stylesheet Start *********************************/
 const styles = StyleSheet.create({
     card: {
         backgroundColor: 'white',
@@ -106,14 +107,6 @@ const styles = StyleSheet.create({
         height: 125,
         resizeMode: 'cover'
     },
-    cardText: {
-        padding: 10,
-        fontSize: 16
-    },
-    cardTextBody: {
-        padding: 10,
-        fontSize: 10
-    },
     cardTitle: {
         padding: 4,
         fontSize: 18
@@ -138,6 +131,6 @@ const styles = StyleSheet.create({
         fontSize: 12
     }
 });
-/*********************************Stylesheet End*********************************/
+/********************************* Stylesheet End *********************************/
 
 export default EventCard;

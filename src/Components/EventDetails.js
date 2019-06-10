@@ -15,7 +15,7 @@ class EventDetails extends React.PureComponent {
             joined: false
         }
     }
-
+    // gets the correct token from the database and add it on the correct userid
     getData = async () => {
         try {
             const value = await AsyncStorage.getItem('eventId')
@@ -26,7 +26,7 @@ class EventDetails extends React.PureComponent {
                     const userId = await AsyncStorage.getItem('userId')
                     const userEventsResponse = await axios.get(`http://tjommis.eu-central-1.elasticbeanstalk.com/api/users/${userId}/events`)
                     userEventsResponse.data.forEach(event => {
-                        if(event.id == value) this.setState({joined: true})
+                        if (event.id == value) this.setState({ joined: true })
                     })
                 })
             }
@@ -45,25 +45,25 @@ class EventDetails extends React.PureComponent {
         const data = await res.json();
         return data;
     }
-
+    // lets the user join events with user id
     joinEvent = async () => {
         const userId = await AsyncStorage.getItem('userId');
         const joinResponse = await axios.post(`http://tjommis.eu-central-1.elasticbeanstalk.com/api/users/${userId}/events`, { eventId: this.state.eventIdText })
-        if(joinResponse.status === 201) {
-            this.setState({joined: true})
+        if (joinResponse.status === 201) {
+            this.setState({ joined: true })
             this.props.navigation.navigate('Messages')
         }
     }
-
+    // lets the user leave events with user id
     LeaveEvent = async () => {
         const userId = await AsyncStorage.getItem('userId');
 
         const leaveResponse = await axios.delete(`http://tjommis.eu-central-1.elasticbeanstalk.com/api/users/${userId}/events/${this.state.eventIdText}`)
-        leaveResponse.status === 204 ? this.setState({joined: false}) : null
+        leaveResponse.status === 204 ? this.setState({ joined: false }) : null
     }
 
     render() {
-        //Adding a random date before the time, to properly display the time
+        // Adding a date timer
         const getTime = "2020-01-03 " + this.state.items.time
         return (
             <View style={styles.event}>
@@ -72,7 +72,7 @@ class EventDetails extends React.PureComponent {
                     <View style={styles.flexRow}>
                         <Text style={styles.eventTitle}>{this.state.items.title}</Text>
                     </View>
-                    <View style={{justifyContent: 'space-between', flexDirection: 'row'}}>
+                    <View style={{ justifyContent: 'space-between', flexDirection: 'row' }}>
                         <View style={styles.flexRowHalf}>
                             <IconFA
                                 name="map-marker"
@@ -98,38 +98,38 @@ class EventDetails extends React.PureComponent {
                     <Text style={styles.eventText}>{this.state.items.description}</Text>
                 </View>
                 {this.state.joined !== true ?
-                <TouchableOpacity
-                    style={styles.btnJoin}
-                    onPress={this.joinEvent}>
-                    <View style={{ flexDirection: 'row', alignItems: 'center' }}>
-                        <Text style={styles.btnText}>Join event</Text>
-                        <IconFA
-                            name="user-plus"
-                            size={20}
-                            color={'white'}
-                        />
-                    </View>
-                </TouchableOpacity>
-                :
-                <TouchableOpacity
-                    style={styles.btnLeave}
-                    onPress={this.LeaveEvent}>
-                    <View style={{ flexDirection: 'row', alignItems: 'center' }}>
-                        <Text style={styles.btnText}>Leave event  </Text>
-                        <IconFA
-                            name="user-plus"
-                            size={20}
-                            color={'white'}
-                        />
-                    </View>
-                </TouchableOpacity>
+                    <TouchableOpacity
+                        style={styles.btnJoin}
+                        onPress={this.joinEvent}>
+                        <View style={{ flexDirection: 'row', alignItems: 'center' }}>
+                            <Text style={styles.btnText}>Join event</Text>
+                            <IconFA
+                                name="user-plus"
+                                size={20}
+                                color={'white'}
+                            />
+                        </View>
+                    </TouchableOpacity>
+                    :
+                    <TouchableOpacity
+                        style={styles.btnLeave}
+                        onPress={this.LeaveEvent}>
+                        <View style={{ flexDirection: 'row', alignItems: 'center' }}>
+                            <Text style={styles.btnText}>Leave event  </Text>
+                            <IconFA
+                                name="user-plus"
+                                size={20}
+                                color={'white'}
+                            />
+                        </View>
+                    </TouchableOpacity>
                 }
             </View>
         );
     }
 }
 
-/*********************************Stylesheet Start*********************************/
+/********************************* Stylesheet Start *********************************/
 const styles = StyleSheet.create({
     event: {
         backgroundColor: 'white',
@@ -218,7 +218,7 @@ const styles = StyleSheet.create({
         fontSize: 18
     }
 });
-/*********************************Stylesheet End*********************************/
+/********************************* Stylesheet End *********************************/
 
 export default EventDetails;
 

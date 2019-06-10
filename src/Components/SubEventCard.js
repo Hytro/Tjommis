@@ -22,20 +22,22 @@ class SubEventCard extends React.PureComponent {
         }
     }
 
+    // letting the user join on sub events
     joinSubEvent = async () => {
         const userId = await AsyncStorage.getItem('userId');
         const joinResponse = await axios.post(`http://tjommis.eu-central-1.elasticbeanstalk.com/api/users/${userId}/events/subs`, { eventId: this.state.eventIdText })
-        if(joinResponse.status === 201) {
-            this.setState({joined: true})
+        if (joinResponse.status === 201) {
+            this.setState({ joined: true })
             this.props.navigation.navigate('Messages')
         }
     }
 
+    // letting the user leave on sub events
     LeaveSubEvent = async () => {
         const userId = await AsyncStorage.getItem('userId');
 
         const leaveResponse = await axios.delete(`http://tjommis.eu-central-1.elasticbeanstalk.com/api/users/${userId}/events/subs${this.state.eventIdText}`)
-        leaveResponse.status === 204 ? this.setState({joined: false}) : null
+        leaveResponse.status === 204 ? this.setState({ joined: false }) : null
     }
 
     render() {
@@ -45,7 +47,7 @@ class SubEventCard extends React.PureComponent {
             <TouchableOpacity
                 style={styles.card}>
                 <View>
-                    <View style={{alignSelf:'center',position:'absolute',borderBottomColor:'black',borderBottomWidth:1,height:'50%',width:'70%', right: 10, top: 15}}/>
+                    <View style={{ alignSelf: 'center', position: 'absolute', borderBottomColor: 'black', borderBottomWidth: 1, height: '50%', width: '70%', right: 10, top: 15 }} />
                 </View>
                 <View style={styles.flexRow}>
                     <Text style={styles.cardTime}>{moment(this.props.item.date).format('Do MMM')}</Text>
@@ -58,38 +60,38 @@ class SubEventCard extends React.PureComponent {
                     <Text style={styles.cardDescription}>{this.props.item.description}</Text>
                 </View>
                 {this.state.joined !== true ?
-                <TouchableOpacity
-                    style={styles.btnJoin}
-                    onPress={this.joinSubEvent}>
-                    <View style={{ flexDirection: 'row', alignItems: 'center' }}>
-                        <Text style={styles.btnText}>Delta på underevent</Text>
-                        <IconFA
-                            name="user-plus"
-                            size={20}
-                            color={'white'}
-                        />
-                    </View>
-                </TouchableOpacity>
-                :
-                <TouchableOpacity
-                    style={styles.btnLeave}
-                    onPress={this.LeaveSubEvent}>
-                    <View style={{ flexDirection: 'row', alignItems: 'center' }}>
-                        <Text style={styles.btnText}>Forlat underevent </Text>
-                        <IconFA
-                            name="user-plus"
-                            size={20}
-                            color={'white'}
-                        />
-                    </View>
-                </TouchableOpacity>
+                    <TouchableOpacity
+                        style={styles.btnJoin}
+                        onPress={this.joinSubEvent}>
+                        <View style={{ flexDirection: 'row', alignItems: 'center' }}>
+                            <Text style={styles.btnText}>Delta på underevent</Text>
+                            <IconFA
+                                name="user-plus"
+                                size={20}
+                                color={'white'}
+                            />
+                        </View>
+                    </TouchableOpacity>
+                    :
+                    <TouchableOpacity
+                        style={styles.btnLeave}
+                        onPress={this.LeaveSubEvent}>
+                        <View style={{ flexDirection: 'row', alignItems: 'center' }}>
+                            <Text style={styles.btnText}>Forlat underevent </Text>
+                            <IconFA
+                                name="user-plus"
+                                size={20}
+                                color={'white'}
+                            />
+                        </View>
+                    </TouchableOpacity>
                 }
             </TouchableOpacity>
         );
     }
 }
 
-/*********************************Stylesheet Start*********************************/
+/********************************* Stylesheet Start *********************************/
 const styles = StyleSheet.create({
     card: {
         backgroundColor: 'white',
@@ -103,23 +105,6 @@ const styles = StyleSheet.create({
         justifyContent: 'space-between',
         width: '98%',
         marginLeft: '1%'
-    },
-    flexRowBottom: {
-        flex: 1,
-        flexDirection: 'row',
-        justifyContent: 'space-between',
-        width: '85%',
-        marginLeft: '7.5%',
-        paddingTop: 7,
-        paddingBottom: 7
-    },
-    cardText: {
-        padding: 10,
-        fontSize: 16
-    },
-    cardTextBody: {
-        padding: 10,
-        fontSize: 10
     },
     cardTitle: {
         padding: 4,
@@ -177,6 +162,6 @@ const styles = StyleSheet.create({
         paddingRight: 8
     }
 });
-/*********************************Stylesheet End*********************************/
+/********************************* Stylesheet End *********************************/
 
 export default SubEventCard;
