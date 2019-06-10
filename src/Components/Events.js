@@ -1,37 +1,37 @@
 import React from 'react';
-import {StyleSheet, View, ActivityIndicator, FlatList} from 'react-native';
+import { StyleSheet, View, ActivityIndicator, FlatList } from 'react-native';
 import EventCard from './EventCard';
 import AsyncStorage from '@react-native-community/async-storage';
 import axios from 'axios';
 
-class Events extends React.Component{
+class Events extends React.Component {
 
-  constructor(){
+  constructor() {
     super();
     this.state = {
-      items:[],
+      items: [],
       token: []
     }
   }
-
-  async componentDidMount(){
+  // chatching the right event id from api
+  async componentDidMount() {
     this._get('http://tjommis.eu-central-1.elasticbeanstalk.com/api/events/').then(
-      data=> {
-        this.setState({items: data})
+      data => {
+        this.setState({ items: data })
       }
     )
     axios.defaults.headers.common['Authorization'] = await AsyncStorage.getItem('token');
     const userResponse = await axios.get('http://tjommis.eu-central-1.elasticbeanstalk.com/api/auth/me');
     await AsyncStorage.setItem('userId', userResponse.data.id + "")
   }
-
+  // token controller
   getData = async () => {
     try {
       const value = await AsyncStorage.getItem('token')
-      if(value !== null) {
+      if (value !== null) {
         console.warn('event tok: ', value)
       }
-    } catch(e) {
+    } catch (e) {
       // error reading value
     }
   };
@@ -43,19 +43,20 @@ class Events extends React.Component{
   }
 
   render() {
-    if(this.state.items.length===0){
-      return(
+    // adding scrolling on lists
+    if (this.state.items.length === 0) {
+      return (
         <View style={styles.loader}>
           <ActivityIndicator size="large" />
         </View>
       )
     }
-    return(
-      <FlatList 
-      style={styles.container}
-      data={this.state.items}
-      keyExtractor={(item, index) => index.toString()}
-      renderItem={({item}) => <EventCard navigation={this.props.navigation} item={item}/>}
+    return (
+      <FlatList
+        style={styles.container}
+        data={this.state.items}
+        keyExtractor={(item, index) => index.toString()}
+        renderItem={({ item }) => <EventCard navigation={this.props.navigation} item={item} />}
       />
     );
   }
@@ -63,11 +64,11 @@ class Events extends React.Component{
 
 /*********************************Stylesheet Start*********************************/
 const styles = StyleSheet.create({
-  container:{
-      paddingTop: 10,
-      backgroundColor: '#F5FCFF',
+  container: {
+    paddingTop: 10,
+    backgroundColor: '#F5FCFF',
   },
-  loader:{
+  loader: {
     flex: 1,
     alignItems: 'center',
     justifyContent: 'center',

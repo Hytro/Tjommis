@@ -19,11 +19,12 @@ class NewSubEvent extends React.Component {
   }
 
   async componentDidMount() {
-    this.setState({userId: await AsyncStorage.getItem('userId')})
+    this.setState({ userId: await AsyncStorage.getItem('userId') })
     const eventId = this.props.navigation.getParam('eventId', 'NO-ID')
     this.setState({ eventId })
   }
 
+  /****************** UPDATE STATES START ******************/
   updateValue(text, field) {
     if (field == 'title') {
       this.setState({
@@ -46,6 +47,7 @@ class NewSubEvent extends React.Component {
       })
     }
   }
+  /****************** UPDATE STATES END ******************/
 
   async submit() {
     let collection = {}
@@ -57,7 +59,7 @@ class NewSubEvent extends React.Component {
 
     var url = `http://tjommis.eu-central-1.elasticbeanstalk.com/api/events/${this.state.eventId}/subs`;
     const response = await axios.post(url, collection);
-    if(response.status === 201) {
+    if (response.status === 201) {
       this.props.navigation.goBack()
       console.log("Success")
     }

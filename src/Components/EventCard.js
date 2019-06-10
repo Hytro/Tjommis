@@ -5,6 +5,7 @@ import IconFA from 'react-native-vector-icons/FontAwesome'
 import IconFA5 from 'react-native-vector-icons/FontAwesome5'
 import moment from 'moment';
 
+// setting ID on Eventcards
 class EventCard extends React.PureComponent {
     storeData = async (eventId) => {
         try {

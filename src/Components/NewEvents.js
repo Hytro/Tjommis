@@ -18,9 +18,10 @@ class NewEvent extends React.Component {
   }
 
   async componentDidMount() {
-    this.setState({userId: await AsyncStorage.getItem('userId')})
+    this.setState({ userId: await AsyncStorage.getItem('userId') })
   }
 
+  /****************** UPDATE STATES START ******************/
   updateValue(text, field) {
     if (field == 'title') {
       this.setState({
@@ -54,6 +55,9 @@ class NewEvent extends React.Component {
     }
   }
 
+  /****************** UPDATE STATES END ******************/
+
+  // getting the correct value from Events API
   submit() {
     let collection = {}
     collection.title = this.state.title
