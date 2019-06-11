@@ -28,6 +28,7 @@ class Events extends React.Component {
   getData = async () => {
     try {
       const value = await AsyncStorage.getItem('token')
+      console.log("token", value)
       if (value !== null) {
         console.warn('event tok: ', value)
       }

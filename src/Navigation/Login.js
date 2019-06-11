@@ -36,8 +36,9 @@ class Login extends React.Component {
 
   storeData = async (token) => {
     try {
-      await AsyncStorage.setItem('token', token)
-      console.warn('login tok: ', token)
+      console.log("STORED TOKEN", token)
+      
+      
     } catch (e) {
 
     }
@@ -55,8 +56,10 @@ class Login extends React.Component {
       const response = await axios.post(url, collection);
       if (response.status === 200) {
         //console.warn(response.data.token);
+        await AsyncStorage.setItem('token', response.data.token)
         this.props.navigation.navigate('Dashboard');
-        storeData(response.data.token)
+        console.log("TOKEN FROM RESPONSE", response.data.token)
+        
       }
       console.log(response.status)
       if (response.status === 401 || response.status === 400) {
