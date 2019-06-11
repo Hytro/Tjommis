@@ -2,6 +2,7 @@ import React from 'react';
 import {View, StyleSheet , ActivityIndicator, FlatList, Text} from 'react-native';
 import SubEventCard from '../Components/SubEventCard';
 import axios from 'axios'
+import AsyncStorage from '@react-native-community/async-storage';
 
 class MySubEvents extends React.Component{
   constructor(){
@@ -16,8 +17,16 @@ class MySubEvents extends React.Component{
   // sub events
   async componentDidMount(){
     const eventId = this.props.navigation.getParam('eventId', 'NO-ID')
-    console.log('eventid', eventId)
+    const userId = await AsyncStorage.getItem('userId');
+    const userSubsResponse = await axios.get(`http://tjommis.eu-central-1.elasticbeanstalk.com/api/users/${userId}/subs`)
     const subsResponse = await axios.get(`http://tjommis.eu-central-1.elasticbeanstalk.com/api/events/${eventId}/subs`)
+    subsResponse.data.forEach(sub => {
+      userSubsResponse.data.forEach(uSub => {
+        if(sub.id === uSub.id) {
+          sub.joined = true;
+        }
+      })
+    })
     this.setState({items: subsResponse.data})
   }
 

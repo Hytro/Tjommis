@@ -1,6 +1,7 @@
 import React from 'react';
 import { StyleSheet, TouchableOpacity, Image, Text, View } from 'react-native';
 import AsyncStorage from '@react-native-community/async-storage';
+import axios from 'axios';
 
 import IconFA from 'react-native-vector-icons/FontAwesome'
 import moment from 'moment';
@@ -10,8 +11,13 @@ class SubEventCard extends React.PureComponent {
     constructor() {
         super();
         this.state = {
-            joined: false
+            joined: false,
+            subId: 0
         }
+    }
+
+    async componentDidMount() {
+        this.setState({joined: this.props.item.joined ? true : false})
     }
 
     storeData = async (eventId) => {
@@ -25,10 +31,11 @@ class SubEventCard extends React.PureComponent {
     // letting the user join on sub events
     joinSubEvent = async () => {
         const userId = await AsyncStorage.getItem('userId');
-        const joinResponse = await axios.post(`http://tjommis.eu-central-1.elasticbeanstalk.com/api/users/${userId}/events/subs`, { eventId: this.state.eventIdText })
+        console.log("subId", this.props.item.id)
+        const joinResponse = await axios.post(`http://tjommis.eu-central-1.elasticbeanstalk.com/api/users/${userId}/subs`, { subId: this.props.item.id })
         if (joinResponse.status === 201) {
             this.setState({ joined: true })
-            this.props.navigation.navigate('Messages')
+            //this.props.navigation.navigate('Messages')
         }
     }
 
@@ -36,7 +43,7 @@ class SubEventCard extends React.PureComponent {
     LeaveSubEvent = async () => {
         const userId = await AsyncStorage.getItem('userId');
 
-        const leaveResponse = await axios.delete(`http://tjommis.eu-central-1.elasticbeanstalk.com/api/users/${userId}/events/subs${this.state.eventIdText}`)
+        const leaveResponse = await axios.delete(`http://tjommis.eu-central-1.elasticbeanstalk.com/api/users/${userId}/subs/${this.props.item.id}`)
         leaveResponse.status === 204 ? this.setState({ joined: false }) : null
     }
 
