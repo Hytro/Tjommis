@@ -16,6 +16,7 @@ class Profile extends Component {
   async componentDidMount() {
     const token = await AsyncStorage.getItem('token');
     const userResponse = await axios.get(`http://tjommis.eu-central-1.elasticbeanstalk.com/api/auth/me`, { token })
+    console.log(userResponse.data)
     this.setState({ user: userResponse.data })
   }
 
@@ -91,7 +92,7 @@ const styles = StyleSheet.create({
   },
   name: {
     fontSize: 22,
-    color: "#FFFFFF",
+    color: "#000000",
     fontWeight: '600',
   },
   body: {
