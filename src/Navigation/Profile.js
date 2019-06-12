@@ -3,15 +3,14 @@ import { View, Button, Text, Image, StyleSheet, TouchableOpacity } from 'react-n
 import AsyncStorage from '@react-native-community/async-storage';
 import axios from 'axios';
 import ImagePicker from 'react-native-image-picker'
+import RNFS from 'react-native-fs';
 
 class Profile extends Component {
   state = {
-    user: {
-      firstName: '-',
-      lastName: '-',
-      image_url: '-',
-      id: 0
-    }
+    firstName: '-',
+    lastName: '-',
+    image_url: '-',
+    id: 0
   }
 
   // If the page is rendered correctly, axios will use the user token and get the proper profile data
@@ -19,7 +18,12 @@ class Profile extends Component {
     const token = await AsyncStorage.getItem('token');
     const userResponse = await axios.get(`http://tjommis.eu-central-1.elasticbeanstalk.com/api/auth/me`, { token })
     console.log(userResponse.data)
-    this.setState({ user: userResponse.data })
+    this.setState({
+      firstName: userResponse.data.firstName,
+      lastName: userResponse.data.lastName,
+      id: userResponse.data.id,
+      image_url: 'http://tjommis.eu-central-1.elasticbeanstalk.com/' + userResponse.data.image_url
+    })
     
   }
 
@@ -30,23 +34,31 @@ class Profile extends Component {
     }
     ImagePicker.launchImageLibrary(options, response => {
       if (response.uri) {
-        console.log(response)
-        let bodyFormData = new FormData();
-        bodyFormData.append('imageData', response.uri)
+        console.log("Picker response", response)
+        this.setState({image_url: response.uri})
+        RNFS.readFile(response.path, 'ascii').then(res => {
+        console.log("FS result", res)
+        const bodyFormData = new FormData();
+        bodyFormData.append('imageData', res)
+
         axios({
           method: 'post',
-          url: `http://tjommis.eu-central-1.elasticbeanstalk.com/api/users/${this.state.user.id}/image`,
+          url: `http://10.0.2.2:3001/api/users/${this.state.id}/image`,
           data: bodyFormData,
           config: { headers: {'Content-Type': 'multipart/form-data' }}
           })
-          .then(function (response) {
-              //handle success
-              console.log(response);
-          })
-          .catch(function (response) {
-              //handle error
-              console.log(response);
-          });
+        .then(function (response) {
+            //handle success
+            console.log(response);
+        })
+        .catch(function (response) {
+            //handle error
+            console.log(response);
+        });
+        })
+        .catch(err => {
+            console.log(err.message, err.code);
+        });
       }
     })
   }
@@ -61,9 +73,10 @@ class Profile extends Component {
         <TouchableOpacity style={styles.avatarTouch} onPress={this.handleChoosePhoto}>
           <Image style={styles.avatar} source={{ uri: this.state.image_url }} />
         </TouchableOpacity>
+        
         <View style={styles.body}>
           <View style={styles.bodyContent}>
-            <Text style={styles.name}>{`${this.state.user.firstName} ${this.state.user.lastName}`}</Text>
+            <Text style={styles.name}>{`${this.state.firstName} ${this.state.lastName}`}</Text>
             <Text style={styles.info}>Høyskolen Kristiania - Westerdals</Text>
             <Text style={styles.description}>Jeg er en student som går Frontend- og Mobilutvikling ved Høyskolen Kristiania. Jeg digger å game, dra på konserter, ta en fin tur på kino, eller vandre tankeløst på en lang skogtur!</Text>
             <View style={{flexDirection: 'row'}}>
