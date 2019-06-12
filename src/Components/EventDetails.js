@@ -67,7 +67,7 @@ class EventDetails extends React.PureComponent {
         const getTime = "2020-01-03 " + this.state.items.time
         return (
             <View style={styles.event}>
-                <Image style={styles.eventImage} source={{uri: 'http://tjommis.eu-central-1.elasticbeanstalk.com/' + this.state.items.image_url}} />
+                <Image style={styles.eventImage} source={{uri: this.state.items.image_url}} />
                 <View style={styles.topInfo}>
                     <View style={styles.flexRow}>
                         <Text style={styles.eventTitle}>{this.state.items.title}</Text>
