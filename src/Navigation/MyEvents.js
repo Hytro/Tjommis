@@ -5,6 +5,9 @@ import EventCard from '../Components/EventCard';
 import IconFA from 'react-native-vector-icons/FontAwesome'
 import AsyncStorage from '@react-native-community/async-storage';
 
+import {YellowBox} from 'react-native';
+console.disableYellowBox = true;
+
 class MyEvents extends React.Component{
   constructor(){
     super();
