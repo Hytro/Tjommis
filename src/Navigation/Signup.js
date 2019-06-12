@@ -108,10 +108,11 @@ class Signup extends React.Component{
             style={styles.backBtn}
             onPress={() => this.goToWelcomeScreen()}>
               <Icon
-                style={{ color: '#ECF0F1'}}
+                style={{ color: '#ECF0F1', paddingLeft: '30%'}}
                 name="left"
-                size={30}
+                size={20}
               />
+              <Text style={{color: '#ECF0F1', fontWeight: 'bold'}}>Tilbake</Text>
             </TouchableOpacity>
         </View>
       </View>
@@ -152,7 +153,7 @@ class Signup extends React.Component{
     btn:{
       alignSelf: 'stretch',
       alignItems: 'center',
-      padding: 20,
+      padding: 10,
       backgroundColor: '#42A99A',
       marginTop: 30
     },
@@ -165,7 +166,8 @@ class Signup extends React.Component{
       alignItems: 'center',
       padding: 10,
       backgroundColor: '#42A99A',
-      marginTop: 20
+      marginTop: 20,
+      flexDirection: 'row'
     }
   });
   /********************************* Stylesheet End *********************************/
