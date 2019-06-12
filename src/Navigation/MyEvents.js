@@ -22,19 +22,24 @@ class MyEvents extends React.Component{
     return data;
   }
 
+  componentWillUnmount() {
+    this.reRenderList;
+  }
   async componentDidMount(){
-    const userId = await AsyncStorage.getItem('userId');
-    this._get(`http://tjommis.eu-central-1.elasticbeanstalk.com/api/users/${userId}/events/`).then(
-      data=> {
-        this.setState({items: data})
-      }
-    )
-    fetch('http://tjommis.eu-central-1.elasticbeanstalk.com/api/users/me')
-      .then(function(response) {
-        return response.json();
-      })
-      .then(function(myJson) {
-        console.log(JSON.stringify(myJson));
+    this.reRenderList = this.props.navigation.addListener('willFocus', async () => {
+      const userId = await AsyncStorage.getItem('userId');
+      this._get(`http://tjommis.eu-central-1.elasticbeanstalk.com/api/users/${userId}/events/`).then(
+        data=> {
+          this.setState({items: data})
+        }
+      )
+      fetch('http://tjommis.eu-central-1.elasticbeanstalk.com/api/users/me')
+        .then(function(response) {
+          return response.json();
+        })
+        .then(function(myJson) {
+          console.log(JSON.stringify(myJson));
+        });
       });
   }
 

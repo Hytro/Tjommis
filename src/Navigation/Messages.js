@@ -9,12 +9,19 @@ class Messages extends React.Component{
       events: []
     };
 
+    componentWillUnmount() {
+      this.reRenderList;
+    }
+
     // If the page is rendered correctly, get the current users id, and get the list of the
     // events that the selected user is interessted in/created
     async componentDidMount() {
-      const userId = await AsyncStorage.getItem('userId');
-      const eventsResponse = await axios.get(`http://tjommis.eu-central-1.elasticbeanstalk.com/api/users/${userId}/events`)
-      this.setState({events: eventsResponse.data})
+      this.reRenderList = this.props.navigation.addListener('willFocus', async () => {
+        const userId = await AsyncStorage.getItem('userId');
+        const eventsResponse = await axios.get(`http://tjommis.eu-central-1.elasticbeanstalk.com/api/users/${userId}/events`)
+        this.setState({events: eventsResponse.data})
+      });
+      
     }
     // Navigates the user to a specific message chain, with the given event id
     goToMessageRoom(id) {
