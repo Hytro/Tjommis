@@ -114,7 +114,7 @@ class NewSubEvent extends React.Component {
               date={this.state.time}
               mode="time"
               placeholder="Tid for underevent"
-              format="HH:MM"
+              format="HH:mm"
               minTime="00:00"
               maxTime="23:59"
               confirmBtnText="Confirm"
