@@ -24,7 +24,6 @@ class Messages extends React.Component{
     render() {
       // Displays a scrollable flatlist with a list of all the event chats that the user is
       // currently interested in.
-      var colorCode = 'rgb(' + (Math.floor(Math.random() * 256)) + ',' + (Math.floor(Math.random() * 256)) + ',' + (Math.floor(Math.random() * 256)) + ')';
       return(
         <FlatList 
         style={styles.container}

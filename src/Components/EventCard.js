@@ -40,7 +40,7 @@ class EventCard extends React.PureComponent {
                     <Text style={styles.cardTime}>{moment(this.props.item.date).format('Do MMM YYYY')} - {moment(getTime).format('HH:mm')}</Text>
                 </View>
                 <View>
-                    <Image style={styles.cardImage} source={{ uri: 'https://i.imgur.com/1jONy1i.jpg' }} />
+                <Image style={styles.cardImage} source={{uri: 'http://tjommis.eu-central-1.elasticbeanstalk.com/' + this.props.item.image_url}} />
                 </View>
                 <View style={styles.flexRowBottom}>
 
