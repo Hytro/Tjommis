@@ -3,6 +3,7 @@ import {View, Text, StyleSheet, TouchableOpacity, ActivityIndicator, FlatList} f
 import EventCard from '../Components/EventCard';
 
 import IconFA from 'react-native-vector-icons/FontAwesome'
+import AsyncStorage from '@react-native-community/async-storage';
 
 class MyEvents extends React.Component{
   constructor(){
@@ -18,8 +19,9 @@ class MyEvents extends React.Component{
     return data;
   }
 
-  componentDidMount(){
-    this._get('http://tjommis.eu-central-1.elasticbeanstalk.com/api/users/30/events/').then(
+  async componentDidMount(){
+    const userId = await AsyncStorage.getItem('userId');
+    this._get(`http://tjommis.eu-central-1.elasticbeanstalk.com/api/users/${userId}/events/`).then(
       data=> {
         this.setState({items: data})
       }
