@@ -9,7 +9,7 @@ class Logout extends React.Component {
     try {
       await AsyncStorage.removeItem('token')
     } catch (e) {
-      console.warn('Failed to remove token')
+     // console.warn('Failed to remove token')
     }
   }
   // take the user tp the welcome screen

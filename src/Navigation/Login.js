@@ -37,8 +37,6 @@ class Login extends React.Component {
   storeData = async (token) => {
     try {
       console.log("STORED TOKEN", token)
-      
-      
     } catch (e) {
 
     }

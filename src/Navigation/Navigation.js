@@ -37,6 +37,12 @@ class Navigation extends Component {
   }
 }
 
+/********************************* Navigation Stacks Start *********************************/
+
+/* Each stack is their own navigation stack,
+when you move to another tab in the app the stack will
+remember where you where when you go back */
+
 const EventStack = createStackNavigator({
   Events: {
     screen: Events,
@@ -251,6 +257,12 @@ const DashboardStackNavigator = createStackNavigator(
   }
 );
 
+/********************************* Navigation Stacks End *********************************/
+
+/********************************* The Side Drawer *********************************/
+
+
+/* CustomeDrawerComponent allows you to customize the standard drawer navigator */
 const CustomeDrawerComponent = (props) => (
   <SafeAreaView style={{ flex: 1}}>
     <View style={styles.drawerView}>
@@ -288,13 +300,14 @@ const AppDrawerNavigator = createDrawerNavigator({
   }
 });
 
+/********************************* Navigation Stacks End *********************************/
+
 const AppSwitchNavigator = createSwitchNavigator({
   Welcome: { screen: Welcome },
   Login: { screen: Login },
   Signup: { screen: Signup },
   Dashboard: { screen: AppDrawerNavigator },
   NewEvent: { screen: NewEvent },
-
 });
 
 const AppContainer = createAppContainer(AppSwitchNavigator);

@@ -78,11 +78,11 @@ class NewEvent extends React.Component {
       },
     }).then((res) => {
       res.json()
-      console.warn(collection)
+      //console.warn(collection)
       if (res.status === 201) {
         this.props.navigation.goBack()
       }
-      console.warn(res.status)
+      //console.warn(res.status)
     })
       .catch(error => console.error('Error:', error));
   }
