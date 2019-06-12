@@ -12,6 +12,7 @@
     "@react-native-community/async-storage": "^1.4.2",
     "axios": "^0.18.0",
     "moment": "^2.24.0",
+    "randomcolor": "^0.5.4",
     "react": "16.8.3",
     "react-native": "0.59.8",
     "react-native-datepicker": "^1.7.2",

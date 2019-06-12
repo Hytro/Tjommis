@@ -100,10 +100,11 @@ class Login extends React.Component {
             style={styles.backBtn}
             onPress={() => this.goToWelcomeScreen()}>
               <Icon
-                style={{ color: '#ECF0F1'}}
+                style={{ color: '#ECF0F1', paddingLeft: '30%'}}
                 name="left"
-                size={30}
+                size={20}
               />
+              <Text style={{color: '#ECF0F1', fontWeight: 'bold'}}>Tilbake</Text>
             </TouchableOpacity>
         </View>
       </View>
@@ -162,7 +163,8 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     padding: 10,
     backgroundColor: '#42A99A',
-    marginTop: 20
+    marginTop: 20,
+    flexDirection: 'row'
   }
 
 });
