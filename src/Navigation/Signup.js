@@ -15,6 +15,11 @@ class Signup extends React.Component{
     }
   }
 
+    // sends the user to the welcomescreen
+    goToWelcomeScreen() {
+      this.props.navigation.navigate('Welcome')
+    }
+
   /****************** UPDATE STATES START ******************/
   updateValue(text, field){
     if(field=='email'){
