@@ -37,8 +37,6 @@ class Login extends React.Component {
   storeData = async (token) => {
     try {
       console.log("STORED TOKEN", token)
-      
-      
     } catch (e) {
 
     }
@@ -75,15 +73,6 @@ class Login extends React.Component {
   render() {
     return (
       <View style={styles.container}>
-        <TouchableOpacity
-          style={styles.btn}
-          onPress={() => this.goToWelcomeScreen()}>
-          <Icon
-            style={{ paddingLeft: 10 }}
-            name="left"
-            size={30}
-          />
-        </TouchableOpacity>
         <View styles={styles.regform}>
           <Text style={styles.header}>Login</Text>
           {this.state.errorMsg !== '' ?
@@ -107,6 +96,15 @@ class Login extends React.Component {
             onPress={() => this.submit()}>
             <Text style={styles.btnText}>Login</Text>
           </TouchableOpacity>
+          <TouchableOpacity
+            style={styles.backBtn}
+            onPress={() => this.goToWelcomeScreen()}>
+              <Icon
+                style={{ color: '#ECF0F1'}}
+                name="left"
+                size={30}
+              />
+            </TouchableOpacity>
         </View>
       </View>
     );
@@ -151,13 +149,20 @@ const styles = StyleSheet.create({
   btn: {
     alignSelf: 'stretch',
     alignItems: 'center',
-    padding: 20,
+    padding: 10,
     backgroundColor: '#42A99A',
     marginTop: 30
   },
   btnText: {
     color: '#ECF0F1',
     fontWeight: 'bold'
+  },
+  backBtn: {
+    alignSelf: 'stretch',
+    alignItems: 'center',
+    padding: 10,
+    backgroundColor: '#42A99A',
+    marginTop: 20
   }
 
 });

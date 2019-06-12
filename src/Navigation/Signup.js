@@ -1,4 +1,5 @@
 import React from 'react';
+import Icon from 'react-native-vector-icons/AntDesign';
 import {View, Text, StyleSheet, TextInput, TouchableOpacity} from 'react-native';
 
 
@@ -60,7 +61,7 @@ class Signup extends React.Component{
         },  
       }).then((res) =>{res.json()
         if(res.status === 200){
-          console.warn(this.props);
+          //console.warn(this.props);
           this.props.navigation.navigate('Dashboard')
         }
         console.warn(res.status)
@@ -103,6 +104,15 @@ class Signup extends React.Component{
             onPress={() => this.submit()} >
             <Text style={styles.btnText}>Signup</Text>
           </TouchableOpacity>
+          <TouchableOpacity
+            style={styles.backBtn}
+            onPress={() => this.goToWelcomeScreen()}>
+              <Icon
+                style={{ color: '#ECF0F1'}}
+                name="left"
+                size={30}
+              />
+            </TouchableOpacity>
         </View>
       </View>
     );
@@ -150,6 +160,13 @@ class Signup extends React.Component{
       color: '#ECF0F1',
       fontWeight: 'bold'
     },
+    backBtn: {
+      alignSelf: 'stretch',
+      alignItems: 'center',
+      padding: 10,
+      backgroundColor: '#42A99A',
+      marginTop: 20
+    }
   });
   /********************************* Stylesheet End *********************************/
 
