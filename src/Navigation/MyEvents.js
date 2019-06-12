@@ -54,7 +54,7 @@ class MyEvents extends React.Component{
           style={styles.btn}
           onPress={() => this.props.navigation.navigate('NewEvent')}>
           <View style={{ flexDirection: 'row', alignItems: 'center' }}>
-            <Text style={styles.btnText}>Create new event  </Text>
+            <Text style={styles.btnText}>Opprett nytt event  </Text>
             <IconFA
                 name="calendar-plus-o" 
                 size={20}

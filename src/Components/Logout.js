@@ -30,7 +30,7 @@ class Logout extends React.Component {
         <TouchableOpacity
           style={styles.btn}
           onPress={() => this.logout()}>
-          <Text style={styles.btnText}>Logout</Text>
+          <Text style={styles.btnText}>Logg ut</Text>
         </TouchableOpacity>
       </View>
     );

@@ -51,7 +51,7 @@ class EventCard extends React.PureComponent {
                             size={20}
                             color={'#4ABDAC'}
                         />
-                        <Text style={{ fontSize: 10, opacity: 0.7 }}> TODO</Text>
+                        <Text style={{ fontSize: 10, opacity: 0.7 }}> Antall</Text>
                     </View>
                     <View style={{ flexDirection: 'row', alignItems: 'center' }}>
                         <IconFA
@@ -60,7 +60,7 @@ class EventCard extends React.PureComponent {
                             size={20}
                             color={'#4ABDAC'}
                         />
-                        <Text style={{ fontSize: 10, opacity: 0.7 }}> TODO</Text>
+                        <Text style={{ fontSize: 10, opacity: 0.7 }}> Del</Text>
                     </View>
                 </View>
             </TouchableOpacity>
