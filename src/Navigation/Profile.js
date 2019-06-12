@@ -39,11 +39,15 @@ class Profile extends Component {
         RNFS.readFile(response.path, 'ascii').then(res => {
         console.log("FS result", res)
         const bodyFormData = new FormData();
-        bodyFormData.append('imageData', res)
+        bodyFormData.append('imageData', {
+          uri: response.uri,
+          type: 'image/jpeg', // or photo.type
+          name: response.fileName
+        })
 
         axios({
           method: 'post',
-          url: `http://10.0.2.2:3001/api/users/${this.state.id}/image`,
+          url: `http://tjommis.eu-central-1.elasticbeanstalk.com/api/users/${this.state.id}/image`,
           data: bodyFormData,
           config: { headers: {'Content-Type': 'multipart/form-data' }}
           })
