@@ -102,7 +102,7 @@ class EventDetails extends React.PureComponent {
                         style={styles.btnJoin}
                         onPress={this.joinEvent}>
                         <View style={{ flexDirection: 'row', alignItems: 'center' }}>
-                            <Text style={styles.btnText}>Join event</Text>
+                            <Text style={styles.btnText}>Delta på event </Text>
                             <IconFA
                                 name="user-plus"
                                 size={20}
@@ -115,7 +115,7 @@ class EventDetails extends React.PureComponent {
                         style={styles.btnLeave}
                         onPress={this.LeaveEvent}>
                         <View style={{ flexDirection: 'row', alignItems: 'center' }}>
-                            <Text style={styles.btnText}>Leave event  </Text>
+                            <Text style={styles.btnText}>Forlat event </Text>
                             <IconFA
                                 name="user-plus"
                                 size={20}

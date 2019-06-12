@@ -42,7 +42,7 @@ const EventStack = createStackNavigator({
     screen: Events,
     navigationOptions: ({ navigation }) => {
       return {
-        headerTitle: 'Events',
+        headerTitle: 'Eventer',
         headerLeft: (
           <Icon
             style={{ paddingLeft: 10 }}
@@ -74,7 +74,7 @@ const MessageStack = createStackNavigator({
     screen: Messages,
     navigationOptions: ({ navigation }) => {
       return {
-        headerTitle: 'Messages',
+        headerTitle: 'Samtaler',
         headerLeft: (
           <Icon
             style={{ paddingLeft: 10 }}
@@ -108,7 +108,7 @@ const MyEventStack = createStackNavigator({
     screen: MyEvents,
     navigationOptions: ({ navigation }) => {
       return {
-        headerTitle: 'My Events',
+        headerTitle: 'Mine Eventer',
         headerLeft: (
           <Icon
             style={{ paddingLeft: 10 }}
@@ -140,7 +140,7 @@ const ProfileStack = createStackNavigator({
     screen: Profile,
     navigationOptions: ({ navigation }) => {
       return {
-        headerTitle: 'Profile',
+        headerTitle: 'Profil',
         headerLeft: (
           <Icon
             style={{ paddingLeft: 10 }}
@@ -164,7 +164,7 @@ const DashboardTabNavigator = createBottomTabNavigator({
   Event: {
     screen: EventStack,
     navigationOptions: {
-      tabBarLabel: "Event",
+      tabBarLabel: "Eventer",
       tabBarIcon: ({ tintColor }) => (
         <IconAD
           style={{ paddingTop: 4 }}
@@ -178,7 +178,7 @@ const DashboardTabNavigator = createBottomTabNavigator({
   Message: {
     screen: MessageStack,
     navigationOptions: {
-      tabBarLabel: "Messages",
+      tabBarLabel: "Samtaler",
       tabBarIcon: ({ tintColor }) => (
         <IconAD
           style={{ paddingTop: 4 }}
@@ -192,7 +192,7 @@ const DashboardTabNavigator = createBottomTabNavigator({
   MyEvents: {
     screen: MyEventStack,
     navigationOptions: {
-      tabBarLabel: "My Events",
+      tabBarLabel: "Mine Eventer",
       tabBarIcon: ({ tintColor }) => (
         <IconAD
           style={{ paddingTop: 4 }}
@@ -206,7 +206,7 @@ const DashboardTabNavigator = createBottomTabNavigator({
   Profile: {
     screen: ProfileStack,
     navigationOptions: {
-      tabBarLabel: "Profile",
+      tabBarLabel: "Profil",
       tabBarIcon: ({ tintColor }) => (
         <IconAD
           style={{ paddingTop: 4 }}
@@ -272,13 +272,13 @@ const AppDrawerNavigator = createDrawerNavigator({
   NewEvent: {
     screen: NewEvent,
     navigationOptions: () => ({
-      title: `Create new event`,
+      title: `Opprett nytt event`,
     })
   },
   Logout: {
     screen: Logout,
     navigationOptions: () => ({
-      title: `Logout`,
+      title: `Logg ut`,
     })
   },
 }, {

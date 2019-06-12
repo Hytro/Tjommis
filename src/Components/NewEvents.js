@@ -92,7 +92,7 @@ class NewEvent extends React.Component {
       <View style={styles.container}>
         <View styles={styles.regform}>
           <View styles={styles.topPart}>
-            <Text style={styles.header}>Create a new event</Text>
+            <Text style={styles.header}>Opprett et nytt event</Text>
           </View>
           <View styles={styles.middlePart}>
             <TextInput
@@ -113,7 +113,7 @@ class NewEvent extends React.Component {
               showTimeSelect
               timeCaption="Time"
               mode="date"
-              placeholder="Click to select date"
+              placeholder="Dato for event"
               format="YYYY-MM-DD"
               minDate={new Date()}
               maxDate="2100-01-01"
@@ -141,7 +141,7 @@ class NewEvent extends React.Component {
               style={styles.dateTime}
               date={this.state.time}
               mode="time"
-              placeholder="Click to select time"
+              placeholder="Tid for event"
               format="HH:MM"
               minTime="00:00"
               maxTime="23:59"
@@ -178,7 +178,7 @@ class NewEvent extends React.Component {
           <TouchableOpacity
             style={styles.btn}
             onPress={() => this.submit()} >
-            <Text style={styles.btnText}>Create Event</Text>
+            <Text style={styles.btnText}>Opprett event</Text>
           </TouchableOpacity>
         </View>
       </View>
