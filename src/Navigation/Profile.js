@@ -24,7 +24,7 @@ class Profile extends Component {
       id: userResponse.data.id,
       image_url: 'http://tjommis.eu-central-1.elasticbeanstalk.com/' + userResponse.data.image_url
     })
-    
+
   }
 
 
@@ -35,9 +35,7 @@ class Profile extends Component {
     ImagePicker.launchImageLibrary(options, response => {
       if (response.uri) {
         console.log("Picker response", response)
-        this.setState({image_url: response.uri})
-        RNFS.readFile(response.path, 'ascii').then(res => {
-        console.log("FS result", res)
+        this.setState({ image_url: response.uri })
         const bodyFormData = new FormData();
         bodyFormData.append('imageData', {
           uri: response.uri,
@@ -49,27 +47,23 @@ class Profile extends Component {
           method: 'post',
           url: `http://tjommis.eu-central-1.elasticbeanstalk.com/api/users/${this.state.id}/image`,
           data: bodyFormData,
-          config: { headers: {'Content-Type': 'multipart/form-data' }}
-          })
-        .then(function (response) {
+          config: { headers: { 'Content-Type': 'multipart/form-data' } }
+        })
+          .then(function (response) {
             //handle success
             console.log(response);
-        })
-        .catch(function (response) {
+          })
+          .catch(function (response) {
             //handle error
             console.log(response);
-        });
-        })
-        .catch(err => {
-            console.log(err.message, err.code);
-        });
+          });
       }
     })
   }
 
- // This is currently a dummy profile. The avatar is a static picture collected from the database.
- // The description and filters for each user is currently static.
- // The name is displayed by the user info in the database
+  // This is currently a dummy profile. The avatar is a static picture collected from the database.
+  // The description and filters for each user is currently static.
+  // The name is displayed by the user info in the database
   render() {
     return (
       <View style={styles.container}>
@@ -77,43 +71,43 @@ class Profile extends Component {
         <TouchableOpacity style={styles.avatarTouch} onPress={this.handleChoosePhoto}>
           <Image style={styles.avatar} source={{ uri: this.state.image_url }} />
         </TouchableOpacity>
-        
+
         <View style={styles.body}>
           <View style={styles.bodyContent}>
             <Text style={styles.name}>{`${this.state.firstName} ${this.state.lastName}`}</Text>
             <Text style={styles.info}>Høyskolen Kristiania - Westerdals</Text>
             <Text style={styles.description}>Jeg er en student som går Frontend- og Mobilutvikling ved Høyskolen Kristiania. Jeg digger å game, dra på konserter, ta en fin tur på kino, eller vandre tankeløst på en lang skogtur!</Text>
-            <View style={{flexDirection: 'row'}}>
+            <View style={{ flexDirection: 'row' }}>
               <TouchableOpacity style={styles.buttonContainer}>
-                <Text style={{color: 'white'}}>Fjelltur</Text>
+                <Text style={{ color: 'white' }}>Fjelltur</Text>
               </TouchableOpacity>
               <TouchableOpacity style={styles.buttonContainer}>
-                <Text style={{color: 'white'}}>Gaming</Text>
+                <Text style={{ color: 'white' }}>Gaming</Text>
               </TouchableOpacity>
               <TouchableOpacity style={styles.buttonContainer}>
-                <Text style={{color: 'white'}}>Fisking</Text>
-              </TouchableOpacity>
-            </View>
-            <View style={{flexDirection: 'row'}}>
-              <TouchableOpacity style={styles.buttonContainer}>
-                <Text style={{color: 'white'}}>Konserter</Text>
-              </TouchableOpacity>
-              <TouchableOpacity style={styles.buttonContainer}>
-                <Text style={{color: 'white'}}>Skogtur</Text>
-              </TouchableOpacity>
-              <TouchableOpacity style={styles.buttonContainer}>
-                <Text style={{color: 'white'}}>Hunder</Text>
+                <Text style={{ color: 'white' }}>Fisking</Text>
               </TouchableOpacity>
             </View>
-            <View style={{flexDirection: 'row'}}>
+            <View style={{ flexDirection: 'row' }}>
               <TouchableOpacity style={styles.buttonContainer}>
-                <Text style={{color: 'white'}}>Programmering</Text>
+                <Text style={{ color: 'white' }}>Konserter</Text>
               </TouchableOpacity>
               <TouchableOpacity style={styles.buttonContainer}>
-                <Text style={{color: 'white'}}>Fotografi</Text>
+                <Text style={{ color: 'white' }}>Skogtur</Text>
               </TouchableOpacity>
               <TouchableOpacity style={styles.buttonContainer}>
-                <Text style={{color: 'white'}}>Musikk</Text>
+                <Text style={{ color: 'white' }}>Hunder</Text>
+              </TouchableOpacity>
+            </View>
+            <View style={{ flexDirection: 'row' }}>
+              <TouchableOpacity style={styles.buttonContainer}>
+                <Text style={{ color: 'white' }}>Programmering</Text>
+              </TouchableOpacity>
+              <TouchableOpacity style={styles.buttonContainer}>
+                <Text style={{ color: 'white' }}>Fotografi</Text>
+              </TouchableOpacity>
+              <TouchableOpacity style={styles.buttonContainer}>
+                <Text style={{ color: 'white' }}>Musikk</Text>
               </TouchableOpacity>
             </View>
           </View>
