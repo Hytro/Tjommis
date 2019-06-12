@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
-import { View, Text, Image, StyleSheet, TouchableOpacity } from 'react-native';
+import { View, Button, Text, Image, StyleSheet, TouchableOpacity } from 'react-native';
 import AsyncStorage from '@react-native-community/async-storage';
 import axios from 'axios';
+import ImagePicker from 'react-native-image-picker'
 
 class Profile extends Component {
   state = {
@@ -9,6 +10,7 @@ class Profile extends Component {
       firstName: '-',
       lastName: '-',
       image_url: '-',
+      id: 0
     }
   }
 
@@ -18,6 +20,35 @@ class Profile extends Component {
     const userResponse = await axios.get(`http://tjommis.eu-central-1.elasticbeanstalk.com/api/auth/me`, { token })
     console.log(userResponse.data)
     this.setState({ user: userResponse.data })
+    
+  }
+
+
+  handleChoosePhoto = () => {
+    const options = {
+      noData: true,
+    }
+    ImagePicker.launchImageLibrary(options, response => {
+      if (response.uri) {
+        console.log(response)
+        let bodyFormData = new FormData();
+        bodyFormData.append('imageData', response.uri)
+        axios({
+          method: 'post',
+          url: `http://tjommis.eu-central-1.elasticbeanstalk.com/api/users/${this.state.user.id}/image`,
+          data: bodyFormData,
+          config: { headers: {'Content-Type': 'multipart/form-data' }}
+          })
+          .then(function (response) {
+              //handle success
+              console.log(response);
+          })
+          .catch(function (response) {
+              //handle error
+              console.log(response);
+          });
+      }
+    })
   }
 
  // This is currently a dummy profile. The avatar is a static picture collected from the database.
@@ -27,7 +58,9 @@ class Profile extends Component {
     return (
       <View style={styles.container}>
         <View style={styles.header}></View>
-        <Image style={styles.avatar} source={{ uri: 'https://bootdey.com/img/Content/avatar/avatar6.png' }} />
+        <TouchableOpacity style={styles.avatarTouch} onPress={this.handleChoosePhoto}>
+          <Image style={styles.avatar} source={{ uri: this.state.image_url }} />
+        </TouchableOpacity>
         <View style={styles.body}>
           <View style={styles.bodyContent}>
             <Text style={styles.name}>{`${this.state.user.firstName} ${this.state.user.lastName}`}</Text>
@@ -80,6 +113,16 @@ const styles = StyleSheet.create({
     height: 125,
   },
   avatar: {
+    width: 130,
+    height: 130,
+    borderRadius: 63,
+    borderWidth: 4,
+    borderColor: "white",
+    alignSelf: 'center',
+    position: 'absolute',
+    marginTop: -5
+  },
+  avatarTouch: {
     width: 130,
     height: 130,
     borderRadius: 63,
