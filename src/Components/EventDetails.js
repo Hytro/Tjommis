@@ -221,8 +221,7 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         paddingTop: 8,
         paddingBottom: 10,
-        fontSize: 16,
-        textDecorationLine: 'underline'
+        fontSize: 16
     },
     eventText: {
         paddingTop: 4,
