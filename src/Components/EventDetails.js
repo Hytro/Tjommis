@@ -147,7 +147,7 @@ class EventDetails extends React.PureComponent {
                     </View>
                 </View>
                 <View style={styles.flexRow}>
-                    <Text style={styles.eventInfo}>Info om eventet</Text>
+                    <Text style={styles.eventInfo}>Info om eventet:</Text>
                 </View>
                 <View style={styles.flexRow}>
                     <Text style={styles.eventText}>{this.state.description}</Text>
