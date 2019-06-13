@@ -126,6 +126,8 @@ class Messages extends React.Component{
             messages={this.state.messages}
             onSend={messages => this.sendMessage(messages)}
             placeholder="Skriv melding.."
+            renderUsernameOnMessage={true}
+            timeFormat="HH:mm"
             user={{
               _id: this.state.userId,
             }}
