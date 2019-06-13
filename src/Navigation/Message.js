@@ -38,7 +38,8 @@ class Messages extends React.Component{
         text: msg.message,
         user: {
           _id: msg.sender_id,
-          name: users[msg.sender_id].firstName
+          name: users[msg.sender_id].firstName,
+          avatar: 'http://tjommis.eu-central-1.elasticbeanstalk.com/' + users[msg.sender_id].image_url
         }
       }
     }).reverse(); // Reverse the chat, we want the last message at the bottom, not the top
