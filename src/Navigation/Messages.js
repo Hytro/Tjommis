@@ -3,6 +3,7 @@ import {View, Image, FlatList, Text, StyleSheet, TouchableOpacity} from 'react-n
 import axios from 'axios'
 import AsyncStorage from '@react-native-community/async-storage';
 import IconAD from 'react-native-vector-icons/AntDesign';
+import { isThrowStatement } from '@babel/types';
 
 class Messages extends React.Component{
     state = {
@@ -22,7 +23,7 @@ class Messages extends React.Component{
         this.setState({events: eventsResponse.data})
         const subResponse = await axios.get(`http://tjommis.eu-central-1.elasticbeanstalk.com/api/users/${userId}/subs`)
         const subs = subResponse.data.map(sub => {
-          return {...sub, id: 'sub' + sub.id}
+          return {...sub, isSub: true, id: 'sub' + sub.id}
         })
         this.setState({
           events: [...this.state.events, ...subs]
@@ -47,7 +48,11 @@ class Messages extends React.Component{
         renderItem={({ item}) => 
         <TouchableOpacity onPress={() => this.goToMessageRoom(item.id)}>
           <View style={styles.chat}>
+            {item.isSub ? 
+            <View style={[styles.avatar, {backgroundColor: 'rgb(' + (Math.floor(Math.random() * 256)) + ',' + (Math.floor(Math.random() * 256)) + ',' + (Math.floor(Math.random() * 256)) + ')'}]}/>
+            :
             <Image style={styles.avatar} source={{uri: 'http://tjommis.eu-central-1.elasticbeanstalk.com/' + item.image_url}}/>
+            }
             <View style={styles.textContainer}>
               <Text style={styles.title}>{item.title}</Text>
               <View style={{flexDirection: 'row'}}>
