@@ -25,8 +25,8 @@ class Messages extends React.Component{
           return {...sub, id: 'sub' + sub.id}
         })
         this.setState({
-          
-        })
+          events: [...this.state.events, ...subs]
+        }, () => console.log(this.state.events))
         console.log(subResponse.data)
       });
       

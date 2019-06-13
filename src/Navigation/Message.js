@@ -18,13 +18,15 @@ class Messages extends React.Component{
   async componentDidMount() {
     const eventId = this.props.navigation.getParam('eventId', 'NO-ID')
     console.log("EVENT ID", eventId)
+    const isSub = ('' + eventId).includes('sub');
+    console.log(isSub)
     this.setState({eventId: eventId, userId: parseInt((await AsyncStorage.getItem('userId')), 10)}, () => {
       console.log("UID", this.state.userId)
     })
     // Get the reponse from the other users from the event id and the users connected to that event id
-    const usersResponse = await axios.get(`http://tjommis.eu-central-1.elasticbeanstalk.com/api/events/${eventId}/users`);
+    const usersResponse = await axios.get(`http://tjommis.eu-central-1.elasticbeanstalk.com/api/${isSub ? 'subs' : 'events'}/${isSub ? eventId.substring(3) : eventId}/users`);
     // Get the response from the current user from the event id and the users message
-    const msgResponse = await axios.get(`http://tjommis.eu-central-1.elasticbeanstalk.com/api/events/${eventId}/messages`);
+    const msgResponse = await axios.get(`http://tjommis.eu-central-1.elasticbeanstalk.com/api/${isSub ? 'subs' : 'events'}/${isSub ? eventId.substring(3) : eventId}/messages`);
     const users = {};
     usersResponse.data.forEach(user => users[user.id] = user)
     // Maps the message response and return it with both an image, the message and the id/name of the sender
