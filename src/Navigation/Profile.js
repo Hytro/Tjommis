@@ -130,6 +130,7 @@ const styles = StyleSheet.create({
     borderColor: "white",
     alignSelf: 'center',
     position: 'absolute',
+    backgroundColor: '#95a5a6',
     marginTop: -5
   },
   avatarTouch: {
