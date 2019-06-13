@@ -20,13 +20,12 @@ class Messages extends React.Component{
       this.reRenderList = this.props.navigation.addListener('willFocus', async () => {
         const userId = await AsyncStorage.getItem('userId');
         const eventsResponse = await axios.get(`http://tjommis.eu-central-1.elasticbeanstalk.com/api/users/${userId}/events`)
-        this.setState({events: eventsResponse.data})
         const subResponse = await axios.get(`http://tjommis.eu-central-1.elasticbeanstalk.com/api/users/${userId}/subs`)
         const subs = subResponse.data.map(sub => {
           return {...sub, isSub: true, id: 'sub' + sub.id}
         })
         this.setState({
-          events: [...this.state.events, ...subs]
+          events: [...eventsResponse.data, ...subs]
         }, () => console.log(this.state.events))
         console.log(subResponse.data)
       });
