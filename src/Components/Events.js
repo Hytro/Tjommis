@@ -10,9 +10,21 @@ class Events extends React.Component {
     super();
     this.state = {
       items: [],
-      token: []
+      token: [],
+      isFetching: false
     }
   }
+
+  onRefresh() {
+    this.setState({ isFetching: true }, function() {
+      this._get('http://tjommis.eu-central-1.elasticbeanstalk.com/api/events/').then(
+      data => {
+        this.setState({ items: data, isFetching: false })
+      }
+    )
+    });
+  }
+
   // chatching the right event id from api
   async componentDidMount() {
     this._get('http://tjommis.eu-central-1.elasticbeanstalk.com/api/events/').then(
@@ -54,6 +66,8 @@ class Events extends React.Component {
     }
     return (
       <FlatList
+        onRefresh={() => this.onRefresh()}
+        refreshing={this.state.isFetching}
         style={styles.container}
         data={this.state.items}
         keyExtractor={(item, index) => index.toString()}
