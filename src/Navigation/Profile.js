@@ -125,7 +125,7 @@ const styles = StyleSheet.create({
   avatar: {
     width: 130,
     height: 130,
-    borderRadius: 63,
+    borderRadius: 65,
     borderWidth: 4,
     borderColor: "white",
     alignSelf: 'center',
@@ -135,7 +135,7 @@ const styles = StyleSheet.create({
   avatarTouch: {
     width: 130,
     height: 130,
-    borderRadius: 63,
+    borderRadius: 65,
     borderWidth: 4,
     borderColor: "white",
     marginBottom: 10,

@@ -3,7 +3,7 @@ import {View, Image, FlatList, Text, StyleSheet, TouchableOpacity} from 'react-n
 import axios from 'axios'
 import AsyncStorage from '@react-native-community/async-storage';
 import IconAD from 'react-native-vector-icons/AntDesign';
-import { isThrowStatement } from '@babel/types';
+import ChatImg from '../Assets/chat.png';
 
 class Messages extends React.Component{
     state = {
@@ -49,7 +49,7 @@ class Messages extends React.Component{
         <TouchableOpacity onPress={() => this.goToMessageRoom(item.id)}>
           <View style={styles.chat}>
             {item.isSub ? 
-            <View style={[styles.avatar, {backgroundColor: 'rgb(' + (Math.floor(Math.random() * 256)) + ',' + (Math.floor(Math.random() * 256)) + ',' + (Math.floor(Math.random() * 256)) + ')'}]}/>
+            <Image source={ChatImg} style={styles.avatar}/>
             :
             <Image style={styles.avatar} source={{uri: 'http://tjommis.eu-central-1.elasticbeanstalk.com/' + item.image_url}}/>
             }
@@ -92,7 +92,7 @@ class Messages extends React.Component{
       marginTop: 10
     },
     avatar: {
-      borderRadius: 30,
+      borderRadius: 25,
       height: 50,
       width: 50
     },
