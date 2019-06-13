@@ -4,15 +4,24 @@ import AsyncStorage from '@react-native-community/async-storage';
 import axios from 'axios';
 import IconFA from 'react-native-vector-icons/FontAwesome'
 import moment from 'moment';
+import ImagePicker from 'react-native-image-picker'
 
 class EventDetails extends React.PureComponent {
 
     constructor() {
         super();
         this.state = {
-            items: [],
             eventIdText: '',
-            joined: false
+            joined: false,
+            created_at: '',
+            creator_id: 0,
+            date: '',
+            description: '',
+            id: 0,
+            image_url: '',
+            location: '',
+            time: '',
+            title: ''
         }
     }
     // gets the correct token from the database and add it on the correct userid
@@ -22,7 +31,18 @@ class EventDetails extends React.PureComponent {
             if (value !== null) {
                 this.setState({ eventIdText: value }, async () => {
                     const eventResponse = await axios.get('http://tjommis.eu-central-1.elasticbeanstalk.com/api/events/' + this.state.eventIdText);
-                    this.setState({ items: eventResponse.data })
+                    this.setState({
+                        created_at: eventResponse.data.created_at,
+                        creator_id: eventResponse.data.creator_id,
+                        date: eventResponse.data.date,
+                        description: eventResponse.data.description,
+                        id: eventResponse.data.id,
+                        image_url: 'http://tjommis.eu-central-1.elasticbeanstalk.com/' + eventResponse.data.image_url,
+                        location: eventResponse.data.location,
+                        time: eventResponse.data.time,
+                        title: eventResponse.data.title
+                    })
+                    console.log(eventResponse.data)
                     const userId = await AsyncStorage.getItem('userId')
                     const userEventsResponse = await axios.get(`http://tjommis.eu-central-1.elasticbeanstalk.com/api/users/${userId}/events`)
                     userEventsResponse.data.forEach(event => {
@@ -62,15 +82,50 @@ class EventDetails extends React.PureComponent {
         leaveResponse.status === 204 ? this.setState({ joined: false }) : null
     }
 
+    handleChoosePhoto = () => {
+        const options = {
+            noData: true,
+        }
+        ImagePicker.launchImageLibrary(options, response => {
+            if (response.uri) {
+            console.log("Picker response", response)
+            this.setState({ image_url: response.uri })
+            const bodyFormData = new FormData();
+            bodyFormData.append('imageData', {
+                uri: response.uri,
+                type: 'image/jpeg', // or photo.type
+                name: response.fileName
+            })
+
+            axios({
+                method: 'post',
+                url: `http://tjommis.eu-central-1.elasticbeanstalk.com/api/events/${this.state.eventIdText}/image`,
+                data: bodyFormData,
+                config: { headers: { 'Content-Type': 'multipart/form-data' } }
+            })
+                .then(function (response) {
+                //handle success
+                console.log(response);
+                })
+                .catch(function (response) {
+                //handle error
+                console.log(response);
+                });
+            }
+        })
+    }
+
     render() {
         // Adding a date timer
-        const getTime = "2020-01-03 " + this.state.items.time
+        const getTime = "2020-01-03 " + this.state.time
         return (
             <View style={styles.event}>
-                <Image style={styles.eventImage} source={{uri: this.state.items.image_url}} />
+                <TouchableOpacity onPress={this.handleChoosePhoto}>
+                    <Image style={styles.eventImage} source={{uri: this.state.image_url}} />
+                </TouchableOpacity>
                 <View style={styles.topInfo}>
                     <View style={styles.flexRow}>
-                        <Text style={styles.eventTitle}>{this.state.items.title}</Text>
+                        <Text style={styles.eventTitle}>{this.state.title}</Text>
                     </View>
                     <View style={{ justifyContent: 'space-between', flexDirection: 'row' }}>
                         <View style={styles.flexRowHalf}>
@@ -79,7 +134,7 @@ class EventDetails extends React.PureComponent {
                                 size={20}
                                 color="#4ABDAC"
                             />
-                            <Text style={styles.eventLocation}>{this.state.items.location}</Text>
+                            <Text style={styles.eventLocation}>{this.state.location}</Text>
                         </View>
                         <View style={styles.flexRowHalf}>
                             <IconFA
@@ -87,7 +142,7 @@ class EventDetails extends React.PureComponent {
                                 size={18}
                                 color="#4ABDAC"
                             />
-                            <Text style={styles.eventDate}>  {moment(this.state.items.date).format('Do MMM YYYY')} - {moment(getTime).format('HH:mm')}</Text>
+                            <Text style={styles.eventDate}>  {moment(this.state.date).format('Do MMM YYYY')} - {moment(getTime).format('HH:mm')}</Text>
                         </View>
                     </View>
                 </View>
@@ -95,7 +150,7 @@ class EventDetails extends React.PureComponent {
                     <Text style={styles.eventInfo}>Info om eventet</Text>
                 </View>
                 <View style={styles.flexRow}>
-                    <Text style={styles.eventText}>{this.state.items.description}</Text>
+                    <Text style={styles.eventText}>{this.state.description}</Text>
                 </View>
                 {this.state.joined !== true ?
                     <TouchableOpacity

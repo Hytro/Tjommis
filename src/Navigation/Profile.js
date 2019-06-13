@@ -3,7 +3,6 @@ import { View, Button, Text, Image, StyleSheet, TouchableOpacity } from 'react-n
 import AsyncStorage from '@react-native-community/async-storage';
 import axios from 'axios';
 import ImagePicker from 'react-native-image-picker'
-import RNFS from 'react-native-fs';
 
 class Profile extends Component {
   state = {
