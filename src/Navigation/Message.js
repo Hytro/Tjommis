@@ -12,7 +12,8 @@ class Messages extends React.Component{
     messages: [],
     eventId: 6,
     userId: false,
-    message: ''
+    message: '',
+    isSub: false
   }
   // If the page is rendered correctly, get the event id and set the user id state
   async componentDidMount() {
@@ -20,7 +21,7 @@ class Messages extends React.Component{
     console.log("EVENT ID", eventId)
     const isSub = ('' + eventId).includes('sub');
     console.log(isSub)
-    this.setState({eventId: eventId, userId: parseInt((await AsyncStorage.getItem('userId')), 10)}, () => {
+    this.setState({eventId: eventId, isSub, userId: parseInt((await AsyncStorage.getItem('userId')), 10)}, () => {
       console.log("UID", this.state.userId)
     })
     // Get the reponse from the other users from the event id and the users connected to that event id
@@ -91,6 +92,7 @@ class Messages extends React.Component{
       // Uses the GiftedChat library to display the chat with the given messages
       return(
         <View style={{flex: 1, flexDirection: 'column'}}>
+        {!this.state.isSub ?
           <View style={styles.eventTop}>
             <TouchableOpacity 
               style={styles.btn}
@@ -118,6 +120,7 @@ class Messages extends React.Component{
               </View>
             </TouchableOpacity>
           </View>
+        : null}
           <GiftedChat
             messages={this.state.messages}
             onSend={messages => this.sendMessage(messages)}
