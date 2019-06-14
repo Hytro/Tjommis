@@ -1,0 +1,8 @@
+app_identifier("org.reactjs.native.example.Tjommis") # The bundle identifier of your app
+apple_id("sondregullik@gmail.com") # Your Apple email address
+
+itc_team_id("120197457") # App Store Connect Team ID
+team_id("SND46HW79X") # Developer Portal Team ID
+
+# For more information about the Appfile, see:
+#     https://docs.fastlane.tools/advanced/#appfile
