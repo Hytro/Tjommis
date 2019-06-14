@@ -2,7 +2,5 @@
 
 Run npm install or  yarn install to install dependencies.
 
-react-native start to start development server in consoll.
-Start the Android build by opening the Android folder in Android Studio and start the Emulator.
-For IOS open the IOS folder in Xcode and start emulator.
-
+Follow these instructions to set up the Android and iOS Emulator to see the React Project
+https://facebook.github.io/react-native/docs/getting-started.html
