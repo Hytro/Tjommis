@@ -8,7 +8,7 @@ Follow these instructions to set up the Android and iOS Emulator to see the Reac
 Some examples of the finished product app
 
 ## Start page
-![Start page](readme/IMG_2353.PNG)
+![Start page]<img src="readme/IMG_2353.PNG" width="300">
 
 ## Registration page
 ![Registration page](readme/IMG_2354.PNG)
