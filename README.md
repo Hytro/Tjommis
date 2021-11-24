@@ -7,35 +7,17 @@ Follow these instructions to set up the Android and iOS Emulator to see the Reac
 
 Some examples of the finished product app
 
-## Start page
-![Start page]<img src="readme/IMG_2353.PNG" width="300">
-
-## Registration page
-![Registration page](readme/IMG_2354.PNG)
-
 ## Login page
-![Login page](readme/IMG_2355.PNG)
+<img src="readme/IMG_2353.PNG" width="400"> <img src="readme/IMG_2354.PNG" width="400"> <img src="readme/IMG_2355.PNG" width="400">
 
 ## Event page
-![Event page](readme/IMG_2356.PNG)
+<img src="readme/IMG_2356.PNG" width="400"> <img src="readme/IMG_2357.PNG" width="400">
+<img src="readme/IMG_2358.PNG" width="400"> <img src="readme/IMG_2359.PNG" width="400"> <img src="readme/IMG_2360.PNG" width="400">
 
-## Sidebar page
-![Sidebar page](readme/IMG_2357.PNG)
-
-## My events page
-![My events page](readme/IMG_2358.PNG)
-
-## Make an event page
-![Make an event page](readme/IMG_2359.PNG)
-
-## One event page
-![One event page](readme/IMG_2360.PNG)
 
 ## Chat overview page
-![Chat overview page](readme/IMG_2361.PNG)
+<img src="readme/IMG_2361.PNG" width="400"> <img src="readme/IMG_2362.PNG" width="400">
 
-## Chat page
-![Chat page](readme/IMG_2362.PNG)
 
 ## Profile page
-![Profile page](readme/IMG_2363.PNG)
+<img src="readme/IMG_2363.PNG" width="400">
